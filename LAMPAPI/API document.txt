@@ -1,0 +1,16 @@
+## ALL JSON REQUESTS AND RESPONSES ##
+
+CreateContact: POST
+req: userId, firstName, lastName, email, phone, dateTime   (we could do more)
+res: err
+
+SearchContacts: POST (could do GET though)
+req: userId, name  (will be used for both First and Last)
+res: (matching contacts), err
+
+UpdateContact: POST
+req: userId, firstName, lastName  (dunno how duplicates will work)
+res: err
+
+DeleteContact: POST
+req: userId, firstName, lastName  (dunno how duplicates will work)
