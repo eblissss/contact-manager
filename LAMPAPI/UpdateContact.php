@@ -1,8 +1,9 @@
-<?php
+ <?php
     // Get info from request
 	$inData = getRequestInfo();
     
-    $userId = $inData["userId"];
+    $id = $inData["id"];
+	$userId = $inData["userId"];
     $firstName = $inData["firstName"];
     $lastName = $inData["lastName"];
     $email = $inData["email"];
@@ -17,9 +18,9 @@
 	} 
 	else
 	{
-        // Create SQL statement to add contact
-		$stmt = $conn->prepare("INSERT into Contacts (UserID,FirstName,LastName,Email,Phone) VALUES (?,?,?,?,?)");
-		$stmt->bind_param("sssss", $userId, $firstName, $lastName, $email, $phone);
+        // Create SQL statement to update contact
+		$stmt = $conn->prepare("UPDATE Contacts SET FirstName=?, LastName=?, Email=?, Phone=? WHERE ID=? and UserID=?");
+		$stmt->bind_param("sssss", $firstName, $lastName, $email, $phone, $id, $userId);
 		$stmt->execute();
 		$stmt->close();
 		$conn->close();

@@ -1,4 +1,4 @@
-const urlBase = "http://<INSERT HOST>/LAMPAPI";
+const urlBase = "http://localhost/LAMPAPI"; //replace with actual site
 const extension = "php";
 
 // Default login fields
@@ -34,6 +34,7 @@ function doLogin() {
         xhr.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
                 // Parse response
+                console.log(xhr.responseText);
                 let jsonObject = JSON.parse(xhr.responseText);
                 userId = jsonObject.id;
 

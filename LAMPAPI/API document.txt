@@ -1,16 +1,17 @@
 ## ALL JSON REQUESTS AND RESPONSES ##
 
 CreateContact: POST
-req: userId, firstName, lastName, email, phone, dateTime   (we could do more)
+req: userId, firstName, lastName, email, phone, dateCreated   (we could do more)
 res: err
 
-SearchContacts: POST (could do GET though)
-req: userId, name  (will be used for both First and Last)
-res: (matching contacts), err
+SearchContacts: POST
+req: userId, search    (search will be used for both First and Last)
+res: err, results (matching contacts as json)
 
 UpdateContact: POST
-req: userId, firstName, lastName  (dunno how duplicates will work)
+req: id, userId, firstName, lastName, email, phone  
 res: err
 
 DeleteContact: POST
-req: userId, firstName, lastName  (dunno how duplicates will work)
+req: id, userId    (database id's will be returned with search, userId is a double-check for accidents)
+res: err

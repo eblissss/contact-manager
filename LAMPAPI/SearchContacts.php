@@ -1,12 +1,15 @@
 <?php
+ ini_set('display_errors', '1');
+ ini_set('display_startup_errors', '1');
+ error_reporting(E_ALL);
 	// Get Data from request
 	$inData = getRequestInfo();
 	
 	$searchResults = "";
 	$searchCount = 0;
 
-	// Connection vars incorrect
 	$conn = new mysqli("localhost", "TheBeast", "WeLoveCOP4331", "COP4331");
+
 	// Check for connection error
 	if ($conn->connect_error) 
 	{
@@ -15,23 +18,25 @@
 	else
 	{
 		// Create SQL statement to search contacts
-		$stmt = $conn->prepare("select * from Contacts where FirstName like ? or LastName like ? and UserID=?");
+		$sqlsearch = "select * from Contacts where (FirstName like ? or LastName like ?) and UserID=?";
+		$stmt = $conn->prepare($sqlsearch);
 		$name = "%" . $inData["search"] . "%";
-		$stmt->bind_param("ss", $name, $inData["userId"]);
+		$stmt->bind_param("sss", $name, $name, $inData["userId"]);
 		$stmt->execute();
 		
 		$result = $stmt->get_result();
 		
-		// Section needs to be redone as json (so we can display all the info)
-		// while($row = $result->fetch_assoc())
-		// {
-		// 	if( $searchCount > 0 )
-		// 	{
-		// 		$searchResults .= ",";
-		// 	}
-		// 	$searchCount++;
-		// 	$searchResults .= '"' . $row["Name"] . '"';
-		// }
+		// Get results as array string
+		while($row = $result->fetch_assoc())
+		{
+			if( $searchCount > 0 )
+			{
+				$searchResults .= ",";
+			}
+			$searchCount++;
+			$searchResults .= '"' . json_encode($row) . '"';
+		}
+
 		
 		// Return results
 		if( $searchCount == 0 )
@@ -60,13 +65,14 @@
 	
 	function returnWithError( $err )
 	{
-		// $retValue = '{"id":0,"firstName":"","lastName":"","error":"' . $err . '"}';
+		$retValue = '{"results":[],"error":"' . $err . '"}';
 		sendResultInfoAsJson( $retValue );
 	}
 	
 	function returnWithInfo( $searchResults )
 	{
-		// $retValue = '{"results":[' . $searchResults . '],"error":""}';
+		// Wrap results for correct json string
+		$retValue = '{"results":[' . $searchResults . '],"error":""}';
 		sendResultInfoAsJson( $retValue );
 	}
 	

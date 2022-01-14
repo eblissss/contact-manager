@@ -1,12 +1,9 @@
-<?php
+ <?php
     // Get info from request
 	$inData = getRequestInfo();
     
-    $userId = $inData["userId"];
-    $firstName = $inData["firstName"];
-    $lastName = $inData["lastName"];
-    $email = $inData["email"];
-    $phone = $inData["phone"];
+    $id = $inData["id"];
+	$userId = $inData["userId"];
 
 	$conn = new mysqli("localhost", "TheBeast", "WeLoveCOP4331", "COP4331");
 	
@@ -17,9 +14,9 @@
 	} 
 	else
 	{
-        // Create SQL statement to add contact
-		$stmt = $conn->prepare("INSERT into Contacts (UserID,FirstName,LastName,Email,Phone) VALUES (?,?,?,?,?)");
-		$stmt->bind_param("sssss", $userId, $firstName, $lastName, $email, $phone);
+        // Create SQL statement to update contact
+		$stmt = $conn->prepare("DELETE from Contacts WHERE ID=? and UserID=?");
+		$stmt->bind_param("ss", $id, $userId);
 		$stmt->execute();
 		$stmt->close();
 		$conn->close();

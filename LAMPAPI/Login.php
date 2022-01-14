@@ -1,5 +1,5 @@
-<!-- Directly taken from Prof. Leinecker (like much of the site) -->
 <?php
+	// Directly taken from Prof. Leinecker (like much of the site)
 	$inData = getRequestInfo();
 	
 	$id = 0;
