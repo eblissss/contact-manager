@@ -1,9 +1,142 @@
-body 
-{
-    background-color: #707070;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-#title 
+body {
+  font-family: 'Varela Round', sans-serif;
+  background-color: #ffffff;/*#1A5F7A;*/
+}
+
+.form {
+  background-image: linear-gradient(#548CFF, #7900FF);
+  width: 400px;   /*Play around with this*/
+  height: 600px; /*Play around with this*/
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  border-radius: 16px; /*play around with this*/
+  padding: 120px 50px; /*play around with this*/
+  box-shadow: 2px 2px 8px #000;
+  outline: #1A5F7A;
+}
+
+.form h1 {
+  color: white;
+  font-size: 1.3rem;
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.inputs {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  color: white;
+  margin-bottom: 1.5rem;
+  font-size: 0.9rem;
+  border-bottom: 1px solid rgba(231, 231, 231, 0.8);
+}
+
+.inputs:hover {
+  border-bottom: 3px solid #ffffff;
+  transition: 0.2s ease-in-out;
+}
+
+#username, #username::placeholder {
+  width: 100%;
+  border: none;
+  background: none;
+  outline: none;
+  color: rgba(255, 255, 255, 0.5);
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+  padding-bottom: 0.5rem;
+}
+
+#password, #password::placeholder {
+  width: 100%;
+  border: none;
+  background: none;
+  outline: none;
+  color: rgba(255, 255, 255, 0.5);
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+  padding-bottom: 0.5rem;
+}
+
+.form button {
+  width: 100%;
+  background: white;
+  border: none;
+  border-radius: 30px;
+  padding: 14px 14px;
+  font-size: 0.9rem;
+  margin-bottom: 1.5rem;
+  font-weight: 500;
+  text-transform: uppercase; /*change?*/
+  color: #7900FF;
+  outline: none;
+  cursor: pointer;
+  font-family: 'Varela Round', sans-serif;
+}
+
+.form button:hover {
+  width: 100%;
+  background: transparent;
+  border: 2px solid #ffffff;
+  border-radius: 30px;
+  padding: 14px 14px;
+  font-size: 0.9rem;
+  margin-bottom: 1.5rem;
+  font-weight: 500;
+  text-transform: uppercase; /*change?*/
+  color: #ffffff;
+  outline: none;
+  cursor: pointer;
+  transition: 0.3s ease-in-out;
+}
+
+p {
+  color: #ffffff;
+  font-size: 0.9rem;
+  margin-bottom: 10;
+}
+
+
+
+
+
+/*body
+{
+    background-color: #ffffff;
+}
+
+
+.form-box {
+  width: 380px;
+  height: 480px;
+  position: relative;
+  margin: 6% auto;
+  background: #B1D0E0;
+  border-radius: 25px;
+  padding: 5px;
+}
+
+.toggle-btn {
+  padding: 10px 30px;
+  cursor: pointer;
+  background: transparent;
+  border: 0;
+  outline: none;
+  position: relative;
+}
+
+#title
 {
     font-size: 40px;
     width: 100%;
@@ -137,4 +270,4 @@ select{
     margin-bottom: 1%;
     font-family: 'Ubuntu', sans-serif;
     color: #95060a;
-}
+}*/
