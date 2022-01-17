@@ -1,6 +1,6 @@
 # contact-manager
 
-LAMP // CRUD Contact Manager - COP 4331 Project
+LAMP // CRUD Contact Manager - COP 4331 Small Project Spring 2022
 
 ### Team Members:
 
@@ -9,3 +9,4 @@ LAMP // CRUD Contact Manager - COP 4331 Project
 - Tahsin Islam (API)
 - Brandon Mrgich (Database / API)
 - Noah Seligson (Front-end)
+
