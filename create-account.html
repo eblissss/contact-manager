@@ -1,15 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
     <head>
-        <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link
             rel="shortcut icon"
             href="data:image/x-icon;,"
             type="image/x-icon"
         />
-        <title>COP 4331 LAMP Stack Demo</title>
+        <title>Create Account</title>
         <script type="text/javascript" src="js/md5.js"></script>
         <script type="text/javascript" src="js/code.js"></script>
         <link
@@ -28,30 +25,57 @@
             integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
             crossorigin="anonymous"
         ></script>
-        <meta name="theme-color" content="#7952b3" />
     </head>
     <body class="text-center">
-        <main class="form-signin">
+        <main class="form-signup">
             <form>
-                <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+                <img
+                    class="mb-4"
+                    src="/docs/5.1/assets/brand/bootstrap-logo.svg"
+                    alt=""
+                    width="72"
+                    height="57"
+                />
+                <h1 class="h3 mb-3 fw-normal">Create an account</h1>
 
                 <div class="form-floating">
                     <input
-                        type="username"
+                        type="FirstName"
                         class="form-control"
-                        id="loginName"
-                        placeholder="Enter your username"
+                        id="firstName"
+                        placeholder="First Name"
                     />
-                    <label for="floatingInput">Username</label>
+                    <label for="firstName">First Name</label>
                 </div>
+
                 <div class="form-floating">
                     <input
-                        type="password"
+                        type="LastName"
                         class="form-control"
-                        id="loginPassword"
+                        id="lastName"
+                        placeholder="Last Name"
+                    />
+                    <label for="lastName">Last Name</label>
+                </div>
+
+                <div class="form-floating">
+                    <input
+                        type="Login"
+                        class="form-control"
+                        id="username"
+                        placeholder="Username"
+                    />
+                    <label for="login">Username</label>
+                </div>
+
+                <div class="form-floating">
+                    <input
+                        type="Password"
+                        class="form-control"
+                        id="password"
                         placeholder="Password"
                     />
-                    <label for="floatingPassword">Password</label>
+                    <label for="password">Password</label>
                 </div>
 
                 <div class="checkbox mb-3">
@@ -62,18 +86,11 @@
                 </div>
                 <button
                     class="w-100 btn btn-lg btn-primary"
-                    type="reset"
-                    id="loginButton"
-                    accesskey="enter"
-                    onclick="doLogin();"
+                    type="submit"
+                    onclick="doSignUp();"
                 >
-                    Sign in
+                    Sign Up
                 </button>
-                <a
-                    href="http://contacts.ninja/create-account.html"
-                    class="w-100 btn btn-lg btn-primary"
-                    >Sign Up</a
-                >
                 <p class="mt-5 mb-3 text-muted">&copy; 2022</p>
             </form>
         </main>
