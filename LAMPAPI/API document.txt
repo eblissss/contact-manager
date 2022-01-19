@@ -15,3 +15,11 @@ res: err
 DeleteContact: POST
 req: id, userId    (database id's will be returned with search, userId is a double-check for accidents)
 res: err
+
+Login: POST
+req: login, password
+res: err, id, firstName, lastName
+
+SignUp: POST
+req: firstName, lastName, login, password
+req: err

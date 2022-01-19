@@ -1,11 +1,14 @@
 <?php
+	require_once("DotEnvLoader.php");
+	(new DotEnvLoader(__DIR__ . '/.env'))->load();
+
 	// Get Data from request
 	$inData = getRequestInfo();
 	
 	$searchResults = "";
 	$searchCount = 0;
 
-	$conn = new mysqli("localhost", "user18", "userpassword", "group18");
+	$conn = new mysqli($_ENV["DB_LOCATION"], $_ENV["DB_USER"], $_ENV["DB_PWD"], $_ENV["DB_NAME"]);
 
 	// Check for connection error
 	if ($conn->connect_error) 
@@ -18,7 +21,7 @@
 		$sqlsearch = "select * from Contacts where (FirstName like ? or LastName like ?) and UserID=?";
 		$stmt = $conn->prepare($sqlsearch);
 		$name = "%" . $inData["search"] . "%";
-		$stmt->bind_param("sss", $name, $name, $inData["userId"]);
+		$stmt->bind_param("ssi", $name, $name, $inData["userId"]);
 		$stmt->execute();
 		
 		$result = $stmt->get_result();
@@ -57,7 +60,7 @@
 	function sendResultInfoAsJson( $obj )
 	{
 		header('Access-Control-Allow-Origin: *');
-		header("Access-Control-Allow-Methods: HEAD, GET, POST, PUT, PATCH, DELETE, OPTIONS");
+		header("Access-Control-Allow-Methods: HEAD, GET, POST");
 		header("Access-Control-Allow-Headers: X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Request-Method,Access-Control-Request-Headers, Authorization");
 		header('Content-type: application/json');
 		echo $obj;
