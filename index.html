@@ -18,11 +18,13 @@
 <form action="#" class="form">
 <h1> Login to access your contacts </h1>
 <div class="inputs">
-	<input id="loginName" type="username" placeholder="username" />
+	<label for="loginName">username</label>
+	<input id="loginName" type="username" />
 </div>
 
 <div class="inputs">
-	<input id="loginPassword" type="password" placeholder="password" />
+	<label for="loginPassword">password</label>
+	<input id="loginPassword" type="password"/>
 </div>
 
 <button type="button" id="loginButton" class="buttons" onclick="doLogin();"> Login </button> <!--should type be sumbit since users are submitting data?-->
