@@ -1,36 +1,34 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-
-	<!-- Sucessful push ?  -->
-	<!-- Sucessful push bambranch?  -->
-
 	<meta charset="UTF-8"> <!--specifies the character encoding for the HTML document-->
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<link rel="icon" href="data:;base64,iVBORw0KGgo=">
 	<title>Login and Sign Up Page</title>
-	<!--<script type="text/javascript" src="js/md5.js"></script>-->
+	<script type="text/javascript" src="js/md5.js"></script>
 	<script type="text/javascript" src="js/code.js"></script>
     <link href="css/contact.css" rel="stylesheet">
-		<link rel="preconnect" href="https://fonts.googleapis.com">
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-		<link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet">
 </head>
 <body>
 
 <form action="#" class="form">
-<h1> Login to access your contacts </h1>
-<div class="inputs">
-	<input id="loginName" type="username" placeholder="username" />
-</div>
+	<h1> Login to access your contacts </h1>
+	<div class="inputs">
+		<input id="loginName" type="username" placeholder="username" />
+	</div>
 
-<div class="inputs">
-	<input id="loginPassword" type="password" placeholder="password" />
-</div>
+	<div class="inputs">
+		<input id="loginPassword" type="password" placeholder="password" />
+	</div>
 
-<button type="button" id="loginButton" class="buttons" onclick="doLogin();"> Login </button> <!--should type be sumbit since users are submitting data?-->
+	<button type="button" id="loginButton" class="buttons" type="reset" accesskey="enter" onclick="doLogin();"> Login </button> <!--should type be sumbit since users are submitting data?-->
 
-
-<p> Don't have an account? </p>
-<button type="button" id="signupButton" class="signupbuttons" onclick="window.location.href='create-account.html'"> Sign Up </button> <!--write javascript code for this-->
-
+	<p> Don't have an account? </p>
+	<button type="button" id="signupButton" class="signupbuttons" onclick="window.location.href='create-account.html'"> Sign Up </button> <!--write javascript code for this-->
 
 </form>
 
