@@ -16,28 +16,22 @@
 <body>
 
 <form action="#" class="form">
-<h1> Login to access your contacts </h1>
-<div class="inputs">
-	<label for="loginName">username</label>
-	<input id="loginName" type="username" />
-</div>
-
-<div class="inputs">
-	<label for="loginPassword">password</label>
-	<input id="loginPassword" type="password"/>
-</div>
-
-<button type="button" id="loginButton" class="buttons" onclick="doLogin();"> Login </button> <!--should type be sumbit since users are submitting data?-->
+	<h1> Login to access your contacts </h1>
+	
+	<div class="inputs">
+		<label for="loginName">username</label>
+		<input id="loginName" type="username" />
+	</div>
 
 	<div class="inputs">
-		<input id="loginPassword" type="password" placeholder="password" />
+		<label for="loginPassword">password</label>
+		<input id="loginPassword" type="password" placeholder="password"/>
 	</div>
 
 	<button type="button" id="loginButton" class="buttons" type="reset" accesskey="enter" onclick="doLogin();"> Login </button> <!--should type be sumbit since users are submitting data?-->
 
 	<p> Don't have an account? </p>
 	<button type="button" id="signupButton" class="signupbuttons" onclick="window.location.href='create-account.html'"> Sign Up </button> <!--write javascript code for this-->
-
 </form>
 
 
