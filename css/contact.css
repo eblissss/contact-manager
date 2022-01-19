@@ -47,7 +47,7 @@ body {
     transition: 0.2s ease-in-out;
 }
 
-#username,
+#loginName,
 #username::placeholder {
     width: 100%;
     border: none;
@@ -57,9 +57,10 @@ body {
     margin-top: 0.5rem;
     font-size: 0.9rem;
     padding-bottom: 0.5rem;
+    background: none;
 }
 
-#password,
+#loginPassword,
 #password::placeholder {
     width: 100%;
     border: none;
@@ -69,6 +70,7 @@ body {
     margin-top: 0.5rem;
     font-size: 0.9rem;
     padding-bottom: 0.5rem;
+    background: none;
 }
 
 .form button {
