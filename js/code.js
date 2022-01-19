@@ -44,8 +44,8 @@ function doLogin() {
                 userId = jsonObject.id;
                 // Check if login failed
                 if (userId < 1) {
-                    document.getElementById("loginResult").innerHTML =
-                        "User/Password combination incorrect";
+                    //document.getElementById("loginResult").innerHTML =
+                      //  "User/Password combination incorrect";
                     return;
                 }
 
