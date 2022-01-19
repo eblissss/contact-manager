@@ -198,6 +198,8 @@ function doSignUp() {
     // Cycle through parameters
     for (let i = 0; i < 4; i++)
     {
+        if(retFlag) return;
+        
         if(formParams[i] === ""){
             document.getElementById(formErrors[i]).innerHTML = "This field should not be empty";
             retFlag = true;
@@ -205,9 +207,6 @@ function doSignUp() {
             document.getElementById(formErrors[i]).innerHTML = "";
         }
     }
-
-    if(retFlag)
-        return;
 
     let tmp = {
         firstName: firstName,
