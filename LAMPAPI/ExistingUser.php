@@ -26,11 +26,11 @@
 		
 		if( $row = $result->fetch_assoc()  )
 		{
-            throw new Exception("Duplicate Username");
+            returnWithError("Duplicate Username");
         }
 		else
 		{
-			echo "hooray";
+			returnWithError("");
 		}
 
 		$stmt->close();

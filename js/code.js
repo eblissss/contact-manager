@@ -224,13 +224,15 @@ function doSignUp() {
     try {
         xhr.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
-                //    document.getElementById("loginResult").innerHTML =
-                //    "Account Created"; // <-- say actual name
+                let jsonObject = JSON.parse(xhr.responseText);
+                if(!(jsonObject.error == "")){
+                    console.log("Duplicate Username Found");
+                    return;
+                }
             }
         };
         xhr.send(jsonPayload);
     } catch (err) {
-        console.log("This username already exists.");
         return;
     }
 
