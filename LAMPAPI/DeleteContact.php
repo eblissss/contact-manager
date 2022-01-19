@@ -5,7 +5,7 @@
     $id = $inData["id"];
 	$userId = $inData["userId"];
 
-	$conn = new mysqli("localhost", "TheBeast", "WeLoveCOP4331", "COP4331");
+	$conn = new mysqli("localhost", "user18", "userpassword", "group18");
 	
     // Check for connection error
 	if ($conn->connect_error) 
@@ -30,6 +30,9 @@
 
 	function sendResultInfoAsJson( $obj )
 	{
+		header('Access-Control-Allow-Origin: *');
+		header("Access-Control-Allow-Methods: HEAD, GET, POST, PUT, PATCH, DELETE, OPTIONS");
+		header("Access-Control-Allow-Headers: X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Request-Method,Access-Control-Request-Headers, Authorization");
 		header('Content-type: application/json');
 		echo $obj;
 	}

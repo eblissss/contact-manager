@@ -1,4 +1,4 @@
-const urlBase = "http://localhost/LAMPAPI"; //replace with actual site
+const urlBase = "http://contacts.ninja/LAMPAPI"; //replace with actual site
 const extension = "php";
 
 // Default login fields
@@ -17,7 +17,7 @@ function doLogin() {
     let password = document.getElementById("loginPassword").value;
     let hash = md5(password);
 
-    document.getElementById("loginResult").innerHTML = "";
+    //document.getElementById("loginResult").innerHTML = "";
 
     // Create payload
     let tmp = { login: login, password: hash };
@@ -29,15 +29,19 @@ function doLogin() {
     let xhr = new XMLHttpRequest();
     xhr.open("POST", url, true);
     xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+    //xhr.setRequestHeader("Access-Control-Allow-Origin", "*");
+    console.log(jsonPayload);
+
     try {
         // Whenever there is a state change (successful response) (Non-blocking)
         xhr.onreadystatechange = function () {
+            console.log(xhr);
+
             if (this.readyState == 4 && this.status == 200) {
                 // Parse response
                 console.log(xhr.responseText);
                 let jsonObject = JSON.parse(xhr.responseText);
                 userId = jsonObject.id;
-
                 // Check if login failed
                 if (userId < 1) {
                     document.getElementById("loginResult").innerHTML =
@@ -51,7 +55,7 @@ function doLogin() {
                 saveCookie();
 
                 // Change window href
-                window.location.href = "color.html";
+                window.location.href = "contacts.html";
             }
         };
         // Send payload
@@ -99,7 +103,7 @@ function readCookie() {
     if (userId < 0) {
         window.location.href = "index.html";
     } else {
-        document.getElementById("userName").innerHTML =
+        document.getElementById("headerName").innerHTML =
             "Logged in as " + firstName + " " + lastName;
     }
 }
@@ -115,14 +119,14 @@ function doLogout() {
 
 // Create Contact - API request
 // Not implemented
-function addColor() {
-    let newColor = document.getElementById("colorText").value;
-    document.getElementById("colorAddResult").innerHTML = "";
+function addContact() {
+    let newContact = document.getElementById("contactText").value;
+    document.getElementById("contactAddResult").innerHTML = "";
 
-    let tmp = { color: newColor, userId, userId };
+    let tmp = { contact: newContact, userId, userId };
     let jsonPayload = JSON.stringify(tmp);
 
-    let url = urlBase + "/AddColor." + extension;
+    let url = urlBase + "/CreateContact." + extension;
 
     let xhr = new XMLHttpRequest();
     xhr.open("POST", url, true);
@@ -130,28 +134,28 @@ function addColor() {
     try {
         xhr.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
-                document.getElementById("colorAddResult").innerHTML =
-                    "Color has been added";
+                document.getElementById("contactAddResult").innerHTML =
+                    "Contact has been added"; // <-- say actual name
             }
         };
         xhr.send(jsonPayload);
     } catch (err) {
-        document.getElementById("colorAddResult").innerHTML = err.message;
+        document.getElementById("contactAddResult").innerHTML = err.message;
     }
 }
 
 // Search Contacts - API request
 // Not implemented
-function searchColor() {
+function searchContact() {
     let srch = document.getElementById("searchText").value;
-    document.getElementById("colorSearchResult").innerHTML = "";
+    document.getElementById("contactSearchResult").innerHTML = "";
 
-    let colorList = "";
+    let contactList = "";
 
     let tmp = { search: srch, userId: userId };
     let jsonPayload = JSON.stringify(tmp);
 
-    let url = urlBase + "/SearchColors." + extension;
+    let url = urlBase + "/SearchContact." + extension;
 
     let xhr = new XMLHttpRequest();
     xhr.open("POST", url, true);
@@ -159,23 +163,56 @@ function searchColor() {
     try {
         xhr.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
-                document.getElementById("colorSearchResult").innerHTML =
-                    "Color(s) has been retrieved";
+                document.getElementById("contactSearchResult").innerHTML =
+                    "Contact(s) has been retrieved";
                 let jsonObject = JSON.parse(xhr.responseText);
 
                 for (let i = 0; i < jsonObject.results.length; i++) {
-                    colorList += jsonObject.results[i];
+                    contactList += jsonObject.results[i];
                     if (i < jsonObject.results.length - 1) {
-                        colorList += "<br />\r\n";
+                        contactList += "<br />\r\n";
                     }
                 }
 
-                document.getElementsByTagName("p")[0].innerHTML = colorList;
+                document.getElementsByTagName("p")[0].innerHTML = contactList;
             }
         };
         xhr.send(jsonPayload);
     } catch (err) {
-        document.getElementById("colorSearchResult").innerHTML = err.message;
+        document.getElementById("contactSearchResult").innerHTML = err.message;
+    }
+}
+
+function doSignUp() {
+    let firstName = document.getElementById("firstName").value;
+    let lastName = document.getElementById("lastName").value;
+    let username = document.getElementById("username").value;
+    let password = document.getElementById("password").value;
+    let hash = md5(password);
+
+    let tmp = {
+        firstName: firstName,
+        lastName: lastName,
+        login: username,
+        password: hash,
+    };
+    let jsonPayload = JSON.stringify(tmp);
+
+    let url = urlBase + "/Signup." + extension;
+
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", url, true);
+    xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+    try {
+        /*xhr.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                //    document.getElementById("loginResult").innerHTML =
+                //    "Account Created"; // <-- say actual name
+            }
+        };*/
+        xhr.send(jsonPayload);
+    } catch (err) {
+        //document.getElementById("loginResult").innerHTML = err.message;
     }
 }
 

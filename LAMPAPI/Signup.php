@@ -1,12 +1,12 @@
 <?php
     // Get info from request
 	$inData = getRequestInfo();
-    
-    $userId = $inData["userId"];
+	
+	$id = 0;
     $firstName = $inData["firstName"];
     $lastName = $inData["lastName"];
-    $email = $inData["email"];
-    $phone = $inData["phone"];
+    $login = $inData["login"];
+    $password = $inData["password"];
 
 	$conn = new mysqli("localhost", "user18", "userpassword", "group18");
 	
@@ -18,8 +18,8 @@
 	else
 	{
         // Create SQL statement to add contact
-		$stmt = $conn->prepare("INSERT into Contacts (UserID,FirstName,LastName,Email,Phone) VALUES (?,?,?,?,?)");
-		$stmt->bind_param("sssss", $userId, $firstName, $lastName, $email, $phone);
+		$stmt = $conn->prepare("INSERT into Users (FirstName,LastName,Login,Password) VALUES (?,?,?,?)");
+		$stmt->bind_param("ssss", $firstName, $lastName, $login, $password);
 		$stmt->execute();
 		$stmt->close();
 		$conn->close();
