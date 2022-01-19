@@ -190,12 +190,32 @@ function doSignUp() {
     let password = document.getElementById("password").value;
     let hash = md5(password);
 
+    // To ensure no fields can be empty
+    const formErrors = ["fnError", "lnError", "userError", "passError"];
+    const formParams = [firstName, lastName, username, password];
+    let retFlag = false;
+
+    // Cycle through parameters
+    for (let i = 0; i < 4; i++)
+    {
+        if(formParams[i] === ""){
+            document.getElementById(formErrors[i]).innerHTML = "This field should not be empty";
+            retFlag = true;
+        }else{
+            document.getElementById(formErrors[i]).innerHTML = "";
+        }
+    }
+
+    if(retFlag)
+        return;
+
     let tmp = {
         firstName: firstName,
         lastName: lastName,
         login: username,
         password: hash,
     };
+
     let jsonPayload = JSON.stringify(tmp);
 
     let url = urlBase + "/Signup." + extension;
