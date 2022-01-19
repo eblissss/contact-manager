@@ -6,7 +6,7 @@
             href="data:image/x-icon;,"
             type="image/x-icon"
         />
-        <title>Create Account</title>
+        <title>Sign up</title>
         <script type="text/javascript" src="js/md5.js"></script>
         <script type="text/javascript" src="js/code.js"></script>
         <link
@@ -15,84 +15,54 @@
             integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
             crossorigin="anonymous"
         />
-        <link href="css/index.css" rel="stylesheet" />
-        <link
-            href="https://fonts.googleapis.com/css?family=Ubuntu"
-            rel="stylesheet"
-        />
+        <link href="css/create-account.css" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet">
         <script
             src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
             crossorigin="anonymous"
         ></script>
     </head>
-    <body class="text-center">
-        <main class="form-signup">
-            <form>
-                <img
-                    class="mb-4"
-                    src="/docs/5.1/assets/brand/bootstrap-logo.svg"
-                    alt=""
-                    width="72"
-                    height="57"
-                />
-                <h1 class="h3 mb-3 fw-normal">Create an account</h1>
 
-                <div class="form-floating">
-                    <input
-                        type="FirstName"
-                        class="form-control"
-                        id="firstName"
-                        placeholder="First Name"
-                    />
-                    <label for="firstName">First Name</label>
-                </div>
 
-                <div class="form-floating">
-                    <input
-                        type="LastName"
-                        class="form-control"
-                        id="lastName"
-                        placeholder="Last Name"
-                    />
-                    <label for="lastName">Last Name</label>
-                </div>
+    <body>
+      <form action="#" class="signup">
+        <h1>Sign up below</h1>
+            <div class="signupinputs">
+              <label for="firstName">first name</label>
+              <input id="firstName" placeholder="first name"/>
+            </div>
 
-                <div class="form-floating">
-                    <input
-                        type="Login"
-                        class="form-control"
-                        id="username"
-                        placeholder="Username"
-                    />
-                    <label for="login">Username</label>
-                </div>
+            <div class="signupinputs">
+              <label for="lastName">last name</label>
+              <input id="lastName" placeholder="last name"/>
+            </div>
 
-                <div class="form-floating">
-                    <input
-                        type="Password"
-                        class="form-control"
-                        id="password"
-                        placeholder="Password"
-                    />
-                    <label for="password">Password</label>
-                </div>
+            <div class="signupinputs">
+              <label for="username">username</label>
+              <input id="username" placeholder="username"/>
+            </div>
 
-                <div class="checkbox mb-3">
-                    <label>
-                        <input type="checkbox" value="remember-me" /> Remember
-                        me
-                    </label>
-                </div>
-                <button
-                    class="w-100 btn btn-lg btn-primary"
-                    type="submit"
-                    onclick="doSignUp();"
-                >
+            <div class="signupinputs">
+              <label for="password">password</label>
+              <input id="password" placeholder="password"/>
+            </div>
+
+            <div class="checkbox mb-3">
+              <label>
+                <input type="checkbox" value="remember-me" /> remember me
+              </label>
+            </div>
+
+            <button
+              class="signupbuttons"
+              id="signupButton"
+              type="submit"
+              onclick="doSignUp();"
+              >
                     Sign Up
-                </button>
-                <p class="mt-5 mb-3 text-muted">&copy; 2022</p>
-            </form>
-        </main>
+            </button>
+            <p> Already have an account? <a href="window.location.href='index.html'">Login</a></p>
+        </form>
     </body>
 </html>
