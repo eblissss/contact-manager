@@ -1,35 +1,40 @@
- <?php
+<?php
 	require_once("DotEnvLoader.php");
 	(new DotEnvLoader(__DIR__ . '/.env'))->load();
 
-    // Get info from request
+	// Get Data from request
 	$inData = getRequestInfo();
-    
-    $id = $inData["id"];
-	$userId = $inData["userId"];
-    $firstName = $inData["firstName"];
-    $lastName = $inData["lastName"];
-    $email = $inData["email"];
-    $phone = $inData["phone"];
-	$isFavorite = $inData["isFavorite"];
+	
+    $login = $inData["login"];
 
 	$conn = new mysqli($_ENV["DB_LOCATION"], $_ENV["DB_USER"], $_ENV["DB_PWD"], $_ENV["DB_NAME"]);
-	
-    // Check for connection error
+
+	// Check for connection error
 	if ($conn->connect_error) 
 	{
 		returnWithError( $conn->connect_error );
 	} 
 	else
 	{
-        // Create SQL statement to update contact
-		$sql = "UPDATE Contacts SET FirstName=?, LastName=?, Email=?, Phone=?, IsFavorite=? WHERE ID=? and UserID=?";
-		$stmt = $conn->prepare($sql);
-		$stmt->bind_param("sssiiii", $firstName, $lastName, $email, $phone, $isFavorite, $id, $userId);
+		// Create SQL statement to search contacts
+		$sqlsearch = "SELECT * FROM Users WHERE (Login = ?)";
+		$stmt = $conn->prepare($sqlsearch);
+		$stmt->bind_param("s", $login);
 		$stmt->execute();
+		
+		$result = $stmt->get_result();
+		
+		if( $row = $result->fetch_assoc()  )
+		{
+            throw new Exception("Duplicate Username");
+        }
+		else
+		{
+			echo "hooray";
+		}
+
 		$stmt->close();
 		$conn->close();
-		returnWithError("");
 	}
 
 	function getRequestInfo()
@@ -48,7 +53,14 @@
 	
 	function returnWithError( $err )
 	{
-		$retValue = '{"error":"' . $err . '"}';
+		$retValue = '{"results":[],"error":"' . $err . '"}';
+		sendResultInfoAsJson( $retValue );
+	}
+	
+	function returnWithInfo( $searchResults )
+	{
+		// Wrap results for correct json string
+		$retValue = '{"results":[' . $searchResults . '],"error":""}';
 		sendResultInfoAsJson( $retValue );
 	}
 	

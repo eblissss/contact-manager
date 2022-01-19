@@ -190,17 +190,62 @@ function doSignUp() {
     let password = document.getElementById("password").value;
     let hash = md5(password);
 
+    // To ensure no fields can be empty
+    const formErrors = ["fnError", "lnError", "userError", "passError"];
+    const formParams = [firstName, lastName, username, password];
+    let retFlag = false;
+
+    // Cycle through parameters
+    for (let i = 0; i < 4; i++)
+    {
+        
+        if(formParams[i] === ""){
+            document.getElementById(formErrors[i]).innerHTML = "This field should not be empty";
+            retFlag = true;
+        }else{
+            document.getElementById(formErrors[i]).innerHTML = "";
+        }
+    }
+
+    if(retFlag) return;
+
+    let loginCheck = {
+        login : username
+    };
+
+    let jsonPayload = JSON.stringify(tmp);
+    
+    let url = urlBase + "/ExistingUser." + extension;
+
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", url, true);
+    xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+
+    try {
+        xhr.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                //    document.getElementById("loginResult").innerHTML =
+                //    "Account Created"; // <-- say actual name
+            }
+        };
+        xhr.send(jsonPayload);
+    } catch (err) {
+        console.log("This username already exists.");
+        return;
+    }
+
     let tmp = {
         firstName: firstName,
         lastName: lastName,
         login: username,
         password: hash,
     };
-    let jsonPayload = JSON.stringify(tmp);
 
-    let url = urlBase + "/Signup." + extension;
+    jsonPayload = JSON.stringify(tmp);
 
-    let xhr = new XMLHttpRequest();
+    url = urlBase + "/Signup." + extension;
+
+    xhr = new XMLHttpRequest();
     xhr.open("POST", url, true);
     xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
     try {
