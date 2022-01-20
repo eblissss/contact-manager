@@ -40,22 +40,26 @@
 
                 <div class="inputs">
                     <label for="firstName">First Name</label>
-                    <input id="firstName" type="FirstName"/>
+                    <input id="firstName" type="FirstName" required/>
+                    <div class="invalid-feedback">First name required.</div>
                 </div>
 
                 <div class="inputs">
                     <label for="lastName">Last Name</label>
-                    <input id="lastName" type="LastName"/>
+                    <input id="lastName" type="LastName" required/>
+                    <div class="invalid-feedback">Last name required.</div>
                 </div>
 
                 <div class="inputs">
                     <label for="login">Username</label>
-                    <input id="username" type="Login"/>
+                    <input id="username" type="Login" required/>
+                    <div class="invalid-feedback">Username required.</div>
                 </div>
 
                 <div class="inputs">
                     <label for="password">Password</label>
-                    <input id="password" type="Password"/>
+                    <input id="password" type="Password" required/>
+                    <div class="invalid-feedback">Password required.</div>
                 </div>
 
                 <button class="w-100 btn btn-lg btn-primary" type="button" onclick="doSignUp();">Sign Up</button>
