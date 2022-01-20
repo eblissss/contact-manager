@@ -217,17 +217,18 @@ function doSignUp() {
     let url = urlBase + "/ExistingUser." + extension;
 
     let xhr = new XMLHttpRequest();
+    
     xhr.open("POST", url, true);
     xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
 
     try {
         xhr.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
-                let jsonObject = JSON.parse(xhr.responseText);
+                /*let jsonObject = JSON.parse(xhr.responseText);
                 if (!(jsonObject.error == "")) {
                     console.log("Duplicate Username Found");
                     return;
-                }
+                }*/
             }
         };
         xhr.send(jsonPayload);
@@ -241,6 +242,7 @@ function doSignUp() {
         login: username,
         password: hash,
     };
+    
 
     jsonPayload = JSON.stringify(tmp);
 
@@ -252,8 +254,8 @@ function doSignUp() {
     try {
         xhr.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
-                document.getElementById("loginResult").innerHTML =
-                    "Account Created";
+               // document.getElementById("loginResult").innerHTML =
+                 //   "Account Created";
             }
         };
         xhr.send(jsonPayload);
