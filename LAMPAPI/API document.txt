@@ -1,7 +1,7 @@
 ## ALL JSON REQUESTS AND RESPONSES ##
 
 CreateContact: POST
-req: userId, firstName, lastName, email, phone, dateCreated   (we could do more)
+req: userId, firstName, lastName, email, phone, isFavorite   (we could do more)
 res: err
 
 SearchContacts: POST
