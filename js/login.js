@@ -1,5 +1,5 @@
-const urlBase = "http://contacts.ninja/LAMPAPI";
-const extension = "php";
+urlBase = "http://contacts.ninja/LAMPAPI";
+extension = "php";
 
 // Attempt login
 function doLogin() {
