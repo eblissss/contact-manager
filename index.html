@@ -1,46 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-	<meta charset="UTF-8"> <!--specifies the character encoding for the HTML document-->
-	<title>Login</title>
-	<!--<script type="text/javascript" src="js/md5.js"></script>-->
-	<script type="text/javascript" src="js/code.js"></script>
-	<script type="text/javascript" src="js/login.js"></script>
-	<script type="module" src="js/wave.js"></script>
-    <link href="css/index.css" rel="stylesheet">
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet">
-</head>
-<body>
-<div id="waveContainer">
-<form action="#" class="form">
-	<h1> Login to access your contacts </h1>
+	<head>
+		<meta charset="UTF-8"> <!--specifies the character encoding for the HTML document-->
+		<title>Login</title>
+		<!--<script type="text/javascript" src="js/md5.js"></script>-->
+		<script language = "JavaScript" type="text/javascript" src="js/code.js"></script>
+		<script language = "JavaScript" type="text/javascript" src="js/login.js"></script>
+		<script type="module" src="js/wave.js"></script>
+		<link href="css/index.css" rel="stylesheet">
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet">
+	</head>
+	<body>
+	<div id="waveContainer">
+		<form action="#" class="form">
+			<h1> Login to access your contacts </h1>
 
-	<div class="inputs">
-		<label for="loginName">username</label>
-		<input id="username" type="username" placeholder="username" />
+			<div class="inputs">
+				<label for="loginName">username</label>
+				<input id="username" type="username" placeholder="username" />
+			</div>
+
+			<div class="inputs">
+				<label for="loginPassword">password</label>
+				<input id="password" type="password" placeholder="password"/>
+			</div>
+
+			<div class="checkbox mb-3">
+				<label>
+					<input type="checkbox" value="remember-me" /> remember me
+				</label>
+			</div>
+
+			<button type="button" id="loginButton" class="buttons" type="reset" accesskey="enter" onclick="doLogin();"> Login </button> <!--should type be sumbit since users are submitting data?-->
+
+			<p> Don't have an account? </p>
+			<button type="button" id="signupButton" class="signupbuttons" onclick="window.location.href='create-account.html'"> Sign Up </button> <!--write javascript code for this-->
+		</form>
 	</div>
 
-	<div class="inputs">
-		<label for="loginPassword">password</label>
-		<input id="password" type="password" placeholder="password"/>
-	</div>
-
-	<div class="checkbox mb-3">
-		<label>
-			<input type="checkbox" value="remember-me" /> remember me
-		</label>
-	</div>
-
-	<button type="button" id="loginButton" class="buttons" type="reset" accesskey="enter" onclick="doLogin();"> Login </button> <!--should type be sumbit since users are submitting data?-->
-
-	<p> Don't have an account? </p>
-	<button type="button" id="signupButton" class="signupbuttons" onclick="window.location.href='create-account.html'"> Sign Up </button> <!--write javascript code for this-->
-</form>
-</div>
-
-</body>
+	</body>
 </html>
 
 <!--- this is how you comment>
