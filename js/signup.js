@@ -14,22 +14,20 @@ function doSignUp() {
     let hash = md5(password);
 
     // To ensure no fields can be empty
-    const formErrors = ["fnError", "lnError", "userError", "passError"];
-    const formParams = [firstName, lastName, username, password];
-    let retFlag = false;
+    const forms = [firstName, lastName, username, password];
 
-    // Cycle through parameters
-    for (let i = 0; i < 4; i++) {
-        if (formParams[i] === "") {
-            document.getElementById(formErrors[i]).innerHTML =
-                "This field should not be empty";
-            retFlag = true;
-        } else {
-            document.getElementById(formErrors[i]).innerHTML = "";
+    // Cycle through
+    Array.prototype.forEach(forms)
+    {
+        signupForm.addEventListener('submit', doSignUp())
+        if (forms[i] === "") 
+        {
+            event.preventDefault()
+            // event.stopPropagation()
         }
-    }
+        signupForm.classList.add('was-validated') // <--- validation message => .css
 
-    if (retFlag) return;
+    }
 
     let loginCheck = {
         login: username,
