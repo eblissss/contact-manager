@@ -84,6 +84,7 @@ function init() {
             z * Math.cos(orbitRate) - x * Math.sin(orbitRate) - 10;
         camera.lookAt(new THREE.Vector3(0, 8000, 0));
 
+        // Invert the movement for the create account screen
         // Move geometry
         for (let i = 0; i < resolution * resolution; i++) {
             const positionArr = plane.geometry.attributes.position.array;
