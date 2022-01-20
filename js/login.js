@@ -1,11 +1,6 @@
 // const urlBase = "http://contacts.ninja/LAMPAPI";
 // const extension = "php";
 
-// Default login fields
-let userId = 0;
-let firstName = "";
-let lastName = "";
-
 // Attempt login
 function doLogin() {
     userId = 0;
