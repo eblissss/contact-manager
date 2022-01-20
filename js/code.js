@@ -44,8 +44,8 @@ function doLogin() {
                 userId = jsonObject.id;
                 // Check if login failed
                 if (userId < 1) {
-                    document.getElementById("loginResult").innerHTML =
-                        "User/Password combination incorrect";
+                    //document.getElementById("loginResult").innerHTML =
+                    //  "User/Password combination incorrect";
                     return;
                 }
 
@@ -196,16 +196,43 @@ function doSignUp() {
     let retFlag = false;
 
     // Cycle through parameters
-    for (let i = 0; i < 4; i++)
-    {
-        if(retFlag) return;
-        
-        if(formParams[i] === ""){
-            document.getElementById(formErrors[i]).innerHTML = "This field should not be empty";
+    for (let i = 0; i < 4; i++) {
+        if (formParams[i] === "") {
+            document.getElementById(formErrors[i]).innerHTML =
+                "This field should not be empty";
             retFlag = true;
-        }else{
+        } else {
             document.getElementById(formErrors[i]).innerHTML = "";
         }
+    }
+
+    if (retFlag) return;
+
+    let loginCheck = {
+        login: username,
+    };
+
+    let jsonPayload = JSON.stringify(tmp);
+
+    let url = urlBase + "/ExistingUser." + extension;
+
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", url, true);
+    xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+
+    try {
+        xhr.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                let jsonObject = JSON.parse(xhr.responseText);
+                if (!(jsonObject.error == "")) {
+                    console.log("Duplicate Username Found");
+                    return;
+                }
+            }
+        };
+        xhr.send(jsonPayload);
+    } catch (err) {
+        return;
     }
 
     let tmp = {
@@ -215,23 +242,23 @@ function doSignUp() {
         password: hash,
     };
 
-    let jsonPayload = JSON.stringify(tmp);
+    jsonPayload = JSON.stringify(tmp);
 
-    let url = urlBase + "/Signup." + extension;
+    url = urlBase + "/Signup." + extension;
 
-    let xhr = new XMLHttpRequest();
+    xhr = new XMLHttpRequest();
     xhr.open("POST", url, true);
     xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
     try {
-        /*xhr.onreadystatechange = function () {
+        xhr.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
-                //    document.getElementById("loginResult").innerHTML =
-                //    "Account Created"; // <-- say actual name
+                document.getElementById("loginResult").innerHTML =
+                    "Account Created";
             }
-        };*/
+        };
         xhr.send(jsonPayload);
     } catch (err) {
-        //document.getElementById("loginResult").innerHTML = err.message;
+        document.getElementById("loginResult").innerHTML = err.message;
     }
 }
 
