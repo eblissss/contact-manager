@@ -14,16 +14,23 @@
 <body>
 <div id="waveContainer">
 <form action="#" class="form">
-<h1> Login to access your contacts </h1>
-<div class="inputs">
-	<label for="loginName">username</label>
-	<input id="loginName" type="username" />
-</div>
+	<h1> Login to access your contacts </h1>
 
-<div class="inputs">
-	<label for="loginPassword">password</label>
-	<input id="loginPassword" type="password"/>
-</div>
+	<div class="inputs">
+		<label for="loginName">username</label>
+		<input id="username" type="username" placeholder="username" />
+	</div>
+
+	<div class="inputs">
+		<label for="loginPassword">password</label>
+		<input id="password" type="password" placeholder="password"/>
+	</div>
+
+	<div class="checkbox mb-3">
+		<label>
+			<input type="checkbox" value="remember-me" /> remember me
+		</label>
+	</div>
 
 	<button type="button" id="loginButton" class="buttons" type="reset" accesskey="enter" onclick="doLogin();"> Login </button> <!--should type be sumbit since users are submitting data?-->
 
