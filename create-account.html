@@ -28,7 +28,7 @@
     </head>
     <body class="text-center">
         <main class="form-signup">
-            <form>
+            <form class="signupForm needs-validation" novalidate>
                 <img
                     class="mb-4"
                     src="/docs/5.1/assets/brand/bootstrap-logo.svg"
@@ -38,65 +38,27 @@
                 />
                 <h1 class="h3 mb-3 fw-normal">Create an account</h1>
 
-                <div class="form-floating">
-                    <input
-                        type="FirstName"
-                        class="form-control"
-                        id="firstName"
-                        placeholder="First Name"
-                    />
-                    <h2 id="fnError"></h2>
-                    <label for="firstName" style="float: left"
-                        >First Name</label
-                    >
+                <div class="inputs">
+                    <label for="firstName">First Name</label>
+                    <input id="firstName" type="FirstName"/>
                 </div>
 
-                <div class="form-floating">
-                    <input
-                        type="LastName"
-                        class="form-control"
-                        id="lastName"
-                        placeholder="Last Name"
-                    />
-                    <h2 id="lnError"></h2>
-                    <label for="lastName" style="float: left">Last Name</label>
+                <div class="inputs">
+                    <label for="lastName">Last Name</label>
+                    <input id="lastName" type="LastName"/>
                 </div>
 
-                <div class="form-floating">
-                    <input
-                        type="Login"
-                        class="form-control"
-                        id="username"
-                        placeholder="Username"
-                    />
-                    <h2 id="userError"></h2>
-                    <label for="login" style="float: left">Username</label>
+                <div class="inputs">
+                    <label for="login">Username</label>
+                    <input id="username" type="Login"/>
                 </div>
 
-                <div class="form-floating">
-                    <input
-                        type="Password"
-                        class="form-control"
-                        id="password"
-                        placeholder="Password"
-                    />
-                    <h2 id="passError"></h2>
-                    <label for="password" style="float: left">Password</label>
+                <div class="inputs">
+                    <label for="password">Password</label>
+                    <input id="password" type="Password"/>
                 </div>
 
-                <div class="checkbox mb-3">
-                    <label>
-                        <input type="checkbox" value="remember-me" /> Remember
-                        me
-                    </label>
-                </div>
-                <button
-                    class="w-100 btn btn-lg btn-primary"
-                    type="button"
-                    onclick="doSignUp();"
-                >
-                    Sign Up
-                </button>
+                <button class="w-100 btn btn-lg btn-primary" type="button" onclick="doSignUp();">Sign Up</button>
                 <p class="mt-5 mb-3 text-muted">&copy; 2022</p>
             </form>
         </main>
