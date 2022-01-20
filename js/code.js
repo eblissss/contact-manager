@@ -198,7 +198,6 @@ function doSignUp() {
     // Cycle through parameters
     for (let i = 0; i < 4; i++)
     {
-        
         if(formParams[i] === ""){
             document.getElementById(formErrors[i]).innerHTML = "This field should not be empty";
             retFlag = true;
@@ -251,15 +250,15 @@ function doSignUp() {
     xhr.open("POST", url, true);
     xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
     try {
-        /*xhr.onreadystatechange = function () {
+        xhr.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
-                //    document.getElementById("loginResult").innerHTML =
-                //    "Account Created"; // <-- say actual name
+                document.getElementById("loginResult").innerHTML =
+                    "Account Created";
             }
-        };*/
+        };
         xhr.send(jsonPayload);
     } catch (err) {
-        //document.getElementById("loginResult").innerHTML = err.message;
+        document.getElementById("loginResult").innerHTML = err.message;
     }
 }
 
