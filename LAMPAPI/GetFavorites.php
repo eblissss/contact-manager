@@ -20,9 +20,9 @@
 	else
 	{
 		// Create SQL statement to search contacts
-		$sqlsearch = "select * from Contacts where IsFavorited=1 and UserID=?";
+		$sqlsearch = "select * from Contacts where IsFavorite=1 and UserID=?";
 		$stmt = $conn->prepare($sqlsearch);
-		$stmt->bind_param("i", $inData["userId"]);
+		$stmt->bind_param("i", $userId);
 		$stmt->execute();
 		
 		$result = $stmt->get_result();
