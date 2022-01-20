@@ -4,8 +4,11 @@
 
 	// Get Data from request
 	$inData = getRequestInfo();
+
+	$userId = $inData["userId"];
 	
-    $login = $inData["login"];
+	$searchResults = "";
+	$searchCount = 0;
 
 	$conn = new mysqli($_ENV["DB_LOCATION"], $_ENV["DB_USER"], $_ENV["DB_PWD"], $_ENV["DB_NAME"]);
 
@@ -17,22 +20,34 @@
 	else
 	{
 		// Create SQL statement to search contacts
-		$sqlsearch = "SELECT * FROM Users WHERE Login=?";
+		$sqlsearch = "select * from Contacts where IsFavorited=1 and UserID=?";
 		$stmt = $conn->prepare($sqlsearch);
-		$stmt->bind_param("s", $login);
+		$stmt->bind_param("i", $inData["userId"]);
 		$stmt->execute();
 		
 		$result = $stmt->get_result();
 		
-		if( $row = $result->fetch_assoc()  )
+		// Get results as array string
+		while($row = $result->fetch_assoc())
 		{
-            returnWithError("Duplicate Username");
-        }
+			if( $searchCount > 0 )
+			{
+				$searchResults .= ",";
+			}
+			$searchCount++;
+			$searchResults .= json_encode($row);
+		}
+		
+		// Return results
+		if( $searchCount == 0 )
+		{
+			returnWithError( "No Records Found" );
+		}
 		else
 		{
-			returnWithError("");
+			returnWithInfo( $searchResults );
 		}
-
+		
 		$stmt->close();
 		$conn->close();
 	}
@@ -53,7 +68,14 @@
 	
 	function returnWithError( $err )
 	{
-		$retValue = '{"error":"' . $err . '"}';
+		$retValue = '{"results":[],"error":"' . $err . '"}';
+		sendResultInfoAsJson( $retValue );
+	}
+	
+	function returnWithInfo( $searchResults )
+	{
+		// Wrap results for correct json string
+		$retValue = '{"results":[' . $searchResults . '],"error":""}';
 		sendResultInfoAsJson( $retValue );
 	}
 	
