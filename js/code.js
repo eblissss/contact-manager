@@ -45,7 +45,7 @@ function doLogin() {
                 // Check if login failed
                 if (userId < 1) {
                     //document.getElementById("loginResult").innerHTML =
-                      //  "User/Password combination incorrect";
+                    //  "User/Password combination incorrect";
                     return;
                 }
 
@@ -196,24 +196,24 @@ function doSignUp() {
     let retFlag = false;
 
     // Cycle through parameters
-    for (let i = 0; i < 4; i++)
-    {
-        if(formParams[i] === ""){
-            document.getElementById(formErrors[i]).innerHTML = "This field should not be empty";
+    for (let i = 0; i < 4; i++) {
+        if (formParams[i] === "") {
+            document.getElementById(formErrors[i]).innerHTML =
+                "This field should not be empty";
             retFlag = true;
-        }else{
+        } else {
             document.getElementById(formErrors[i]).innerHTML = "";
         }
     }
 
-    if(retFlag) return;
+    if (retFlag) return;
 
     let loginCheck = {
-        login : username
+        login: username,
     };
 
     let jsonPayload = JSON.stringify(tmp);
-    
+
     let url = urlBase + "/ExistingUser." + extension;
 
     let xhr = new XMLHttpRequest();
@@ -224,7 +224,7 @@ function doSignUp() {
         xhr.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
                 let jsonObject = JSON.parse(xhr.responseText);
-                if(!(jsonObject.error == "")){
+                if (!(jsonObject.error == "")) {
                     console.log("Duplicate Username Found");
                     return;
                 }
