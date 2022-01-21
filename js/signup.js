@@ -43,15 +43,14 @@ function doSignUp() {
    xhr.open("POST", url, true);
     xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
 
-    let flag = false
     try {
         xhr.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
                 console.log(xhr.responseText)
                 let jsonObject = JSON.parse(xhr.responseText);
-                if (!(jsonObject.error == "")) {
+                if (jsonObject.includes("Duplicate")) {
                     console.log("Duplicate Username Found");
-                    flag = true;
+                    return;
                 }
             }
         };
@@ -59,9 +58,6 @@ function doSignUp() {
     } catch (err) {
         return;
     }
-
-    if(flag)
-        return;
 
     let tmp = {
         firstName: firstName,
