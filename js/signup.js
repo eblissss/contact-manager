@@ -35,7 +35,7 @@ function doSignUp() {
         login: username,
     };
 
-    let jsonPayload = JSON.stringify(tmp);
+    let jsonPayload = JSON.stringify(loginCheck);
 
     let url = urlBase + "/ExistingUser." + extension;
 
