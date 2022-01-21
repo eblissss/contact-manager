@@ -46,8 +46,11 @@ function doSignUp() {
     try {
         xhr.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
-                console.log(xhr.responseText)
+                console.log(xhr.responseText);
+                return;
                 let jsonObject = JSON.parse(xhr.responseText);
+                console.log(jsonObject);
+                return;
                 if (jsonObject.includes("Duplicate")) {
                     console.log("Duplicate Username Found");
                     return;
