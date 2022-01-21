@@ -40,23 +40,23 @@ function doSignUp() {
     let url = urlBase + "/ExistingUser." + extension;
 
     let xhr = new XMLHttpRequest();
-    xhr.open("POST", url, true);
+   /* xhr.open("POST", url, true);
     xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
 
     try {
         xhr.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
-                /*let jsonObject = JSON.parse(xhr.responseText);
+                let jsonObject = JSON.parse(xhr.responseText);
                 if (!(jsonObject.error == "")) {
                     console.log("Duplicate Username Found");
                     return;
-                }*/ 
+                }
             }
         };
         xhr.send(jsonPayload);
     } catch (err) {
         return;
-    }
+    }*/
 
     let tmp = {
         firstName: firstName,
