@@ -5,13 +5,16 @@ const extension = "php";
 let userId = 0;
 let firstName = "";
 let lastName = "";
+let username = "";
+let password = "";
+let hash = "";
 
 function doSignUp() {
-    let firstName = document.getElementById("firstName").value;
-    let lastName = document.getElementById("lastName").value;
-    let username = document.getElementById("username").value;
-    let password = document.getElementById("password").value;
-    let hash = md5(password);
+    firstName = document.getElementById("firstName").value;
+    lastName = document.getElementById("lastName").value;
+    username = document.getElementById("username").value;
+    password = document.getElementById("password").value;
+    hash = md5(password);
 
     // // To ensure no fields can be empty
     // const formErrors = ["fnError", "lnError", "userError", "passError"];
@@ -40,28 +43,27 @@ function doSignUp() {
     let url = urlBase + "/ExistingUser." + extension;
 
     let xhr = new XMLHttpRequest();
-   xhr.open("POST", url, true);
+    xhr.open("POST", url, true);
     xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
 
     try {
         xhr.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
                 console.log(xhr.responseText);
-                return;
-                let jsonObject = JSON.parse(xhr.responseText);
-                console.log(jsonObject);
-                return;
-                if (jsonObject.includes("Duplicate")) {
+                let err = xhr.responseText;
+                if (err.length > 15) 
                     console.log("Duplicate Username Found");
-                    return;
-                }
+                else
+                    doActualSignUp();
             }
         };
         xhr.send(jsonPayload);
     } catch (err) {
         return;
     }
+}
 
+function doActualSignUp(){
     let tmp = {
         firstName: firstName,
         lastName: lastName,
@@ -69,9 +71,9 @@ function doSignUp() {
         password: hash,
     };
 
-    jsonPayload = JSON.stringify(tmp);
+    let jsonPayload = JSON.stringify(tmp);
 
-    url = urlBase + "/Signup." + extension;
+    let url = urlBase + "/Signup." + extension;
 
     xhr = new XMLHttpRequest();
     xhr.open("POST", url, true);
