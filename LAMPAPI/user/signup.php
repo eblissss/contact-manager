@@ -1,12 +1,15 @@
- <?php
-	require_once("DotEnvLoader.php");
+<?php
+	require_once("../DotEnvLoader.php");
 	(new DotEnvLoader(__DIR__ . '/.env'))->load();
 
     // Get info from request
 	$inData = getRequestInfo();
-    
-    $id = $inData["id"];
-	$userId = $inData["userId"];
+	
+	$id = 0;
+    $firstName = $inData["firstName"];
+    $lastName = $inData["lastName"];
+    $login = $inData["login"];
+    $password = $inData["password"];
 
 	$conn = new mysqli($_ENV["DB_LOCATION"], $_ENV["DB_USER"], $_ENV["DB_PWD"], $_ENV["DB_NAME"]);
 	
@@ -17,14 +20,15 @@
 	} 
 	else
 	{
-        // Create SQL statement to update contact
-		$stmt = $conn->prepare("DELETE from Contacts WHERE ID=? and UserID=?");
-		$stmt->bind_param("ii", $id, $userId);
+        // Create SQL statement to add contact
+		$stmt = $conn->prepare("INSERT into Users (FirstName,LastName,Login,Password) VALUES (?,?,?,?)");
+		$stmt->bind_param("ssss", $firstName, $lastName, $login, $password);
 		$stmt->execute();
 		$stmt->close();
 		$conn->close();
 		returnWithError("");
 	}
+
 
 	function getRequestInfo()
 	{
@@ -33,9 +37,9 @@
 
 	function sendResultInfoAsJson( $obj )
 	{
-		header('Access-Control-Allow-Origin: *');
-		header("Access-Control-Allow-Methods: HEAD, GET, POST");
-		header("Access-Control-Allow-Headers: X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Request-Method,Access-Control-Request-Headers, Authorization");
+		// header('Access-Control-Allow-Origin: *');
+		// header("Access-Control-Allow-Methods: HEAD, GET, POST");
+		// header("Access-Control-Allow-Headers: X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Request-Method,Access-Control-Request-Headers, Authorization");
 		header('Content-type: application/json');
 		echo $obj;
 	}

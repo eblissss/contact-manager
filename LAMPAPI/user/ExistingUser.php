@@ -1,35 +1,41 @@
 <?php
-	require_once("DotEnvLoader.php");
+	require_once("../DotEnvLoader.php");
 	(new DotEnvLoader(__DIR__ . '/.env'))->load();
 
-    // Get info from request
+	// Get Data from request
 	$inData = getRequestInfo();
-    
-    $userId = $inData["userId"];
-    $firstName = $inData["firstName"];
-    $lastName = $inData["lastName"];
-    $email = $inData["email"];
-    $phone = $inData["phone"];
-	$isFavorite = $inData["isFavorite"];
+	
+    $login = $inData["login"];
 
 	$conn = new mysqli($_ENV["DB_LOCATION"], $_ENV["DB_USER"], $_ENV["DB_PWD"], $_ENV["DB_NAME"]);
-	
-    // Check for connection error
+
+	// Check for connection error
 	if ($conn->connect_error) 
 	{
 		returnWithError( $conn->connect_error );
 	} 
 	else
 	{
-        // Create SQL statement to add contact
-		$stmt = $conn->prepare("INSERT into Contacts (UserID,FirstName,LastName,Email,Phone,IsFavorite) VALUES (?,?,?,?,?,?)");
-		$stmt->bind_param("isssii", $userId, $firstName, $lastName, $email, $phone, $isFavorite);
+		// Create SQL statement to search contacts
+		$sqlsearch = "SELECT * FROM Users WHERE Login=?";
+		$stmt = $conn->prepare($sqlsearch);
+		$stmt->bind_param("s", $login);
 		$stmt->execute();
+		
+		$result = $stmt->get_result();
+		
+		if( $row = $result->fetch_assoc()  )
+		{
+            returnWithError("Duplicate Username");
+        }
+		else
+		{
+			returnWithError("");
+		}
+
 		$stmt->close();
 		$conn->close();
-		returnWithError("");
 	}
-
 
 	function getRequestInfo()
 	{

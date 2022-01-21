@@ -1,12 +1,11 @@
- <?php
-	require_once("DotEnvLoader.php");
+<?php
+	require_once("../DotEnvLoader.php");
 	(new DotEnvLoader(__DIR__ . '/.env'))->load();
 
     // Get info from request
 	$inData = getRequestInfo();
     
-    $id = $inData["id"];
-	$userId = $inData["userId"];
+    $userId = $inData["userId"];
     $firstName = $inData["firstName"];
     $lastName = $inData["lastName"];
     $email = $inData["email"];
@@ -22,15 +21,15 @@
 	} 
 	else
 	{
-        // Create SQL statement to update contact
-		$sql = "UPDATE Contacts SET FirstName=?, LastName=?, Email=?, Phone=?, IsFavorite=? WHERE ID=? and UserID=?";
-		$stmt = $conn->prepare($sql);
-		$stmt->bind_param("sssiiii", $firstName, $lastName, $email, $phone, $isFavorite, $id, $userId);
+        // Create SQL statement to add contact
+		$stmt = $conn->prepare("INSERT into Contacts (UserID,FirstName,LastName,Email,Phone,IsFavorite) VALUES (?,?,?,?,?,?)");
+		$stmt->bind_param("isssii", $userId, $firstName, $lastName, $email, $phone, $isFavorite);
 		$stmt->execute();
 		$stmt->close();
 		$conn->close();
 		returnWithError("");
 	}
+
 
 	function getRequestInfo()
 	{
