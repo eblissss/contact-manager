@@ -50,7 +50,7 @@ function doSignUp() {
                 if (!(jsonObject.error == "")) {
                     console.log("Duplicate Username Found");
                     return;
-                }*/
+                }*/ 
             }
         };
         xhr.send(jsonPayload);
@@ -75,7 +75,7 @@ function doSignUp() {
     try {
         xhr.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
-                window.location.href = index.html;
+                window.location.href = "index.html";
             }
         };
         xhr.send(jsonPayload);
