@@ -30,7 +30,6 @@ function doSignUp() {
     //     }
     // }
 
-    if (retFlag) return;
 
     let loginCheck = {
         login: username,
