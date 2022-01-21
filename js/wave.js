@@ -41,6 +41,36 @@ function init() {
         color: meshColor,
         wireframe: true,
     });
+    /*const shaderMat = new THREE.ShaderMaterial({
+        uniforms: {
+            color1: {
+                value: new THREE.Color("blue"),
+            },
+            color2: {
+                value: new THREE.Color("white"),
+            },
+        },
+        vertexShader: `
+            uniform vec3 color1;
+            uniform vec3 color2;
+            varying vec4 vColor;
+      
+            void main() {
+                vColor = vec4(mix(color1, color2, (position.z + 6000.0) / 2000.0), 1.0);
+                gl_Position = projectionMatrix * modelViewMatrix * vec4(position,1.0);
+            }
+        `,
+        fragmentShader: `
+            varying vec4 vColor;
+          
+            void main() {
+                float fogAmount = gl_FragCoord.z / 1.5;
+                gl_FragColor = mix(vColor, vec4(0.0, 0.0, 0.0, 1.0), fogAmount);
+            }
+        `,
+        wireframe: true,
+    });*/
+
     const plane = new THREE.Mesh(planeGeo, meshMat);
     plane.rotation.x -= Math.PI * 0.5;
 
