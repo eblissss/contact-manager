@@ -46,11 +46,11 @@ function doSignUp() {
     try {
         xhr.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
-                let jsonObject = JSON.parse(xhr.responseText);
+                /*let jsonObject = JSON.parse(xhr.responseText);
                 if (!(jsonObject.error == "")) {
                     console.log("Duplicate Username Found");
                     return;
-                }
+                }*/
             }
         };
         xhr.send(jsonPayload);
