@@ -1,3 +1,80 @@
+a,
+a:focus,
+a:hover {
+    color: #fff;
+}
+
+.btn-secondary,
+.btn-secondary:hover,
+.btn-secondary:focus {
+    color: #333;
+    text-shadow: none; /* Prevent inheritance from `body` */
+    background-color: #fff;
+    border: 0.05rem solid #fff;
+}
+
+html,
 body {
-    background-color: slategray;
+    height: 100%;
+    background-color: #333;
+    transition: ease all 0.5s;
+}
+
+body {
+    display: -ms-flexbox;
+    display: -webkit-box;
+    display: flex;
+    -ms-flex-pack: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    text-align: center;
+    color: #fff;
+    text-shadow: 0 0.05rem 0.1rem rgba(0, 0, 0, 0.5);
+    box-shadow: inset 0 0 5rem rgba(0, 0, 0, 0.5);
+}
+
+#siteName {
+    color: #fff;
+}
+
+.cover-container {
+    max-width: 42em;
+}
+
+.cover {
+    padding: 0 1.5rem;
+}
+.cover .btn-lg {
+    padding: 0.75rem 1.25rem;
+    font-weight: 700;
+}
+
+.mastFoot {
+    position: fixed;
+    bottom: 0;
+}
+
+#searchForm {
+    width: 60%;
+    display: inline-block;
+}
+
+#contactPane {
+    background-color: #ccc;
+    min-height: 50%;
+    width: 50%;
+    margin: 0 auto;
+    border-radius: 15px;
+    justify-content: center;
+}
+
+.contactDiv {
+    background-color: #333;
+    border-radius: 15px;
+    border: 4px solid #444;
+    margin-bottom: 20px;
+    padding: 10px 20px;
+    width: 30em;
+    margin: 10px auto;
+    text-align: center;
 }

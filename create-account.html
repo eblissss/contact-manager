@@ -9,14 +9,18 @@
         <title>Sign up</title>
         <script type="text/javascript" src="js/signup.js"></script>
         <script type="text/javascript" src="js/md5.js"></script>
+        <script type="module" src="js/wave.js"></script>
         <link
             href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
             rel="stylesheet"
             integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
             crossorigin="anonymous"
         />
-        <link href="css/create-account.css" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet">
+        <link href="css/create-account.css" rel="stylesheet" />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap"
+            rel="stylesheet"
+        />
         <script
             src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
@@ -24,40 +28,46 @@
         ></script>
     </head>
 
-
     <body>
-      <form action="#" class="signup">
-        <h1>Sign up below</h1>
-            <div class="signupinputs">
-              <label for="firstName">first name</label>
-              <input id="firstName" placeholder="first name"/>
-            </div>
+        <div id="waveContainer">
+            <form action="#" class="signup">
+                <h1>Sign up below</h1>
+                <div class="signupinputs">
+                    <label for="firstName">first name</label>
+                    <input id="firstName" placeholder="first name" />
+                </div>
 
-            <div class="signupinputs">
-              <label for="lastName">last name</label>
-              <input id="lastName" placeholder="last name"/>
-            </div>
+                <div class="signupinputs">
+                    <label for="lastName">last name</label>
+                    <input id="lastName" placeholder="last name" />
+                </div>
 
-            <div class="signupinputs">
-              <label for="username">username</label>
-              <input id="username" placeholder="username"/>
-            </div>
+                <div class="signupinputs">
+                    <label for="username">username</label>
+                    <input id="username" placeholder="username" />
+                </div>
 
-            <div class="signupinputs">
-              <label for="password">password</label>
-              <input id="password" placeholder="password"/>
-            </div>
-            
-            <button
-              class="signupbuttons"
-              id="signupButton"
-              type="submit"
-              onclick="doSignUp();"
-              >
+                <div class="signupinputs">
+                    <label for="password">password</label>
+                    <input id="password" placeholder="password" />
+                </div>
+
+                <button
+                    class="signupbuttons"
+                    id="signupButton"
+                    type="submit"
+                    onclick="doSignUp();"
+                >
                     Sign Up
-            </button>
+                </button>
 
-            <p> Already have an account? <a href = "#" onclick = "window.location.href='index.html'">Login</a></p>
-        </form>
+                <p>
+                    Already have an account?
+                    <a href="#" onclick="window.location.href='index.html'"
+                        >Login</a
+                    >
+                </p>
+            </form>
+        </div>
     </body>
 </html>

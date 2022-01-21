@@ -1,4 +1,4 @@
-const urlBase = "http://contacts.ninja/LAMPAPI"; //replace with actual site
+const urlBase = "http://contacts.ninja/LAMPAPI";
 const extension = "php";
 
 // Default login fields
@@ -25,10 +25,11 @@ function readCookie() {
 
     // If invalid user, kick back to index
     if (userId < 0) {
-        window.location.href = "index.html";
+        console.log("you shouldn't be here!");
+        //window.location.href = "index.html";
     } else {
         document.getElementById("headerName").innerHTML =
-            "Logged in as " + firstName + " " + lastName;
+            "Welcome, " + firstName + " " + lastName;
     }
 }
 
@@ -70,40 +71,49 @@ function addContact() {
 
 // Search Contacts - API request
 // Not implemented
-function searchContact() {
-    let srch = document.getElementById("searchText").value;
-    document.getElementById("contactSearchResult").innerHTML = "";
+function searchContacts() {
+    //userId = 1; // REMOVE THIS
 
-    let contactList = "";
+    const srch = document.getElementById("searchForm").value;
+    //document.getElementById("contactSearchResult").innerHTML = "";
 
-    let tmp = { search: srch, userId: userId };
-    let jsonPayload = JSON.stringify(tmp);
+    //let contactList = "";
 
-    let url = urlBase + "/SearchContact." + extension;
+    const tmp = { search: srch, userId: userId };
+    const jsonPayload = JSON.stringify(tmp);
 
-    let xhr = new XMLHttpRequest();
+    const url = urlBase + "/SearchContacts." + extension;
+
+    const xhr = new XMLHttpRequest();
     xhr.open("POST", url, true);
     xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
     try {
         xhr.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
-                document.getElementById("contactSearchResult").innerHTML =
-                    "Contact(s) has been retrieved";
-                let jsonObject = JSON.parse(xhr.responseText);
+                //document.getElementById("contactSearchResult").innerHTML =
+                //"Contact(s) has been retrieved";
+                const jsonObject = JSON.parse(xhr.responseText);
 
+                console.log(window);
                 for (let i = 0; i < jsonObject.results.length; i++) {
-                    contactList += jsonObject.results[i];
-                    if (i < jsonObject.results.length - 1) {
-                        contactList += "<br />\r\n";
-                    }
+                    curContact = jsonObject.results[i];
+
+                    spawnContact(
+                        curContact.ID,
+                        curContact.FirstName,
+                        curContact.LastName,
+                        curContact.Phone,
+                        curContact.Email
+                    );
                 }
 
-                document.getElementsByTagName("p")[0].innerHTML = contactList;
+                //document.getElementsByTagName("p")[0].innerHTML = contactList;
             }
         };
         xhr.send(jsonPayload);
     } catch (err) {
-        document.getElementById("contactSearchResult").innerHTML = err.message;
+        console.log(err);
+        //document.getElementById("contactSearchResult").innerHTML = err.message;
     }
 }
 
