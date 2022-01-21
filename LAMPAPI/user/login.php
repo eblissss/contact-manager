@@ -1,6 +1,6 @@
 <?php
 	require_once("../DotEnvLoader.php");
-	(new DotEnvLoader(__DIR__ . '/.env'))->load();
+	(new DotEnvLoader(__DIR__ . '/../.env'))->load();
 
 	// Get request data
 	$inData = getRequestInfo();
