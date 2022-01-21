@@ -9,8 +9,9 @@ body {
     background-color: #001030; /*#1A5F7A;*/
 }
 
-.form {
-    background-image: linear-gradient(#548cff, #7900ff);
+.form,
+#formBackground {
+    background-image: none;
     width: 400px; /*Play around with this*/
     height: 600px; /*Play around with this*/
     position: absolute;
@@ -26,9 +27,14 @@ body {
 
 .form h1 {
     color: white;
-    font-size: 1.3rem;
+    font-size: 1.5rem;
     text-align: center;
     margin-bottom: 3rem;
+}
+
+#formBackground {
+    background-image: linear-gradient(#548cff, #7900ff);
+    opacity: 0.8;
 }
 
 .inputs {
@@ -78,7 +84,7 @@ body {
     border-radius: 30px;
     padding: 14px 14px;
     font-size: 0.9rem;
-    margin-bottom: 1.0rem;
+    margin-bottom: 1rem;
     margin-top: 1.5rem;
     font-weight: 500;
     text-transform: uppercase; /*change?*/
@@ -104,7 +110,8 @@ body {
     transition: 0.3s ease-in-out;
 }
 
-p, #remember {
+p,
+#remember {
     color: #ffffff;
     font-size: 0.9rem;
     margin-bottom: 10;
