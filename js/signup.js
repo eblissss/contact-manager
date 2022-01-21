@@ -76,8 +76,7 @@ function doSignUp() {
     try {
         xhr.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
-                document.getElementById("loginResult").innerHTML =
-                    "Account Created";
+                window.location.href = index.html;
             }
         };
         xhr.send(jsonPayload);
