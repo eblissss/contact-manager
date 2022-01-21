@@ -59,8 +59,6 @@ function doSignUp() {
         return;
     }
 
-    return;
-
     let tmp = {
         firstName: firstName,
         lastName: lastName,
