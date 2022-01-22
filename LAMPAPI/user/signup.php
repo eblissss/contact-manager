@@ -1,6 +1,6 @@
 <?php
-	require_once("../DotEnvLoader.php");
-	(new DotEnvLoader(__DIR__ . '/../.env'))->load();
+	require_once("DotEnvLoader.php");
+	(new DotEnvLoader(__DIR__ . '/.env'))->load();
 
     // Get info from request
 	$inData = getRequestInfo();
@@ -20,13 +20,28 @@
 	} 
 	else
 	{
-        // Create SQL statement to add contact
-		$stmt = $conn->prepare("INSERT into Users (FirstName,LastName,Login,Password) VALUES (?,?,?,?)");
-		$stmt->bind_param("ssss", $firstName, $lastName, $login, $password);
+		// Create SQL statement to search contacts
+		$sqlsearch = "SELECT * FROM Users WHERE Login=?";
+		$stmt = $conn->prepare($sqlsearch);
+		$stmt->bind_param("s", $login);
 		$stmt->execute();
-		$stmt->close();
-		$conn->close();
-		returnWithError("");
+		
+		$result = $stmt->get_result();
+		
+		if( $row = $result->fetch_assoc()  )
+		{
+			returnWithError("Duplicate Username");
+		}
+		else
+		{
+			// Create SQL statement to add contact
+			$stmt = $conn->prepare("INSERT into Users (FirstName,LastName,Login,Password) VALUES (?,?,?,?)");
+			$stmt->bind_param("ssss", $firstName, $lastName, $login, $password);
+			$stmt->execute();
+			$stmt->close();
+			$conn->close();
+			returnWithError("");
+		}
 	}
 
 
