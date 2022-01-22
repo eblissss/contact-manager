@@ -1,4 +1,4 @@
-const urlBase = "http://contacts.ninja/LAMPAPI";
+const urlBase = "http://contacts.ninja/LAMPAPI/user";
 const extension = "php";
 
 // Default login fields
@@ -23,7 +23,7 @@ function doLogin() {
     let tmp = { login: login, password: hash };
     let jsonPayload = JSON.stringify(tmp);
 
-    let url = urlBase + "/Login." + extension;
+    let url = urlBase + "/login." + extension;
 
     // Create connection
     let xhr = new XMLHttpRequest();
