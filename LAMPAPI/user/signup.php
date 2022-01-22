@@ -1,6 +1,6 @@
 <?php
-	require_once("DotEnvLoader.php");
-	(new DotEnvLoader(__DIR__ . '/.env'))->load();
+	require_once("../DotEnvLoader.php");
+	(new DotEnvLoader(__DIR__ . '/../.env'))->load();
 
     // Get info from request
 	$inData = getRequestInfo();
@@ -20,7 +20,7 @@
 	} 
 	else
 	{
-		// Create SQL statement to search contacts
+		// Create SQL statement to search contacts for duplicates
 		$sqlsearch = "SELECT * FROM Users WHERE Login=?";
 		$stmt = $conn->prepare($sqlsearch);
 		$stmt->bind_param("s", $login);
@@ -44,7 +44,6 @@
 		}
 	}
 
-
 	function getRequestInfo()
 	{
 		return json_decode(file_get_contents('php://input'), true);
@@ -52,9 +51,9 @@
 
 	function sendResultInfoAsJson( $obj )
 	{
-		// header('Access-Control-Allow-Origin: *');
-		// header("Access-Control-Allow-Methods: HEAD, GET, POST");
-		// header("Access-Control-Allow-Headers: X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Request-Method,Access-Control-Request-Headers, Authorization");
+		header('Access-Control-Allow-Origin: *');
+		header("Access-Control-Allow-Methods: HEAD, GET, POST");
+		header("Access-Control-Allow-Headers: X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Request-Method,Access-Control-Request-Headers, Authorization");
 		header('Content-type: application/json');
 		echo $obj;
 	}
