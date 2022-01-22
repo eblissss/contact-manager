@@ -33,35 +33,6 @@ function doSignUp() {
     //     }
     // }
 
-
-    /*let loginCheck = {
-        login: username,
-    };
-
-    let jsonPayload = JSON.stringify(loginCheck);
-
-    let url = urlBase + "/ExistingUser." + extension;
-
-    let xhr = new XMLHttpRequest();
-    xhr.open("POST", url, true);
-    xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-
-    try {
-        xhr.onreadystatechange = function () {
-            if (this.readyState == 4 && this.status == 200) {
-                console.log(xhr.responseText);
-                let err = xhr.responseText;
-                if (err.length > 15) 
-                    console.log("Duplicate Username Found");
-                else
-                    doActualSignUp();
-            }
-        };
-        xhr.send(jsonPayload);
-    } catch (err) {
-        return;
-    }*/
-
     let tmp = {
         firstName: firstName,
         lastName: lastName,
@@ -81,37 +52,8 @@ function doSignUp() {
             if (this.readyState == 4 && this.status == 200) {
                 console.log(xhr.responseText);
                 let err = xhr.responseText;
-                if (err.length > 15) 
-                    console.log("Duplicate Username Found");
-                else
-                    window.location.href = "index.html";
-            }
-        };
-        xhr.send(jsonPayload);
-    } catch (err) {
-        document.getElementById("loginResult").innerHTML = err.message;
-    }
-}
-
-function doActualSignUp(){
-    let tmp = {
-        firstName: firstName,
-        lastName: lastName,
-        login: username,
-        password: hash,
-    };
-
-    let jsonPayload = JSON.stringify(tmp);
-
-    let url = urlBase + "/Signup." + extension;
-
-    xhr = new XMLHttpRequest();
-    xhr.open("POST", url, true);
-    xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-    try {
-        xhr.onreadystatechange = function () {
-            if (this.readyState == 4 && this.status == 200) {
-                window.location.href = "index.html";
+                if (err.length > 15) console.log("Duplicate Username Found");
+                else window.location.href = "index.html";
             }
         };
         xhr.send(jsonPayload);
