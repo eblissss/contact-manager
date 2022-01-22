@@ -1,4 +1,4 @@
-const urlBase = "http://contacts.ninja/LAMPAPI";
+const urlBase = "http://contacts.ninja/LAMPAPI/contact";
 const extension = "php";
 
 // Default login fields
