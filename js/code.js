@@ -42,38 +42,25 @@ function doLogout() {
 // Create Contact - API request
 // Not implemented
 function addContact() {
-    /*let newContact = document.getElementById("contactText").value;
-    document.getElementById("contactAddResult").innerHTML = "";
+    // Replace Button with new Form
+    document.getElementById("addButton").style.display = "none";
 
-    let tmp = { contact: newContact, userId, userId };
-    let jsonPayload = JSON.stringify(tmp);*/
-
-    data = { ID: 5 };
-
-    makeRequest("create", data).then((res) => {
-        if (res.error === "") {
-            console.log("Contact has been added.");
-
-            curContact = data;
-
-            spawnContact(
-                curContact.ID,
-                curContact.FirstName,
-                curContact.LastName,
-                curContact.Phone,
-                curContact.Email
-            );
-        } else {
-            console.log(res.error);
-        }
-    });
+    const contact = spawnContact(
+        (id = largeNum), // will be saved as proper ID by DB (also used to tell save() it is new)
+        (firstname = ""),
+        (lastname = ""),
+        (phone = ""),
+        (email = ""),
+        (first = true) // put at top
+    );
+    edit(contact);
 }
 
 // Search Contacts - API request
 // Not implemented
 function searchContacts() {
     const srch = document.getElementById("searchForm").value;
-    userId = 1; // REMOVE THIS (testing only)
+    userId = -1; // REMOVE THIS (testing only)
 
     if (srch === "") return;
 

@@ -88,7 +88,16 @@
                 <p id="numResults"></p>
             </main>
 
-            <div id="contactPane"></div>
+            <div id="contactPane">
+                <button
+                    id="addButton"
+                    type="button"
+                    class="btn btn-primary mb-1"
+                    onclick="addContact();"
+                >
+                    Add New Contact
+                </button>
+            </div>
 
             <footer class="mastfoot">
                 <div class="inner">
@@ -106,9 +115,14 @@
     <template id="contact-template">
         <link href="css/main.css" rel="stylesheet" />
         <div class="contactDiv">
-            <button id="main_bt" style="width: 100px">Edit</button>
+            <button class="btn btn-secondary mb-1" style="width: 100px">
+                Edit
+            </button>
             <button class="btn btn-secondary mb-1" style="width: 100px">
                 Save
+            </button>
+            <button class="btn btn-secondary mb-1" style="width: 100px">
+                Delete
             </button>
             <br />
             <slot name="c-fname" id="mycontact">NAME MISSING</slot>

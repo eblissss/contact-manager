@@ -1,5 +1,6 @@
 let editing = false;
 let sav;
+const largeNum = 1000000000;
 
 class Contact extends HTMLElement {
     constructor() {
@@ -10,9 +11,14 @@ class Contact extends HTMLElement {
         const template = document.createElement("template");
         template.innerHTML = `<link href="css/main.css" rel="stylesheet" />
         <div class="contactDiv">
-            <button id="main_bt" style="width: 100px">Edit</button>
+            <button class="btn btn-secondary mb-1" style="width: 100px">
+                Edit
+            </button>
             <button class="btn btn-secondary mb-1" style="width: 100px">
                 Save
+            </button>
+            <button class="btn btn-secondary mb-1" style="width: 100px">
+                Delete
             </button>
             <br />
             <slot name="c-fname" id="mycontact">NAME MISSING</slot>
@@ -37,33 +43,38 @@ class Contact extends HTMLElement {
 }
 customElements.define("contact-div", Contact);
 
-function spawnContact(id, firstname, lastname, phone, email) {
+function spawnContact(id, firstname, lastname, phone, email, first = false) {
     const contac = new Contact();
     contac.id = "contact-" + id;
     const content = contac.shadowRoot.children[1];
 
-    content.children[3].innerHTML = firstname;
-    content.children[4].innerHTML = lastname;
-    content.children[5].children[0].innerHTML = "Phone: " + phone;
-    content.children[5].children[1].innerHTML = "Email: " + email;
+    content.children[4].innerHTML = firstname;
+    content.children[5].innerHTML = lastname;
+    content.children[6].children[0].innerHTML = "Phone: " + phone;
+    content.children[6].children[1].innerHTML = "Email: " + email;
 
     content.children[0].addEventListener("click", () => {
         if (!editing) {
-            editing = true;
             edit(contac);
         }
     });
+    content.children[2].addEventListener("click", () => {
+        deleteContact(contac);
+    });
 
-    document.getElementById("contactPane").appendChild(contac);
+    if (first) document.getElementById("addButton").after(contac);
+    else document.getElementById("contactPane").appendChild(contac);
+
+    return contac;
 }
 
 function save(contac) {
     content = contac.shadowRoot.children[1];
 
-    const fnameSlot = content.children[3];
-    const lnameSlot = content.children[4];
-    const phoneSlot = content.children[5].children[0];
-    const emailSlot = content.children[5].children[1];
+    const fnameSlot = content.children[4];
+    const lnameSlot = content.children[5];
+    const phoneSlot = content.children[6].children[0];
+    const emailSlot = content.children[6].children[1];
 
     const firstname = fnameSlot.children[0].value;
     const lastname = lnameSlot.children[0].value;
@@ -78,14 +89,42 @@ function save(contac) {
     phoneSlot.innerHTML = "Phone: " + phoneNum;
     emailSlot.innerHTML = "Email: " + emailAddr;
 
-    // send to update API
-    // send (id, firstname, lastname, phone, email) + userId (from logged in cache)
+    data = {
+        userId: userId,
+        firstName: firstname,
+        lastName: lastname,
+        email: emailAddr,
+        phone: phoneNum,
+        isFavorite: 0,
+    };
+
+    if (id == largeNum) {
+        makeRequest("create", data).then((res) => {
+            if (res.error === "") {
+                console.log("Contact has been added.");
+            } else {
+                console.log(res.error);
+            }
+            document.getElementById("addButton").style.display = "inline-block";
+        });
+    } else {
+        makeRequest("update", { ...data, id: id }).then((res) => {
+            if (res.error === "") {
+                console.log("Contact has been updated.");
+            } else {
+                console.log(res.error);
+            }
+        });
+    }
 
     content.children[1].removeEventListener("click", sav);
     editing = false;
 }
 
 function edit(contac) {
+    // HIDE EDITING OPTION
+
+    editing = true;
     content = contac.shadowRoot.children[1];
 
     const fnameSlot = content.children[3];
@@ -116,6 +155,23 @@ function edit(contac) {
             save(contac);
         })
     );
+}
+
+function deleteContact(contac) {
+    // ASK FOR CONFIRMATION
+
+    const id = contac.id.substring(8);
+
+    makeRequest("delete", { id: id, userId: userId }).then((res) => {
+        if (res.error === "") {
+            console.log("Contact has been deleted.");
+        } else {
+            console.log(res.error);
+        }
+    });
+
+    // We should have animations too
+    contac.remove();
 }
 
 window.onload = function () {
