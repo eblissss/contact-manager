@@ -1,4 +1,4 @@
-const urlBase = "http://contacts.ninja/LAMPAPI/user";
+const urlBase = "https://contacts.ninja/LAMPAPI/user";
 const extension = "php";
 
 // Default login fields
@@ -20,49 +20,43 @@ function doLogin() {
     //document.getElementById("loginResult").innerHTML = "";
 
     // Create payload
-    let tmp = { login: login, password: hash };
-    let jsonPayload = JSON.stringify(tmp);
+    let payload = { login: login, password: hash };
+    console.log(payload);
 
-    let url = urlBase + "/login." + extension;
+    // Make request
+    makeLoginRequest(payload).then((res) => {
+        userId = res.id;
+        // Check if login failed
+        if (userId < 1) {
+            //document.getElementById("loginResult").innerHTML =
+            //  "User/Password combination incorrect";
+            console.log("User/Password combination incorrect");
+            return;
+        }
 
-    // Create connection
-    let xhr = new XMLHttpRequest();
-    xhr.open("POST", url, true);
-    xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-    //xhr.setRequestHeader("Access-Control-Allow-Origin", "*");
-    console.log(jsonPayload);
+        firstName = res.firstName;
+        lastName = res.lastName;
 
-    try {
-        // Whenever there is a state change (successful response) (Non-blocking)
-        xhr.onreadystatechange = function () {
-            console.log(xhr);
+        saveCookie();
 
-            if (this.readyState == 4 && this.status == 200) {
-                // Parse response
-                console.log(xhr.responseText);
-                let jsonObject = JSON.parse(xhr.responseText);
-                userId = jsonObject.id;
-                // Check if login failed
-                if (userId < 1) {
-                    //document.getElementById("loginResult").innerHTML =
-                    //  "User/Password combination incorrect";
-                    return;
-                }
+        // Change window href
+        window.location.href = "contacts.html";
+    });
 
-                firstName = jsonObject.firstName;
-                lastName = jsonObject.lastName;
+    // Create connection functino
+    async function makeLoginRequest(data = {}) {
+        const res = await fetch(urlBase + "/login." + extension, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(data),
+        });
 
-                saveCookie();
-
-                // Change window href
-                window.location.href = "contacts.html";
-            }
-        };
-        // Send payload
-        xhr.send(jsonPayload);
-    } catch (err) {
-        // Show error
-        document.getElementById("loginResult").innerHTML = err.message;
+        if (!res.ok) {
+            return { error: "Server Error" };
+        }
+        return res.json();
     }
 }
 

@@ -1,4 +1,4 @@
-const urlBase = "http://contacts.ninja/LAMPAPI/user";
+const urlBase = "https://contacts.ninja/LAMPAPI/user";
 const extension = "php";
 
 // Default login fields
@@ -33,31 +33,54 @@ function doSignUp() {
     //     }
     // }
 
-    let tmp = {
+    // Create payload
+    let payload = {
         firstName: firstName,
         lastName: lastName,
         login: username,
         password: hash,
     };
 
-    let jsonPayload = JSON.stringify(tmp);
+    // let xhr = new XMLHttpRequest();
+    // xhr.open("POST", url, true);
+    // xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+    // try {
+    //     xhr.onreadystatechange = function () {
+    //         if (this.readyState == 4 && this.status == 200) {
+    //             console.log(xhr.responseText);
+    //             let err = xhr.responseText;
+    //             if (err.length > 15) console.log("Duplicate Username Found");
+    //             else window.location.href = "index.html";
+    //         }
+    //     };
+    //     xhr.send(jsonPayload);
+    // } catch (err) {
+    //     document.getElementById("loginResult").innerHTML = err.message;
+    // }
 
-    let url = urlBase + "/signup." + extension;
+    console.log(payload);
 
-    let xhr = new XMLHttpRequest();
-    xhr.open("POST", url, true);
-    xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-    try {
-        xhr.onreadystatechange = function () {
-            if (this.readyState == 4 && this.status == 200) {
-                console.log(xhr.responseText);
-                let err = xhr.responseText;
-                if (err.length > 15) console.log("Duplicate Username Found");
-                else window.location.href = "index.html";
-            }
-        };
-        xhr.send(jsonPayload);
-    } catch (err) {
-        document.getElementById("loginResult").innerHTML = err.message;
+    // Make request
+    makeLoginRequest(payload).then((res) => {
+        const err = res.error;
+        if (err.length > 15) console.log("Duplicate Username Found");
+        else if (err.length > 0) console.log("Server Error");
+        else window.location.href = "index.html";
+    });
+
+    // Create connection functino
+    async function makeLoginRequest(data = {}) {
+        const res = await fetch(urlBase + "/signup." + extension, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(data),
+        });
+
+        if (!res.ok) {
+            return { error: "Server Error" };
+        }
+        return res.json();
     }
 }

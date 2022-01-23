@@ -1,4 +1,4 @@
-const urlBase = "http://contacts.ninja/LAMPAPI/contact";
+const urlBase = "https://contacts.ninja/LAMPAPI/contact";
 const extension = ".php";
 
 function callAPI() {
