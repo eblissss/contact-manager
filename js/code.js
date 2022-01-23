@@ -1,6 +1,3 @@
-const urlBase = "http://contacts.ninja/LAMPAPI/contact";
-const extension = "php";
-
 // Default login fields
 let userId = 0;
 let firstName = "";
@@ -45,76 +42,61 @@ function doLogout() {
 // Create Contact - API request
 // Not implemented
 function addContact() {
-    let newContact = document.getElementById("contactText").value;
+    /*let newContact = document.getElementById("contactText").value;
     document.getElementById("contactAddResult").innerHTML = "";
 
     let tmp = { contact: newContact, userId, userId };
-    let jsonPayload = JSON.stringify(tmp);
+    let jsonPayload = JSON.stringify(tmp);*/
 
-    let url = urlBase + "/CreateContact." + extension;
+    data = { ID: 5 };
 
-    let xhr = new XMLHttpRequest();
-    xhr.open("POST", url, true);
-    xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-    try {
-        xhr.onreadystatechange = function () {
-            if (this.readyState == 4 && this.status == 200) {
-                document.getElementById("contactAddResult").innerHTML =
-                    "Contact has been added"; // <-- say actual name
-            }
-        };
-        xhr.send(jsonPayload);
-    } catch (err) {
-        document.getElementById("contactAddResult").innerHTML = err.message;
-    }
+    makeRequest("create", data).then((res) => {
+        if (res.error === "") {
+            console.log("Contact has been added.");
+
+            curContact = data;
+
+            spawnContact(
+                curContact.ID,
+                curContact.FirstName,
+                curContact.LastName,
+                curContact.Phone,
+                curContact.Email
+            );
+        } else {
+            console.log(res.error);
+        }
+    });
 }
 
 // Search Contacts - API request
 // Not implemented
 function searchContacts() {
-    //userId = 1; // REMOVE THIS
-
     const srch = document.getElementById("searchForm").value;
-    //document.getElementById("contactSearchResult").innerHTML = "";
+    userId = 1; // REMOVE THIS (testing only)
 
-    //let contactList = "";
+    if (srch === "") return;
 
-    const tmp = { search: srch, userId: userId };
-    const jsonPayload = JSON.stringify(tmp);
+    makeRequest("search", { search: srch, userId: userId }).then((res) => {
+        //console.log(res);
+        if (res.error === "" && res.results.length > 0) {
+            console.log("found contacts");
 
-    const url = urlBase + "/SearchContacts." + extension;
+            for (let i = 0; i < res.results.length; i++) {
+                curContact = res.results[i];
 
-    const xhr = new XMLHttpRequest();
-    xhr.open("POST", url, true);
-    xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-    try {
-        xhr.onreadystatechange = function () {
-            if (this.readyState == 4 && this.status == 200) {
-                //document.getElementById("contactSearchResult").innerHTML =
-                //"Contact(s) has been retrieved";
-                const jsonObject = JSON.parse(xhr.responseText);
-
-                console.log(window);
-                for (let i = 0; i < jsonObject.results.length; i++) {
-                    curContact = jsonObject.results[i];
-
-                    spawnContact(
-                        curContact.ID,
-                        curContact.FirstName,
-                        curContact.LastName,
-                        curContact.Phone,
-                        curContact.Email
-                    );
-                }
-
-                //document.getElementsByTagName("p")[0].innerHTML = contactList;
+                spawnContact(
+                    curContact.ID,
+                    curContact.FirstName,
+                    curContact.LastName,
+                    curContact.Phone,
+                    curContact.Email
+                );
             }
-        };
-        xhr.send(jsonPayload);
-    } catch (err) {
-        console.log(err);
-        //document.getElementById("contactSearchResult").innerHTML = err.message;
-    }
+        } else {
+            console.log(res.error);
+        }
+    });
 }
 
 // Update Contact - API request
