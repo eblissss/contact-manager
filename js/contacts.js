@@ -127,10 +127,10 @@ function edit(contac) {
     editing = true;
     content = contac.shadowRoot.children[1];
 
-    const fnameSlot = content.children[3];
-    const lnameSlot = content.children[4];
-    const phoneSlot = content.children[5].children[0];
-    const emailSlot = content.children[5].children[1];
+    const fnameSlot = content.children[4];
+    const lnameSlot = content.children[5];
+    const phoneSlot = content.children[6].children[0];
+    const emailSlot = content.children[6].children[1];
 
     const firstname = fnameSlot.innerText;
     const lastname = lnameSlot.innerText;
