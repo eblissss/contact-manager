@@ -158,7 +158,8 @@ function edit(contac) {
 }
 
 function deleteContact(contac) {
-    // ASK FOR CONFIRMATION
+    if (confirm("Are you sure you want to delete this contact?") == false)
+        return;
 
     const id = contac.id.substring(8);
 
