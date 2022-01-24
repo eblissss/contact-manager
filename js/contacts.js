@@ -27,6 +27,9 @@ class Contact extends HTMLElement {
                 <li><slot name="c-phone">PHONE MISSING</slot></li>
                 <li><slot name="c-email"></slot>EMAIL MISSING</li>
             </ul>
+            <button class="btn btn-secondary mb-1" style="width: 100px">
+                Favorite
+            </button>
         </div>`;
 
         // Get template
@@ -43,9 +46,11 @@ class Contact extends HTMLElement {
 }
 customElements.define("contact-div", Contact);
 
-function spawnContact(id, firstname, lastname, phone, email, first = false) {
+function spawnContact(id, firstname, lastname, phone, email, first = false, isFavorite = 0) {
     const contac = new Contact();
     contac.id = "contact-" + id;
+    contac.isFavorite = isFavorite;
+    console.log(contac.id);
     const content = contac.shadowRoot.children[1];
 
     content.children[4].innerHTML = firstname;
@@ -61,6 +66,9 @@ function spawnContact(id, firstname, lastname, phone, email, first = false) {
     content.children[2].addEventListener("click", () => {
         deleteContact(contac);
     });
+    content.children[7].addEventListener("click", () => {
+        setFavorite(contac);
+    })
 
     if (first) document.getElementById("addButton").after(contac);
     else document.getElementById("contactPane").appendChild(contac);
@@ -173,6 +181,20 @@ function deleteContact(contac) {
 
     // We should have animations too
     contac.remove();
+}
+
+function setFavorite(contac){
+    const id = contac.id.substring(8);
+
+    contac.isFavorite = (contac.isFavorite == 0) ? 1 : 0;
+
+    makeRequest("setFavorite", { id: id, userId: userId, isFavorite: contac.isFavorite}).then((res) => {
+        if (res.error === "") {
+            console.log("Favorite (0 = no, 1 = yes): " + contac.isFavorite);
+        } else {
+            console.log(res.error);
+        }
+    });
 }
 
 window.onload = function () {
