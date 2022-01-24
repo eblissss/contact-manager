@@ -68,7 +68,9 @@ function searchContacts() {
         //console.log(res);
         if (res.error === "" && res.results.length > 0) {
             console.log("found contacts");
-
+            const a = res.results.length
+            console.log(a);
+            document.getElementById("numResults").innerHTML = res.results.length + "contacts receieved.";
             for (let i = 0; i < res.results.length; i++) {
                 curContact = res.results[i];
 
