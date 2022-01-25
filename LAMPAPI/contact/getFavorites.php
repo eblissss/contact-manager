@@ -37,6 +37,9 @@
 			$searchCount++;
 			$searchResults .= json_encode($row);
 		}
+
+		$stmt->close();
+		$conn->close();
 		
 		// Return results
 		if( $searchCount == 0 )
@@ -47,9 +50,6 @@
 		{
 			returnWithInfo( $searchResults );
 		}
-		
-		$stmt->close();
-		$conn->close();
 	}
 
 	function getRequestInfo()

@@ -44,20 +44,33 @@ class Contact extends HTMLElement {
         shadowRoot.appendChild(templateContent.cloneNode(true));
     }
 }
+// Define element so we can summon it
 customElements.define("contact-div", Contact);
 
-function spawnContact(id, firstname, lastname, phone, email, first = false, isFavorite = 0) {
+// Spawn a new contact on the div
+function spawnContact(
+    id,
+    firstname,
+    lastname,
+    phone,
+    email,
+    first = false,
+    isFavorite = 0
+) {
+    // Create new contact
     const contac = new Contact();
     contac.id = "contact-" + id;
     contac.isFavorite = isFavorite;
     console.log(contac.id);
     const content = contac.shadowRoot.children[1];
 
+    // Add info
     content.children[4].innerHTML = firstname;
     content.children[5].innerHTML = lastname;
     content.children[6].children[0].innerHTML = "Phone: " + phone;
     content.children[6].children[1].innerHTML = "Email: " + email;
 
+    // Add listeners
     content.children[0].addEventListener("click", () => {
         if (!editing) {
             edit(contac);
@@ -68,22 +81,26 @@ function spawnContact(id, firstname, lastname, phone, email, first = false, isFa
     });
     content.children[7].addEventListener("click", () => {
         setFavorite(contac);
-    })
+    });
 
+    // Insert into div
     if (first) document.getElementById("addButton").after(contac);
     else document.getElementById("contactPane").appendChild(contac);
 
     return contac;
 }
 
+// Update (or add) the contact
 function save(contac) {
     content = contac.shadowRoot.children[1];
 
+    // Grab slots
     const fnameSlot = content.children[4];
     const lnameSlot = content.children[5];
     const phoneSlot = content.children[6].children[0];
     const emailSlot = content.children[6].children[1];
 
+    // Grab info
     const firstname = fnameSlot.children[0].value;
     const lastname = lnameSlot.children[0].value;
     const phoneNum = phoneSlot.children[0].value;
@@ -92,11 +109,13 @@ function save(contac) {
 
     console.log(id, firstname, lastname, phoneNum, emailAddr);
 
+    // Insert info back in
     fnameSlot.innerHTML = firstname;
     lnameSlot.innerHTML = lastname;
     phoneSlot.innerHTML = "Phone: " + phoneNum;
     emailSlot.innerHTML = "Email: " + emailAddr;
 
+    // Save data
     data = {
         userId: userId,
         firstName: firstname,
@@ -106,10 +125,12 @@ function save(contac) {
         isFavorite: 0,
     };
 
+    // Create or Update
     if (id == largeNum) {
         makeRequest("create", data).then((res) => {
             if (res.error === "") {
                 console.log("Contact has been added.");
+                contac.id = "contact-" + res.id;
             } else {
                 console.log(res.error);
             }
@@ -129,22 +150,26 @@ function save(contac) {
     editing = false;
 }
 
+// Put contact in edit mode
 function edit(contac) {
     // HIDE EDITING OPTION
 
     editing = true;
     content = contac.shadowRoot.children[1];
 
+    // Get slots
     const fnameSlot = content.children[4];
     const lnameSlot = content.children[5];
     const phoneSlot = content.children[6].children[0];
     const emailSlot = content.children[6].children[1];
 
+    // Get slot info
     const firstname = fnameSlot.innerText;
     const lastname = lnameSlot.innerText;
     const phoneNum = phoneSlot.innerText.substring(7);
     const emailAddr = emailSlot.innerText.substring(7);
 
+    // Replace text with inputs
     fnameSlot.innerHTML = `<input type="text" />`;
     fnameSlot.children[0].value = firstname;
     lnameSlot.innerHTML = `<input type="text" />`;
@@ -165,12 +190,15 @@ function edit(contac) {
     );
 }
 
+// Delete contact
 function deleteContact(contac) {
+    // Confirmation
     if (confirm("Are you sure you want to delete this contact?") == false)
         return;
 
     const id = contac.id.substring(8);
 
+    // Make delete request
     makeRequest("delete", { id: id, userId: userId }).then((res) => {
         if (res.error === "") {
             console.log("Contact has been deleted.");
@@ -183,14 +211,22 @@ function deleteContact(contac) {
     contac.remove();
 }
 
-function setFavorite(contac){
+// Set a contact as favorite
+function setFavorite(contac) {
     const id = contac.id.substring(8);
 
-    contac.isFavorite = (contac.isFavorite == 0) ? 1 : 0;
+    // Swap 0 and 1
+    contac.isFavorite = 1 - contac.isFavorite;
 
-    makeRequest("setFavorite", { id: id, userId: userId, isFavorite: contac.isFavorite}).then((res) => {
+    makeRequest("setFavorite", {
+        id: id,
+        userId: userId,
+        isFavorite: contac.isFavorite,
+    }).then((res) => {
         if (res.error === "") {
-            console.log("Favorite (0 = no, 1 = yes): " + contac.isFavorite);
+            console.log(
+                "Favorite " + (contac.isFavorite ? "yes - 1" : "no - 0")
+            );
         } else {
             console.log(res.error);
         }
@@ -198,13 +234,25 @@ function setFavorite(contac){
 }
 
 window.onload = function () {
-    for (let i = 0; i < 2; i++) {
-        spawnContact(
-            i,
-            "Benedict",
-            "Cucumberpatch",
-            "808080808" + i,
-            "jojo@gmail.com"
-        );
-    }
+    makeRequest("getFavorites", { userId: userId }).then((res) => {
+        //console.log(res);
+
+        if (res.error === "" && res.results.length > 0) {
+            console.log("found favorite contacts");
+
+            for (let i = 0; i < res.results.length; i++) {
+                curContact = res.results[i];
+
+                spawnContact(
+                    curContact.ID,
+                    curContact.FirstName,
+                    curContact.LastName,
+                    curContact.Phone,
+                    curContact.Email
+                );
+            }
+        } else {
+            console.log(res.error);
+        }
+    });
 };

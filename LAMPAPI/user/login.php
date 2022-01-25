@@ -22,6 +22,9 @@
 		$stmt->execute();
 		$result = $stmt->get_result();
 
+		$stmt->close();
+		$conn->close();
+
 		if( $row = $result->fetch_assoc()  )
 		{
 			returnWithInfo( $row['FirstName'], $row['LastName'], $row['ID'] );
@@ -30,9 +33,6 @@
 		{
 			returnWithError("No Records Found");
 		}
-
-		$stmt->close();
-		$conn->close();
 	}
 
 	function getRequestInfo()
