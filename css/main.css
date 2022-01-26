@@ -29,6 +29,8 @@ body {
     justify-content: center;
     text-align: center;
     color: #fff;
+    overflow-x: hidden !important;
+    transition: ease all 0.5s;
     text-shadow: 0 0.05rem 0.1rem rgba(0, 0, 0, 0.5);
     box-shadow: inset 0 0 5rem rgba(0, 0, 0, 0.5);
 }
@@ -62,19 +64,150 @@ body {
 #contactPane {
     background-color: #ccc;
     min-height: 50%;
-    width: 50%;
+    width: 80%;
     margin: 0 auto;
     border-radius: 15px;
     justify-content: center;
 }
 
 .contactDiv {
-    background-color: #333;
+    width: 400px;
+    height: 200px;
+    background-color: #6c757d;
     border-radius: 15px;
     border: 4px solid #444;
     margin-bottom: 20px;
     padding: 10px 20px;
-    width: 30em;
-    margin: 10px auto;
-    text-align: center;
+    position: relative;
+}
+
+.grid-item {
+    width: 400px;
+}
+
+.fname,
+.lname {
+    font-size: large;
+    position: absolute;
+}
+
+.fname {
+    left: 80px;
+    top: 5px;
+    font-size: 32px;
+}
+
+.lname {
+    left: 100px;
+    top: 45px;
+    font-size: 32px;
+}
+
+.contact-image {
+    height: 50px;
+    width: 50px;
+    border-radius: 5px;
+    border: 4px solid;
+    position: absolute;
+    left: 15px;
+    top: 20px;
+}
+
+.dropmenu {
+    position: absolute;
+    left: 320px;
+}
+
+.triple-dots {
+    height: 22px;
+    width: 22px;
+}
+
+.email,
+.phone,
+.address {
+    text-align: left;
+    position: absolute;
+    font-size: medium;
+    right: -80px;
+}
+
+.email {
+    top: 20px;
+}
+
+.phone {
+    top: 50px;
+}
+
+.address {
+    top: 80px;
+}
+
+.emailData,
+.phoneData,
+.addrData {
+    text-align: left;
+    position: absolute;
+    font-size: large;
+    bottom: -9px;
+}
+
+.emailData {
+    left: 60px;
+}
+
+.phoneData {
+    left: 60px;
+}
+
+.addrData {
+    left: 60px;
+    width: 200px;
+}
+
+.fav {
+    color: white;
+    position: absolute;
+    top: 120px;
+    left: 25px;
+    width: 30px;
+    height: 30px;
+}
+
+.contactLowerBackground {
+    background-color: #444;
+    position: absolute;
+    left: 0px;
+    bottom: 0px;
+    height: 100px;
+    width: 100%;
+    border-radius: 15px 15px 5px 5px;
+}
+
+.dropButton {
+    position: absolute;
+    bottom: -4px;
+    left: -3px;
+    color: #eeeeee;
+    background-color: #333;
+    width: calc(100% + 6px);
+    height: 28px;
+    border-width: 0;
+    border-radius: 15px;
+    box-shadow: inset 0px 20px 10px -10px #444;
+}
+
+.notes {
+    font-size: medium;
+    position: absolute;
+    left: 70px;
+    top: 5px;
+}
+
+.drop-info {
+    position: absolute;
+    top: 50px;
+    color: #eee;
+    display: none;
 }
