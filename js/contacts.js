@@ -179,8 +179,9 @@ function edit(contac) {
     sabeButton.classList.add("btn");
     sabeButton.style.backgroundColor = "white";
     sabeButton.innerHTML = "SAVE";
-    sabeButton.style.marginLeft = "175px";
-    sabeButton.style.marginTop = "-30px";
+    sabeButton.style.marginLeft = "310px";
+    sabeButton.style.marginTop = "-65px";
+    sabeButton.style.marginBottom = "50px";
     sabeButton.addEventListener(
         "click",
         (sav = () => {
