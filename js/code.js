@@ -40,8 +40,8 @@ function doLogout() {
 }
 
 // Create Contact - API request
+// Not implemented
 function addContact() {
-
     // Replace Button with new Form
     document.getElementById("addButton").style.display = "none";
 
@@ -51,35 +51,26 @@ function addContact() {
         (lastname = ""),
         (phone = ""),
         (email = ""),
-        (first = true) // put at top
+        (first = true), // put at top
+        (isFavorite = 0)
     );
-    msnry.reloadItems();
     edit(contact);
 }
 
 // Search Contacts - API request
+// Not implemented
 function searchContacts() {
     const srch = document.getElementById("searchForm").value;
     userId = -1; // REMOVE THIS (testing only)
 
     if (srch === "") return;
 
-    const pane = document.getElementById("contactPane");
-    while (pane.childNodes.length > 2) {
-        console.log(pane.lastChild);
-        pane.removeChild(pane.lastChild);
-    }
-
     makeRequest("search", { search: srch, userId: userId }).then((res) => {
         //console.log(res);
-        numRes = res.results.length;
-        document.getElementById("numResults").innerHTML =
-            numRes + " contacts found.";
-
-        if (res.error === "" && numRes > 0) {
+        if (res.error === "" && res.results.length > 0) {
             console.log("found contacts");
 
-            for (let i = 0; i < numRes; i++) {
+            for (let i = 0; i < res.results.length; i++) {
                 curContact = res.results[i];
 
                 spawnContact(
@@ -90,13 +81,14 @@ function searchContacts() {
                     curContact.Email
                 );
             }
-            msnry.reloadItems();
-            msnry.layout();
         } else {
             console.log(res.error);
-            const message = document.createElement("h3");
-            message.innerHTML = "No Records Found";
-            pane.appendChild(message);
         }
     });
 }
+
+// Update Contact - API request
+
+// Delete Contact - API request
+
+// Favorite Contact ???

@@ -158,14 +158,14 @@ function edit(contac) {
     notesSlot.innerHTML = `Notes: <input "type="text"/>`;
     notesSlot.children[0].value = notes;
 
-    emailSlot.innerHTML = `Gmail: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input style="type="text" />`;
+    emailSlot.innerHTML = `📧: <input style="type="text" />`;
     emailSlot.children[0].value = emailAddr;
     console.log(emailSlot.outerHTML);
 
-    phoneSlot.innerHTML = `Phone: &nbsp&nbsp&nbsp&nbsp&nbsp<input "type="text" />`;
+    phoneSlot.innerHTML = `📞: <input "type="text" />`;
     phoneSlot.children[0].value = phoneNum;
 
-    addrSlot.innerHTML = `Address: &nbsp&nbsp<input type="text" />`;
+    addrSlot.innerHTML = `📍: <input type="text" />`;
     addrSlot.children[0].value = address;
 
     // Add save button (should probably just show/hide instead of creating each time)
