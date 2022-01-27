@@ -48,7 +48,7 @@ function spawnContact(
     });
 
     // Insert into div
-    if (first) document.getElementById("addButton").after(contac);
+    if (first) document.getElementById("newContactPlaceholder").after(contac);
     else document.getElementById("contactPane").appendChild(contac);
 
     return contac;

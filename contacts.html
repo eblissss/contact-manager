@@ -70,15 +70,17 @@
                 <p id="numResults"></p>
             </main>
 
+            <button
+                id="addButton"
+                type="button"
+                class="btn btn-primary mb-1"
+                onclick="addContact();"
+            >
+                Add New Contact
+            </button>
+
             <div id="contactPane" class="grid">
-                <button
-                    id="addButton"
-                    type="button"
-                    class="btn btn-primary mb-1"
-                    onclick="addContact();"
-                >
-                    Add New Contact
-                </button>
+                <div id="newContactPlaceholder"></div>
             </div>
 
             <footer class="mastfoot">
