@@ -121,6 +121,8 @@ function save(contac) {
 
     infoSection.children[3].remove();
     editing = false;
+
+    document.getElementById('dropdownMenu2').style.visibility = 'visible';
 }
 
 // Put contact in edit mode
@@ -129,6 +131,7 @@ function edit(contac) {
     // HIDE EDITING OPTION
 
     editing = true;
+    document.getElementById('dropdownMenu2').style.visibility = 'hidden';
 
     // Get slots
     const fnameSlot = contac.children[1];
@@ -150,15 +153,15 @@ function edit(contac) {
     const address = addrSlot.innerText.substring(3);
 
     // Replace text with inputs
-    fnameSlot.innerHTML = `<input type="text" />`;
+    fnameSlot.innerHTML = `First Name: <input stype="text" />`;
     fnameSlot.children[0].value = firstname;
-    lnameSlot.innerHTML = `<input type="text" />`;
+    lnameSlot.innerHTML = `Last Name: <input type="text" />`;
     lnameSlot.children[0].value = lastname;
 
     notesSlot.innerHTML = `Notes: <input "type="text"/>`;
     notesSlot.children[0].value = notes;
 
-    emailSlot.innerHTML = `📧: <input style="type="text" />`;
+    emailSlot.innerHTML = `📧: <input type="text" />`;
     emailSlot.children[0].value = emailAddr;
     console.log(emailSlot.outerHTML);
 

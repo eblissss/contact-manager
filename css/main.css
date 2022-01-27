@@ -87,20 +87,18 @@ body {
 
 .fname,
 .lname {
-    font-size: large;
-    position: absolute;
+    font-size: medium;
+    position: left;
 }
 
 .fname {
-    left: 80px;
-    top: 5px;
-    font-size: 32px;
+    font-size: medium;
+    margin-left: 50px;
 }
 
 .lname {
-    left: 100px;
-    top: 45px;
-    font-size: 32px;
+    font-size: medium;
+    margin-left: 50px;
 }
 
 .contact-image {
