@@ -86,6 +86,7 @@ function save(contac) {
     contac.children[3].children[1].children[0].innerHTML = `📞: <h4 class="phoneData">${phoneNum}</h4>`;
     contac.children[3].children[1].children[1].innerHTML = `📧: <h4 class="emailData">${emailAddr}</h4>`;
     contac.children[3].children[1].children[2].innerHTML = `📍: <h4 class="addrData">${address}</h4>`;
+    console.log(contac.children[1].innerHTML);
 
     // Save data
     data = {
@@ -95,6 +96,8 @@ function save(contac) {
         email: emailAddr,
         phone: phoneNum,
         isFavorite: 0,
+        notes: notes,
+        address: address
         // ADD THE OTHER INFO
     };
 
