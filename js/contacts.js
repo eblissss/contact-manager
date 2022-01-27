@@ -154,16 +154,18 @@ function edit(contac) {
     lnameSlot.innerHTML = `<input type="text" />`;
     lnameSlot.children[0].value = lastname;
 
-    notesSlot.innerHTML = `Notes: <input type="text" />`;
+    notesSlot.innerHTML = `Notes: <input "type="text"/>`;
     notesSlot.children[0].value = notes;
 
-    phoneSlot.innerHTML = `Phone: <input type="text" />`;
+    emailSlot.innerHTML = `Gmail: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input style="type="text" />`;
+    emailSlot.children[0].value = emailAddr;
+    console.log(emailSlot.outerHTML);
+
+    phoneSlot.innerHTML =  `Phone: &nbsp&nbsp&nbsp&nbsp&nbsp<input "type="text" />`;
     phoneSlot.children[0].value = phoneNum;
 
-    emailSlot.innerHTML = `Email: <input type="text" />`;
-    emailSlot.children[0].value = emailAddr;
 
-    addrSlot.innerHTML = `Address: <input type="text" />`;
+    addrSlot.innerHTML = `Address: &nbsp&nbsp<input type="text" />`;
     addrSlot.children[0].value = address;
 
     // Add save button (should probably just show/hide instead of creating each time)
@@ -171,6 +173,8 @@ function edit(contac) {
     sabeButton.classList.add("btn");
     sabeButton.style.backgroundColor = "white";
     sabeButton.innerHTML = "SAVE";
+    sabeButton.style.marginLeft = "175px";
+    sabeButton.style.marginTop = "-30px";
     sabeButton.addEventListener(
         "click",
         (sav = () => {

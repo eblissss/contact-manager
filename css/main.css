@@ -123,6 +123,11 @@ body {
     width: 22px;
 }
 
+
+.textBar{
+    margin-left:80px;
+}
+
 .email,
 .phone,
 .address {
@@ -130,17 +135,22 @@ body {
     position: absolute;
     font-size: medium;
     right: -80px;
+    height: 15px; 
+    line-height: 15px;
 }
 
 .email {
+    left:50px;
     top: 20px;
 }
 
 .phone {
+    left:50px;
     top: 50px;
 }
 
 .address {
+    left:50px;
     top: 80px;
 }
 
@@ -207,7 +217,7 @@ body {
 
 .drop-info {
     position: absolute;
-    top: 50px;
+    top: 65px;
     color: #eee;
     display: none;
 }

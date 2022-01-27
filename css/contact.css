@@ -47,6 +47,7 @@ body {
     transition: 0.2s ease-in-out;
 }
 
+
 #username,
 #username::placeholder {
     width: 100%;
