@@ -88,6 +88,8 @@ function searchContacts() {
                     curContact.Email
                 );
             }
+            msnry.reloadItems();
+            msnry.layout();
         } else {
             console.log(res.error);
             const message = document.createElement("h3");
