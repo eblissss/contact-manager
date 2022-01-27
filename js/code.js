@@ -53,9 +53,8 @@ function addContact() {
         (email = ""),
         (first = true) // put at top
     );
-    edit(contact);
     msnry.reloadItems();
-    msnry.layout();
+    edit(contact);
 }
 
 // Search Contacts - API request
