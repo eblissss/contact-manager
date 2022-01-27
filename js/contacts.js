@@ -15,6 +15,7 @@ function spawnContact(
     address = "1000 Ionic Drive"
 ) {
     // Create new contact
+    const template = document.getElementById("contact-template");
     const contac = template.content.cloneNode(true).children[0];
     contac.id = "contact-" + id;
     contac.isFavorite = isFavorite;
@@ -161,9 +162,8 @@ function edit(contac) {
     emailSlot.children[0].value = emailAddr;
     console.log(emailSlot.outerHTML);
 
-    phoneSlot.innerHTML =  `Phone: &nbsp&nbsp&nbsp&nbsp&nbsp<input "type="text" />`;
+    phoneSlot.innerHTML = `Phone: &nbsp&nbsp&nbsp&nbsp&nbsp<input "type="text" />`;
     phoneSlot.children[0].value = phoneNum;
-
 
     addrSlot.innerHTML = `Address: &nbsp&nbsp<input type="text" />`;
     addrSlot.children[0].value = address;
@@ -288,87 +288,3 @@ window.onload = function () {
     });
     console.log(msnry.getItemElements());
 };
-
-const template = document.createElement("template");
-template.innerHTML = `
-    <div class="contactDiv grid-item">
-    <img
-        class="contact-image"
-        src="https://www.publicdomainpictures.net/pictures/120000/nahled/abstract-composition-14287573024pP.jpg"
-        alt=""
-    />
-    <h3 class="fname">NAME MISSING</h3>
-    <h3 class="lname">NAME MISSING</h3>
-    <div class="contactLowerBackground">
-        <h4 class="notes">Information Notes Information Notes</h4>
-        <div class="drop-info">
-            <h4 class="phone">Phone: (808)-808-8888</h4>
-            <h4 class="email">Email: joe@gmail.com</h4>
-            <h4 class="address">Address: sheeesh</h4>
-        </div>
-    </div>
-
-    <!-- Default dropright button -->
-    <div class="dropdown dropmenu dropend">
-        <button
-            class="btn btn-secondary"
-            type="button"
-            id="dropdownMenu2"
-            data-bs-toggle="dropdown"
-            aria-haspopup="true"
-            aria-expanded="false"
-        >
-            <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="16"
-                height="16"
-                fill="currentColor"
-                class="bi bi-three-dots-vertical triple-dots"
-                viewBox="0 0 16 16"
-            >
-                <path
-                    d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"
-                />
-            </svg>
-        </button>
-        <div
-            class="dropdown-menu dropdown-menu-dark"
-            aria-labelledby="dropdownMenu2"
-        >
-            <button class="dropdown-item" type="button">Edit</button>
-            <button class="dropdown-item" type="button">Delete</button>
-        </div>
-    </div>
-    <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="16"
-        height="16"
-        fill="currentColor"
-        class="bi bi-bookmark-star fav"
-        viewBox="0 0 16 16"
-    >
-        <path
-            d="M7.84 4.1a.178.178 0 0 1 .32 0l.634 1.285a.178.178 0 0 0 .134.098l1.42.206c.145.021.204.2.098.303L9.42 6.993a.178.178 0 0 0-.051.158l.242 1.414a.178.178 0 0 1-.258.187l-1.27-.668a.178.178 0 0 0-.165 0l-1.27.668a.178.178 0 0 1-.257-.187l.242-1.414a.178.178 0 0 0-.05-.158l-1.03-1.001a.178.178 0 0 1 .098-.303l1.42-.206a.178.178 0 0 0 .134-.098L7.84 4.1z"
-        />
-        <path
-            d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z"
-        />
-    </svg>
-    <!-- Show info button -->
-    <button class="dropButton" type="button">
-        <svg
-            color="white"
-            xmlns="http://www.w3.org/2000/svg"
-            width="16"
-            height="16"
-            fill="currentColor"
-            class="bi bi-arrows-expand"
-            viewBox="0 0 16 16"
-        >
-            <path
-                fill-rule="evenodd"
-                d="M1 8a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13A.5.5 0 0 1 1 8zM7.646.146a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1-.708.708L8.5 1.707V5.5a.5.5 0 0 1-1 0V1.707L6.354 2.854a.5.5 0 1 1-.708-.708l2-2zM8 10a.5.5 0 0 1 .5.5v3.793l1.146-1.147a.5.5 0 0 1 .708.708l-2 2a.5.5 0 0 1-.708 0l-2-2a.5.5 0 0 1 .708-.708L7.5 14.293V10.5A.5.5 0 0 1 8 10z"
-            />
-        </svg>
-    </button>
-    </div>`;
