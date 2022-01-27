@@ -174,6 +174,9 @@ function edit(contac) {
     addrSlot.innerHTML = `📍: <input type="text" />`;
     addrSlot.children[0].value = address;
 
+    // const saveButton = document.getElementById("saveButton");
+    // saveButton.display = "inline-block";
+
     // Add save button (should probably just show/hide instead of creating each time)
     const sabeButton = document.createElement("button");
     sabeButton.classList.add("btn");
@@ -182,10 +185,15 @@ function edit(contac) {
     sabeButton.style.marginLeft = "310px";
     sabeButton.style.marginTop = "-65px";
     sabeButton.style.marginBottom = "50px";
+
     sabeButton.addEventListener(
         "click",
         (sav = () => {
-            save(contac);
+            if (fnameSlot.children[0].value && lnameSlot.children[0].value) {
+                save(contac);
+            } else {
+                console.log("Err: Must have a first and last name");
+            }
         })
     );
     infoSection.appendChild(sabeButton);
