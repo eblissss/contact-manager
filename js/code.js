@@ -41,6 +41,7 @@ function doLogout() {
 
 // Create Contact - API request
 function addContact() {
+
     // Replace Button with new Form
     document.getElementById("addButton").style.display = "none";
 
@@ -53,6 +54,8 @@ function addContact() {
         (first = true) // put at top
     );
     edit(contact);
+    msnry.reloadItems();
+    msnry.layout();
 }
 
 // Search Contacts - API request
