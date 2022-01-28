@@ -24,11 +24,11 @@ function spawnContact(
     // Add info
     contac.children[1].innerHTML = firstname;
     contac.children[2].innerHTML = lastname;
-    contac.children[3].children[0] = notes;
+    contac.children[3].children[0].innerHTML = notes;
     const infoSection = contac.children[3].children[1];
-    infoSection.children[0].innerHTML = `📞: <h4 class="phoneData">${phone}</h4>`;
-    infoSection.children[1].innerHTML = `📧: <h4 class="emailData">${email}</h4>`;
-    infoSection.children[2].innerHTML = `📍: <h4 class="addrData">${address}</h4>`;
+    infoSection.children[1].innerHTML = `${phone}`;
+    infoSection.children[3].innerHTML = `${email}`;
+    infoSection.children[5].innerHTML = `${address}`;
 
     const dotMenu = contac.children[4].children[1];
     // Add listeners
@@ -63,9 +63,9 @@ function save(contac) {
 
     const infoSection = contac.children[3].children[1];
 
-    const phoneSlot = infoSection.children[0];
-    const emailSlot = infoSection.children[1];
-    const addrSlot = infoSection.children[2];
+    const phoneSlot = infoSection.children[1];
+    const emailSlot = infoSection.children[3];
+    const addrSlot = infoSection.children[5];
 
     // Grab info
     const firstname = fnameSlot.children[0].value;
@@ -83,9 +83,9 @@ function save(contac) {
     contac.children[1].innerHTML = firstname;
     contac.children[2].innerHTML = lastname;
     contac.children[3].children[0].innerHTML = notes;
-    contac.children[3].children[1].children[0].innerHTML = `📞: <h4 class="phoneData">${phoneNum}</h4>`;
-    contac.children[3].children[1].children[1].innerHTML = `📧: <h4 class="emailData">${emailAddr}</h4>`;
-    contac.children[3].children[1].children[2].innerHTML = `📍: <h4 class="addrData">${address}</h4>`;
+    infoSection.children[1].innerHTML = `${phone}`;
+    infoSection.children[3].innerHTML = `${email}`;
+    infoSection.children[5].innerHTML = `${address}`;
     console.log(contac.children[1].innerHTML);
 
     // Save data
@@ -97,7 +97,7 @@ function save(contac) {
         phone: phoneNum,
         isFavorite: 0,
         notes: notes,
-        address: address
+        address: address,
         // ADD THE OTHER INFO
     };
 
@@ -125,7 +125,7 @@ function save(contac) {
     infoSection.children[3].remove();
     editing = false;
 
-    document.getElementById('dropdownMenu2').style.visibility = 'visible';
+    document.getElementById("dropdownMenu2").style.visibility = "visible";
 }
 
 // Put contact in edit mode
@@ -134,7 +134,7 @@ function edit(contac) {
     // HIDE EDITING OPTION
 
     editing = true;
-    document.getElementById('dropdownMenu2').style.visibility = 'hidden';
+    document.getElementById("dropdownMenu2").style.visibility = "hidden";
 
     // Get slots
     const fnameSlot = contac.children[1];
@@ -143,48 +143,47 @@ function edit(contac) {
 
     const infoSection = contac.children[3].children[1];
 
-    const phoneSlot = infoSection.children[0];
-    const emailSlot = infoSection.children[1];
-    const addrSlot = infoSection.children[2];
+    const phoneSlot = infoSection.children[1];
+    const emailSlot = infoSection.children[3];
+    const addrSlot = infoSection.children[5];
 
     // Get slot info
     const firstname = fnameSlot.innerText;
     const lastname = lnameSlot.innerText;
     const notes = notesSlot.innerText;
-    const phoneNum = phoneSlot.innerText.substring(3);
-    const emailAddr = emailSlot.innerText.substring(3);
-    const address = addrSlot.innerText.substring(3);
+    const phoneNum = phoneSlot.innerText;
+    const emailAddr = emailSlot.innerText;
+    const address = addrSlot.innerText;
 
     // Replace text with inputs
-    fnameSlot.innerHTML = `First Name: <input stype="text" />`;
+    fnameSlot.innerHTML = `<input stype="text" />`;
     fnameSlot.children[0].value = firstname;
-    lnameSlot.innerHTML = `Last Name: <input type="text" />`;
+    lnameSlot.innerHTML = `<input type="text" />`;
     lnameSlot.children[0].value = lastname;
 
-    notesSlot.innerHTML = `Notes: <input "type="text"/>`;
+    notesSlot.innerHTML = `<input "type="text"/>`;
     notesSlot.children[0].value = notes;
 
-    emailSlot.innerHTML = `📧: <input type="text" />`;
+    emailSlot.innerHTML = `<input type="text" />`;
     emailSlot.children[0].value = emailAddr;
-    console.log(emailSlot.outerHTML);
 
-    phoneSlot.innerHTML = `📞: <input "type="text" />`;
+    phoneSlot.innerHTML = `<input "type="text" />`;
     phoneSlot.children[0].value = phoneNum;
 
-    addrSlot.innerHTML = `📍: <input type="text" />`;
+    addrSlot.innerHTML = `<input type="text" />`;
     addrSlot.children[0].value = address;
 
-    // const saveButton = document.getElementById("saveButton");
-    // saveButton.display = "inline-block";
+    const saveButton = document.getElementById("saveButton");
+    saveButton.display = "block";
 
-    // Add save button (should probably just show/hide instead of creating each time)
-    const sabeButton = document.createElement("button");
-    sabeButton.classList.add("btn");
-    sabeButton.style.backgroundColor = "white";
-    sabeButton.innerHTML = "SAVE";
-    sabeButton.style.marginLeft = "310px";
-    sabeButton.style.marginTop = "-65px";
-    sabeButton.style.marginBottom = "50px";
+    // // Add save button (should probably just show/hide instead of creating each time)
+    // const sabeButton = document.createElement("button");
+    // sabeButton.classList.add("btn");
+    // sabeButton.style.backgroundColor = "white";
+    // sabeButton.innerHTML = "SAVE";
+    // sabeButton.style.marginLeft = "310px";
+    // sabeButton.style.marginTop = "-65px";
+    // sabeButton.style.marginBottom = "50px";
 
     sabeButton.addEventListener(
         "click",
@@ -252,7 +251,7 @@ function extend(contac, stay = false) {
     } else {
         contac.style.height = "300px";
         contac.children[3].style.height = "200px";
-        contac.children[3].children[1].style.display = "flex";
+        contac.children[3].children[1].style.display = "grid";
         if (!contac.classList.contains("extended")) {
             contac.classList.add("extended");
         }
@@ -283,23 +282,25 @@ window.onload = function () {
         }
     });
 
-    // for (let i = 0; i < 5; i++) {
-    //     spawnContact(
-    //         1000 + i,
-    //         "Benedict",
-    //         "Cucumberpatch",
-    //         "not much bruv",
-    //         "808080808" + i,
-    //         "jojo@gmail.com",
-    //         "1000 Ionic Drive"
-    //     );
-    // }
+    for (let i = 0; i < 5; i++) {
+        spawnContact(
+            1000 + i,
+            "Benedict",
+            "Cucumberpatch",
+            "not much bruv",
+            "808080808" + i,
+            "jojo@gmail.com",
+            "1000 Ionic Drive"
+        );
+    }
 
     const grid = document.getElementById("contactPane");
     msnry = new Masonry(grid, {
         itemSelector: ".grid-item",
         columnWidth: 400,
         gutter: 10,
+        stagger: 25,
+        fitWidth: true,
     });
     console.log(msnry.getItemElements());
 };

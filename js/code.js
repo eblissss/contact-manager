@@ -41,9 +41,42 @@ function doLogout() {
 
 // Create Contact - API request
 function addContact() {
+    const editPane = document.getElementById("edit-container");
+    const saveButton = document.getElementById("save-button");
+    const cancelButton = document.getElementById("cancel-button");
+    const editForm = document.getElementById("edit-form");
 
-    // Replace Button with new Form
+    console.log(editPane.style);
+    if (editPane.style.display == "none") {
+        editPane.style.display = "inline-flex";
+    } else {
+        editPane.style.display = "none";
+    }
+    console.log(editPane.style.display);
     document.getElementById("addButton").style.display = "none";
+
+    cancelButton.addEventListener(
+        "click",
+        (cancel = () => {
+            for (let i = 1; i <= 5; i++) editForm.children[i].value = "";
+            editPane.style.display = "none";
+            return;
+        })
+    );
+
+    saveButton.addEventListener(
+        "click",
+        (save = () => {
+            createContact();
+        })
+    );
+}
+
+function createContact() {
+    // const data = {
+    //     name: getstuff
+    //     lastnmae: getstuff
+    // }
 
     const contact = spawnContact(
         (id = largeNum), // will be saved as proper ID by DB (also used to tell save() it is new)
@@ -51,10 +84,11 @@ function addContact() {
         (lastname = ""),
         (phone = ""),
         (email = ""),
+        (notes = ""),
         (first = true) // put at top
     );
+
     msnry.reloadItems();
-    edit(contact);
 }
 
 // Search Contacts - API request
@@ -99,4 +133,17 @@ function searchContacts() {
             pane.appendChild(message);
         }
     });
+}
+
+function addTest() {
+    const editPane = document.getElementById("edit-container");
+    console.log(editPane.style);
+    if (editPane.style.display == "none" || editPane.style.display == "") {
+        editPane.style.display = "inline-flex";
+    } else {
+        editPane.style.display = "none";
+    }
+    console.log(editPane.style.display);
+    msnry.reloadItems();
+    msnry.layout();
 }

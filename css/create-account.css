@@ -34,14 +34,14 @@ body {
 }
 
 .signupinputs {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-  color: white;
-  margin-bottom: 1.5rem;
-  font-size: 0.9rem;
-  border-bottom: 1px solid rgba(231, 231, 231, 0.8);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    color: white;
+    margin-bottom: 1.5rem;
+    font-size: 0.9rem;
+    border-bottom: 1px solid rgba(231, 231, 231, 0.8);
 }
 
 .signupinputs:hover {
@@ -102,19 +102,19 @@ body {
 }
 
 .signupbuttons {
-  width: 100%;
-  background: white;
-  border: none;
-  border-radius: 30px;
-  padding: 14px 14px;
-  font-size: 0.9rem;
-  margin-bottom: 1.5rem;
-  font-weight: 500;
-  text-transform: uppercase; /*change?*/
-  color: #7900ff;
-  outline: none;
-  cursor: pointer;
-  font-family: "Varela Round", sans-serif;
+    width: 100%;
+    background: white;
+    border: none;
+    border-radius: 30px;
+    padding: 14px 14px;
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+    font-weight: 500;
+    text-transform: uppercase; /*change?*/
+    color: #7900ff;
+    outline: none;
+    cursor: pointer;
+    font-family: "Varela Round", sans-serif;
 }
 
 .signupbuttons:hover {
@@ -134,8 +134,8 @@ body {
 }
 
 .checkbox {
-  color: white;
-  font-size: 0.9rem;
+    color: white;
+    font-size: 0.9rem;
 }
 
 p {
@@ -145,9 +145,9 @@ p {
 }
 
 a {
-  color: white;
+    color: white;
 }
 
 a:hover {
-  color: #ffffff;
+    color: #ffffff;
 }

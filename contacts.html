@@ -10,6 +10,7 @@
             crossorigin="anonymous"
         />
         <link href="css/main.css" rel="stylesheet" />
+        <link href="css/contact.css" rel="stylesheet" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link
@@ -20,6 +21,7 @@
     <body>
         <div class="container" id="bigDiv">
             <header
+                id="header"
                 class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom"
             >
                 <a
@@ -74,14 +76,65 @@
                 id="addButton"
                 type="button"
                 class="btn btn-primary mb-1"
-                onclick="addContact();"
+                onclick="addTest();"
             >
                 Add New Contact
             </button>
 
-            <div id="contactPane" class="grid">
-                <div id="newContactPlaceholder"></div>
+            <div class="flex-container">
+                <div id="edit-container">
+                    <form action="#" class="edit-form" id="edit-form">
+                        <h1 class="creating">Creating New Contact</h1>
+                        <div class="editinputs">
+                            <label for="firstName">first name</label>
+                            <input class="edits" id="firstName" placeholder="first name" />
+                        </div>
+        
+                        <div class="editinputs">
+                            <label for="lastName">last name</label>
+                            <input class="edits" id="lastName" placeholder="last name" />
+                        </div>
+        
+                        <div class="editinputs">
+                            <label for="email">📧 email</label>
+                            <input class="edits" id="email" placeholder="email" />
+                        </div>
+        
+                        <div class="editinputs">
+                            <label for="phone">📞 phone</label>
+                            <input class="edits" id="phone" placeholder="phone" />
+                        </div>
+
+                        <div class="editinputs">
+                            <label for="address">📍 address</label>
+                            <input class="edits" id="address" placeholder="address" />
+                        </div>
+                        
+                        </button
+                            class="addContactButtons"
+                            id="save-button"
+                            type="submit"
+                        >
+                            Save
+                        </button>
+        
+                        <button
+                            class="addContactButtons"
+                            id="cancel-button"
+                            type="submit"
+                        >
+                            Cancel
+        
+                    </form>
+                </div>
+
+                <div class="contactPaneParent">
+                    <div id="contactPane" class="grid">
+                        <div id="newContactPlaceholder"></div>
+                    </div>
+                </div>
             </div>
+            
 
             <footer class="mastfoot">
                 <div class="inner">
@@ -122,8 +175,8 @@
                 src="https://www.publicdomainpictures.net/pictures/120000/nahled/abstract-composition-14287573024pP.jpg"
                 alt=""
             />
-            <h4 class="fname">NAME MISSING</h3>
-            <h4 class="lname">NAME MISSING</h3>
+            <h2 class="fname">NAME MISSING</h2>
+            <h2 class="lname">NAME MISSING</h2>
             <div class="contactLowerBackground">
                 <h4 class="notes">Information Notes Information Notes</h4>
                 <!-- <button 
@@ -133,19 +186,22 @@
                 >
                     Save
                 </button> -->
-                <div class="drop-info">
-                    <h4 class="phone">Phone: (808)-808-8888</h4>
-                    <h4 class="email">Email: joe@gmail.com</h4>
-                    <h4 class="address">Address: sheeesh</h4>
+                <div id="info-grid" class="drop-info">
+                    <h4 class="g">📧:</h4>
+                    <h4 class="g-i email">joe@gmail.com</h4>
+                    <h4 class="g">📞:</h4>
+                    <h4 class="g-i phone">(808)-808-8888</h4>             
+                    <h4 class="g">📍:</h4>
+                    <h4 class="g-i address">sheeesh</h4>
                 </div>
             </div>
 
             <!-- Default dropright button -->
             <div class="dropdown dropmenu dropend">
                 <button
-                    class="btn btn-secondary"
+                    class="btn"
                     type="button"
-                    id="dropdownMenu2"
+                    id="dropdownMenu"
                     data-bs-toggle="dropdown"
                     aria-haspopup="true"
                     aria-expanded="false"
@@ -165,7 +221,7 @@
                 </button>
                 <div
                     class="dropdown-menu dropdown-menu-dark"
-                    aria-labelledby="dropdownMenu2"
+                    aria-labelledby="dropdownMenu"
                 >
                     <button class="dropdown-item" type="button">Edit</button>
                     <button class="dropdown-item" type="button">Delete</button>

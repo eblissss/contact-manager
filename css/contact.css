@@ -1,130 +1,116 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+/* Contact Spread */
+.grid-item {
+    width: 400px;
 }
 
-body {
-    font-family: "Varela Round", sans-serif;
-    background-color: #ffffff; /*#1A5F7A;*/
-}
-
-.form {
-    background-image: linear-gradient(#548cff, #7900ff);
-    width: 400px; /*Play around with this*/
-    height: 600px; /*Play around with this*/
+/* Data shown when contact is expanded */
+#info-grid {
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-    border-radius: 16px; /*play around with this*/
-    padding: 120px 50px; /*play around with this*/
-    box-shadow: 2px 2px 8px #000;
-    outline: #1a5f7a;
+    top: 70px;
+    left: 30px;
+    color: #eee;
+    display: none;
+    grid-template-columns: 1fr 2fr;
+    gap: 10px;
+    grid-auto-rows: minimax(100px, auto);
 }
 
-.form h1 {
-    color: white;
-    font-size: 1.3rem;
-    text-align: center;
-    margin-bottom: 3rem;
+.g {
+    text-align: right;
+    font-size: 1rem;
 }
 
-.inputs {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
-    color: white;
-    margin-bottom: 1.5rem;
-    font-size: 0.9rem;
-    border-bottom: 1px solid rgba(231, 231, 231, 0.8);
+.g-i {
+    text-align: left;
+    font-size: 1rem;
 }
 
-.inputs:hover {
-    border-bottom: 3px solid #ffffff;
-    transition: 0.2s ease-in-out;
-}
-
-
-#username,
-#username::placeholder {
-    width: 100%;
-    border: none;
-    background: none;
-    outline: none;
-    margin-top: 0.5rem;
-    font-size: 0.9rem;
-    padding-bottom: 0.5rem;
-    background: none;
-    color: rgba(255, 255, 255, 0.5);
-}
-
-#password,
-#password::placeholder {
-    width: 100%;
-    border: none;
-    background: none;
-    outline: none;
-    margin-top: 0.5rem;
-    font-size: 0.9rem;
-    padding-bottom: 0.5rem;
-    background: none;
-    color: rgba(255, 255, 255, 0.5);
-}
-
-.form button {
-    width: 100%;
-    background: white;
-    border: none;
-    border-radius: 30px;
-    padding: 14px 14px;
-    font-size: 0.9rem;
-    margin-bottom: 1.5rem;
-    font-weight: 500;
-    text-transform: uppercase; /*change?*/
-    color: #7900ff;
-    outline: none;
-    cursor: pointer;
-    font-family: "Varela Round", sans-serif;
-    margin-top: 30px;
-}
-
-.form button:hover {
-    width: 100%;
-    background: transparent;
-    border: 2px solid #ffffff;
-    border-radius: 30px;
-    padding: 14px 14px;
-    font-size: 0.9rem;
-    margin-bottom: 1.5rem;
-    font-weight: 500;
-    text-transform: uppercase;
-    color: #ffffff;
-    outline: none;
-    cursor: pointer;
-    transition: 0.3s ease-in-out;
-}
-
-.signupbuttons {
-  position: relative;
-  bottom: 5px;
-}
-
-.buttons {
-  position: relative;
-  bottom: 2px;
-}
-
-p {
-    color: #ffffff;
-    font-size: 0.9rem;
+.contactDiv {
+    background-image: linear-gradient(#548cff, #24272b);
+    width: 400px;
+    height: 200px;
+    border-radius: 15px;
+    border: 4px solid #24272b;
+    margin-bottom: 20px;
+    padding: 10px 20px;
     position: relative;
-    bottom: -5px;
 }
 
-.checkbox {
-  color: white;
-  font-size: 0.9rem;
+/* Form inputs */
+.fname,
+.lname {
+    font-size: 1.8rem;
+    text-align: left;
+    margin-left: 70px;
+}
+
+.contact-image {
+    height: 50px;
+    width: 50px;
+    border-radius: 5px;
+    border: 4px solid;
+    position: absolute;
+    left: 15px;
+    top: 20px;
+}
+
+.dropmenu {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    background-color: none;
+}
+
+.dropdownMenu {
+    background-color: none;
+}
+
+.triple-dots {
+    background-color: none;
+    color: white;
+    height: 22px;
+    width: 22px;
+}
+
+.textBar {
+    margin-left: 80px;
+}
+
+.fav {
+    color: white;
+    position: absolute;
+    top: 120px;
+    left: 25px;
+    width: 30px;
+    height: 30px;
+}
+
+.contactLowerBackground {
+    /* background-color: #444; */
+    position: absolute;
+    left: 0px;
+    bottom: 0px;
+    height: 100px;
+    width: 100%;
+    border-radius: 15px 15px 5px 5px;
+}
+
+.dropButton {
+    position: absolute;
+    bottom: -4px;
+    left: -3px;
+    color: #eeeeee;
+    background-color: #333;
+    width: calc(100% + 6px);
+    height: 28px;
+    border-width: 0;
+    border-radius: 15px;
+    box-shadow: inset 0px 20px 10px -10px #444;
+}
+
+.notes {
+    font-size: medium;
+    position: absolute;
+    left: 80px;
+    top: 5px;
 }
