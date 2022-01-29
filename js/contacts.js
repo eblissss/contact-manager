@@ -2,6 +2,10 @@ let editing = false;
 let sav, msnry;
 const largeNum = 1000000000;
 
+const buttonColors = ['red', 'green', 'orange', 'blue'];
+let colorIndex = 0;
+
+
 // Spawn a new contact on the div
 function spawnContact(
     id,
@@ -22,15 +26,17 @@ function spawnContact(
     console.log(contac.id);
 
     // Add info
-    contac.children[1].innerHTML = firstname;
-    contac.children[2].innerHTML = lastname;
-    contac.children[3].children[0].innerHTML = notes;
-    const infoSection = contac.children[3].children[1];
+    contac.children[2].innerHTML = firstname;
+    contac.children[3].innerHTML = lastname;
+    contac.children[4].children[0].innerHTML = notes;
+
+    const infoSection = contac.children[4].children[1];
+
     infoSection.children[1].innerHTML = `${phone}`;
     infoSection.children[3].innerHTML = `${email}`;
     infoSection.children[5].innerHTML = `${address}`;
 
-    const dotMenu = contac.children[4].children[1];
+    const dotMenu = contac.children[5].children[1];
     // Add listeners
     dotMenu.children[0].addEventListener("click", () => {
         if (!editing) {
@@ -43,9 +49,17 @@ function spawnContact(
     // content.children[7].addEventListener("click", () => {
     //     setFavorite(contac);
     // });
-    contac.children[6].addEventListener("click", () => {
+    contac.children[1].addEventListener("click", () => {
+        setColors(contac, contac.id);
+        if(colorIndex == 3)
+            colorIndex = 0;
+        else
+            colorIndex++;
+    });
+    contac.children[7].addEventListener("click", () => {
         extend(contac);
     });
+
 
     // Insert into div
     if (first) document.getElementById("newContactPlaceholder").after(contac);
@@ -57,11 +71,11 @@ function spawnContact(
 // Update (or add) the contact
 function save(contac) {
     // Grab slots
-    const fnameSlot = contac.children[1];
-    const lnameSlot = contac.children[2];
-    const notesSlot = contac.children[3].children[0];
+    const fnameSlot = contac.children[2];
+    const lnameSlot = contac.children[3];
+    const notesSlot = contac.children[4].children[0];
 
-    const infoSection = contac.children[3].children[1];
+    const infoSection = contac.children[4].children[1];
 
     const phoneSlot = infoSection.children[1];
     const emailSlot = infoSection.children[3];
@@ -80,13 +94,14 @@ function save(contac) {
     console.log(id, firstname, lastname, notes, phoneNum, emailAddr, address);
 
     // Insert info back in
-    contac.children[1].innerHTML = firstname;
-    contac.children[2].innerHTML = lastname;
-    contac.children[3].children[0].innerHTML = notes;
-    infoSection.children[1].innerHTML = `${phone}`;
-    infoSection.children[3].innerHTML = `${email}`;
+    contac.children[2].innerHTML = firstname;
+    contac.children[3].innerHTML = lastname;
+
+    contac.children[4].children[0].innerHTML = notes;
+
+    infoSection.children[1].innerHTML = `${phoneNum}`;
+    infoSection.children[3].innerHTML = `${emailAddr}`;
     infoSection.children[5].innerHTML = `${address}`;
-    console.log(contac.children[1].innerHTML);
 
     // Save data
     data = {
@@ -122,26 +137,27 @@ function save(contac) {
         });
     }
 
-    infoSection.children[3].remove();
     editing = false;
 
-    document.getElementById("dropdownMenu2").style.visibility = "visible";
+    document.getElementById("dropdownMenu").style.visibility = "visible";
+    infoSection.children[6].remove();
 }
 
 // Put contact in edit mode
 function edit(contac) {
+    console.log("hello");
     extend(contac, (stay = true));
     // HIDE EDITING OPTION
 
     editing = true;
-    document.getElementById("dropdownMenu2").style.visibility = "hidden";
+    document.getElementById("dropdownMenu").style.visibility = "hidden";
 
     // Get slots
-    const fnameSlot = contac.children[1];
-    const lnameSlot = contac.children[2];
-    const notesSlot = contac.children[3].children[0];
+    const fnameSlot = contac.children[2];
+    const lnameSlot = contac.children[3];
+    const notesSlot = contac.children[4].children[0];
 
-    const infoSection = contac.children[3].children[1];
+    const infoSection = contac.children[4].children[1];
 
     const phoneSlot = infoSection.children[1];
     const emailSlot = infoSection.children[3];
@@ -156,9 +172,9 @@ function edit(contac) {
     const address = addrSlot.innerText;
 
     // Replace text with inputs
-    fnameSlot.innerHTML = `<input stype="text" />`;
+    fnameSlot.innerHTML = `<input style="width:285px" type="text" />`;
     fnameSlot.children[0].value = firstname;
-    lnameSlot.innerHTML = `<input type="text" />`;
+    lnameSlot.innerHTML = `<input style="width:285px" type="text" />`;
     lnameSlot.children[0].value = lastname;
 
     notesSlot.innerHTML = `<input "type="text"/>`;
@@ -173,23 +189,27 @@ function edit(contac) {
     addrSlot.innerHTML = `<input type="text" />`;
     addrSlot.children[0].value = address;
 
-    const saveButton = document.getElementById("saveButton");
-    saveButton.display = "block";
+    console.log(document.getElementById('address'));
 
-    // // Add save button (should probably just show/hide instead of creating each time)
-    // const sabeButton = document.createElement("button");
-    // sabeButton.classList.add("btn");
-    // sabeButton.style.backgroundColor = "white";
-    // sabeButton.innerHTML = "SAVE";
-    // sabeButton.style.marginLeft = "310px";
-    // sabeButton.style.marginTop = "-65px";
-    // sabeButton.style.marginBottom = "50px";
+   // const saveButton = document.createButton('button');
+    //saveButton.display = "block";
+
+    //  Add save button (should probably just show/hide instead of creating each time)
+     const sabeButton = document.createElement("button");
+     sabeButton.classList.add("btn");
+     sabeButton.style.backgroundColor = "white";
+     sabeButton.innerHTML = "SAVE";
+     sabeButton.style.width = "75px";
+     sabeButton.style.marginLeft = "-10px";
+     sabeButton.style.marginTop = "-65px";
+     sabeButton.style.marginBottom = "50px";
 
     sabeButton.addEventListener(
         "click",
         (sav = () => {
             if (fnameSlot.children[0].value && lnameSlot.children[0].value) {
                 save(contac);
+                sabeButton.style.visibility = 'hidden';
             } else {
                 console.log("Err: Must have a first and last name");
             }
@@ -245,13 +265,13 @@ function extend(contac, stay = false) {
     if (contac.classList.contains("extended") && !stay) {
         console.log("shortening");
         contac.style.height = "200px";
-        contac.children[3].style.height = "100px";
-        contac.children[3].children[1].style.display = "none";
+        contac.children[4].style.height = "100px";
+        contac.children[4].children[1].style.display = "none";
         contac.classList.remove("extended");
     } else {
         contac.style.height = "300px";
-        contac.children[3].style.height = "200px";
-        contac.children[3].children[1].style.display = "grid";
+        contac.children[4].style.height = "200px";
+        contac.children[4].children[1].style.display = "grid";
         if (!contac.classList.contains("extended")) {
             contac.classList.add("extended");
         }
@@ -304,3 +324,18 @@ window.onload = function () {
     });
     console.log(msnry.getItemElements());
 };
+
+function setColors(contac, id){
+    if(colorIndex == 3){
+        document.getElementById(id).classList.remove('contactDiv4');
+        document.getElementById(id).classList.add('contactDiv1');
+        contac.children[1].style.backgroundColor = buttonColors[0];
+        
+    }else{
+        document.getElementById(id).classList.remove('contactDiv' + (colorIndex + 1));
+        document.getElementById(id).classList.add('contactDiv' + (colorIndex + 2));
+        contac.children[1].style.backgroundColor = buttonColors[colorIndex + 1];
+    }
+}
+
+
