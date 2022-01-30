@@ -17,8 +17,8 @@ html,
 body {
     font-family: "Varela Round", sans-serif;
     height: 100%;
-    /* background-color: #24272b; */
-    background-image: linear-gradient(#24272b, #000000d7);
+    background-color: #24272b;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='288' height='288' viewBox='0 0 800 800'%3E%3Cg fill='none' stroke='%233F69C0' stroke-width='1.4'%3E%3Cpath d='M769 229L1037 260.9M927 880L731 737 520 660 309 538 40 599 295 764 126.5 879.5 40 599-197 493 102 382-31 229 126.5 79.5-69-63'/%3E%3Cpath d='M-31 229L237 261 390 382 603 493 308.5 537.5 101.5 381.5M370 905L295 764'/%3E%3Cpath d='M520 660L578 842 731 737 840 599 603 493 520 660 295 764 309 538 390 382 539 269 769 229 577.5 41.5 370 105 295 -36 126.5 79.5 237 261 102 382 40 599 -69 737 127 880'/%3E%3Cpath d='M520-140L578.5 42.5 731-63M603 493L539 269 237 261 370 105M902 382L539 269M390 382L102 382'/%3E%3Cpath d='M-222 42L126.5 79.5 370 105 539 269 577.5 41.5 927 80 769 229 902 382 603 493 731 737M295-36L577.5 41.5M578 842L295 764M40-201L127 80M102 382L-261 269'/%3E%3C/g%3E%3Cg fill='%23548CFF'%3E%3Ccircle cx='769' cy='229' r='6'/%3E%3Ccircle cx='539' cy='269' r='6'/%3E%3Ccircle cx='603' cy='493' r='6'/%3E%3Ccircle cx='731' cy='737' r='6'/%3E%3Ccircle cx='520' cy='660' r='6'/%3E%3Ccircle cx='309' cy='538' r='6'/%3E%3Ccircle cx='295' cy='764' r='6'/%3E%3Ccircle cx='40' cy='599' r='6'/%3E%3Ccircle cx='102' cy='382' r='6'/%3E%3Ccircle cx='127' cy='80' r='6'/%3E%3Ccircle cx='370' cy='105' r='6'/%3E%3Ccircle cx='578' cy='42' r='6'/%3E%3Ccircle cx='237' cy='261' r='6'/%3E%3Ccircle cx='390' cy='382' r='6'/%3E%3C/g%3E%3C/svg%3E");
     transition: ease all 0.5s;
 }
 
@@ -43,6 +43,16 @@ body {
     color: #fff;
 }
 
+#headerName {
+    font-size: 1.5rem;
+    margin-top: 0.5rem;
+    margin-right: 2rem;
+}
+
+#logoutButton {
+    margin-left: 0px;
+}
+
 .cover {
     padding: 0 1.5rem;
 }
@@ -63,6 +73,7 @@ body {
 }
 
 #searchForm {
+    overflow: hidden;
     width: 60%;
     display: inline-block;
 }
@@ -75,7 +86,7 @@ body {
     background-image: linear-gradient(#24272be3, #00000026);
     /* background-color: #24272b; */
     min-height: 50%;
-    margin: 0 50px;
+    margin: 0 auto;
     border-radius: 15px;
     justify-content: center;
 }
@@ -84,24 +95,29 @@ body {
     width: 80%;
     display: inline-flex;
     flex: 2;
+    justify-content: center;
 }
 
 #edit-container {
     display: none;
     flex: 1;
-    height: 500px;
-    transition: display 2s ease;
+    height: 600px;
+}
+
+.creating {
+    font-size: 1.8rem;
+    padding-bottom: 1rem;
 }
 
 .edit-form {
-    padding: 60px 50px;
+    padding: 30px 40px;
     margin: 0 auto;
     display: block;
     background-image: linear-gradient(#548cff, #24272b);
     border-radius: 16px;
     text-align: center;
     box-shadow: 2px 2px 8px #000;
-    opacity: 0.8;
+    opacity: 0.9;
     height: 100%;
 }
 
@@ -116,21 +132,26 @@ body {
     border-bottom: 1px solid rgba(231, 231, 231, 0.8);
 }
 
-.addContactButtons {
-    width: 100%;
+.editButton,
+.editButtonSave {
+    width: 40%;
     background: white;
     border: none;
     border-radius: 30px;
-    padding: 14px 14px;
+    padding: 10px 10px;
     font-size: 0.9rem;
-    /* margin-bottom: 1rem; */
-    /* margin-top: 1.5rem; */
+    margin: 1.2rem 0.4rem;
     font-weight: 500;
-    text-transform: uppercase; /*change?*/
-    color: #7900ff;
+    text-transform: uppercase;
+    color: #548cff;
     outline: none;
     cursor: pointer;
     font-family: "Varela Round", sans-serif;
+}
+
+.editButtonSave {
+    background: #548cff;
+    color: white;
 }
 
 .edits,
@@ -143,6 +164,11 @@ body {
     margin-top: 0.5rem;
     font-size: 0.9rem;
     padding-bottom: 0.5rem;
+}
+
+.noteInput {
+    overflow: hidden;
+    resize: none;
 }
 
 .flex-container {

@@ -4,10 +4,10 @@
 }
 
 /* Data shown when contact is expanded */
-#info-grid {
+.info-grid {
     position: absolute;
-    top: 70px;
-    left: 30px;
+    top: 170px;
+    left: 50px;
     color: #eee;
     display: none;
     grid-template-columns: 1fr 2fr;
@@ -25,48 +25,25 @@
     font-size: 1rem;
 }
 
-.contactDiv1 {
+.contactDivDiv,
+.contactDiv {
+    width: 400px;
+    height: 200px;
+    margin-bottom: 20px;
+}
+
+.contactDiv {
     background: linear-gradient(#548cff, #24272b);
-    width: 400px;
-    height: 200px;
     border-radius: 15px;
     border: 4px solid #24272b;
-    margin-bottom: 20px;
     padding: 10px 20px;
-    position: relative;
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
 }
 
-.contactDiv2 {
-    background: linear-gradient(#EA4C46, #24272b);
-    width: 400px;
-    height: 200px;
-    border-radius: 15px;
-    border: 4px solid #24272b;
-    margin-bottom: 20px;
-    padding: 10px 20px;
-    position: relative;
-}
-
-.contactDiv3 {
-    background: linear-gradient(#57C84D, #24272b);
-    width: 400px;
-    height: 200px;
-    border-radius: 15px;
-    border: 4px solid #24272b;
-    margin-bottom: 20px;
-    padding: 10px 20px;
-    position: relative;
-}
-
-.contactDiv4 {
-    background: linear-gradient(#FFAD60, #24272b);
-    width: 400px;
-    height: 200px;
-    border-radius: 15px;
-    border: 4px solid #24272b;
-    margin-bottom: 20px;
-    padding: 10px 20px;
-    position: relative;
+.grid-item.extended,
+.grid-item.extended .contactDiv {
+    height: 300px;
 }
 
 /* Form inputs */
@@ -87,11 +64,12 @@
     top: 10px;
 }
 
-.colorButton{
+.colorButton {
     height: 50px;
     width: 50px;
     border-radius: 2px;
-    border: px solid;
+    border: 2px solid white;
+    border-radius: 20%;
     position: absolute;
     left: 15px;
     top: 65px;
@@ -107,6 +85,7 @@
 
 .dropdownMenu {
     background-color: none;
+    background: url(../images/three-dots-vertical.svg) no-repeat;
 }
 
 .triple-dots {
@@ -120,41 +99,34 @@
     margin-left: 80px;
 }
 
+.favButton {
+    position: absolute;
+    top: 124px;
+    left: 13px;
+}
+
 .fav {
     color: white;
-    position: absolute;
-    top: 120px;
-    left: 25px;
     width: 30px;
     height: 30px;
 }
 
-.contactLowerBackground {
-    /* background-color: #444; */
-    position: absolute;
-    left: 0px;
-    bottom: 0px;
-    height: 100px;
-    width: 100%;
-    border-radius: 15px 15px 5px 5px;
-}
-
 .dropButton {
     position: absolute;
-    bottom: -20px;
-    left: -3px;
+    bottom: 0px;
+    left: 3px;
     color: #eeeeee;
-    background-color: #333;
-    width: calc(100% + 6px);
+    background-color: #24272b;
+    width: calc(100% - 6px);
     height: 28px;
     border-width: 0;
     border-radius: 15px;
-    box-shadow: inset 0px 20px 10px -10px #444;
+    box-shadow: inset 0px 20px 10px -10px #24272b;
 }
 
 .notes {
     font-size: medium;
     position: absolute;
-    left: 80px;
-    top: 5px;
+    left: 90px;
+    top: 120px;
 }
