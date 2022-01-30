@@ -10,34 +10,18 @@
             crossorigin="anonymous"
         />
         <link href="css/main.css" rel="stylesheet" />
-        <script
-            src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-            crossorigin="anonymous"
-        ></script>
+        <link href="css/contact.css" rel="stylesheet" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link
             href="https://fonts.googleapis.com/css2?family=Zen+Kurenaido&display=swap"
             rel="stylesheet"
         />
-        <script type="text/javascript" src="js/requests.js"></script>
-        <script type="text/javascript" src="js/contacts.js"></script>
-        <script type="text/javascript" src="js/code.js"></script>
-
-        <script type="text/javascript">
-            document.addEventListener(
-                "DOMContentLoaded",
-                function () {
-                    readCookie();
-                },
-                false
-            );
-        </script>
     </head>
     <body>
         <div class="container" id="bigDiv">
             <header
+                id="header"
                 class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom"
             >
                 <a
@@ -88,16 +72,69 @@
                 <p id="numResults"></p>
             </main>
 
-            <div id="contactPane">
-                <button
-                    id="addButton"
-                    type="button"
-                    class="btn btn-primary mb-1"
-                    onclick="addContact();"
-                >
-                    Add New Contact
-                </button>
+            <button
+                id="addButton"
+                type="button"
+                class="btn btn-primary mb-1"
+                onclick="addTest();"
+            >
+                Add New Contact
+            </button>
+
+            <div class="flex-container">
+                <div id="edit-container">
+                    <form action="#" class="edit-form" id="edit-form">
+                        <h1 class="creating">Creating New Contact</h1>
+                        <div class="editinputs">
+                            <label for="firstName">first name</label>
+                            <input class="edits" id="firstName" placeholder="first name" />
+                        </div>
+        
+                        <div class="editinputs">
+                            <label for="lastName">last name</label>
+                            <input class="edits" id="lastName" placeholder="last name" />
+                        </div>
+        
+                        <div class="editinputs">
+                            <label for="email">📧 email</label>
+                            <input class="edits" id="email" placeholder="email" />
+                        </div>
+        
+                        <div class="editinputs">
+                            <label for="phone">📞 phone</label>
+                            <input class="edits" id="phone" placeholder="phone" />
+                        </div>
+
+                        <div class="editinputs">
+                            <label for="address">📍 address</label>
+                            <input class="edits" id="address" placeholder="address" />
+                        </div>
+                        
+                        </button
+                            class="addContactButtons"
+                            id="save-button"
+                            type="submit"
+                        >
+                            Save
+                        </button>
+        
+                        <button
+                            class="addContactButtons"
+                            id="cancel-button"
+                            type="submit"
+                        >
+                            Cancel
+        
+                    </form>
+                </div>
+
+                <div class="contactPaneParent">
+                    <div id="contactPane" class="grid">
+                        <div id="newContactPlaceholder"></div>
+                    </div>
+                </div>
             </div>
+            
 
             <footer class="mastfoot">
                 <div class="inner">
@@ -110,27 +147,119 @@
                 </div>
             </footer>
         </div>
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+            crossorigin="anonymous"
+        ></script>
+        <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
+        <script type="text/javascript" src="js/requests.js"></script>
+        <script type="text/javascript" src="js/contacts.js"></script>
+        <script type="text/javascript" src="js/code.js"></script>
+
+        <script type="text/javascript">
+            document.addEventListener(
+                "DOMContentLoaded",
+                function () {
+                    readCookie();
+                },
+                false
+            );
+        </script>
     </body>
 
     <template id="contact-template">
-        <link href="css/main.css" rel="stylesheet" />
-        <div class="contactDiv">
-            <button class="btn btn-secondary mb-1" style="width: 100px">
-                Edit
+        <div class="contactDiv1 grid-item">
+            <img
+                class="contact-image"
+                src="https://www.publicdomainpictures.net/pictures/120000/nahled/abstract-composition-14287573024pP.jpg"
+                alt=""
+            />
+            <input type="button" class="colorButton"/>
+            <h2 class="fname">NAME MISSING</h2>
+            <h2 class="lname">NAME MISSING</h2>
+            <div class="contactLowerBackground">
+                <h4 class="notes">Information Notes Information Notes</h4>
+                <!--<button 
+                    id="saveButton" 
+
+                    class="btn btn-secondary"    
+                >
+                    Save
+                </button>-->
+                <div id="info-grid" class="drop-info">
+                    <h4 class="g">📧:</h4>
+                    <h4 class="g-i email">joe@gmail.com</h4>
+                    <h4 class="g">📞:</h4>
+                    <h4 class="g-i phone">(808)-808-8888</h4>             
+                    <h4 class="g">📍:</h4>
+                    <h4 class="g-i address">sheeesh</h4>
+                </div>
+            </div>
+
+            <!-- Default dropright button -->
+            <div class="dropdown dropmenu dropend">
+                <button
+                    class="btn"
+                    type="button"
+                    id="dropdownMenu"
+                    data-bs-toggle="dropdown"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                >
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="16"
+                        height="16"
+                        fill="currentColor"
+                        class="bi bi-three-dots-vertical triple-dots"
+                        viewBox="0 0 16 16"
+                    >
+                        <path
+                            d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"
+                        />
+                    </svg>
+                </button>
+                <div
+                    class="dropdown-menu dropdown-menu-dark"
+                    aria-labelledby="dropdownMenu"
+                >
+                    <button class="dropdown-item" type="button">Edit</button>
+                    <button class="dropdown-item" type="button">Delete</button>
+                </div>
+            </div>
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                fill="currentColor"
+                class="bi bi-bookmark-star fav"
+                viewBox="0 0 16 16"
+            >
+                <path
+                    d="M7.84 4.1a.178.178 0 0 1 .32 0l.634 1.285a.178.178 0 0 0 .134.098l1.42.206c.145.021.204.2.098.303L9.42 6.993a.178.178 0 0 0-.051.158l.242 1.414a.178.178 0 0 1-.258.187l-1.27-.668a.178.178 0 0 0-.165 0l-1.27.668a.178.178 0 0 1-.257-.187l.242-1.414a.178.178 0 0 0-.05-.158l-1.03-1.001a.178.178 0 0 1 .098-.303l1.42-.206a.178.178 0 0 0 .134-.098L7.84 4.1z"
+                />
+                <path
+                    d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z"
+                />
+            </svg>
+            <!-- Show info button -->
+            <button class="dropButton" type="button">
+                <svg
+                    color="white"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16"
+                    height="16"
+                    fill="currentColor"
+                    class="bi bi-arrows-expand"
+                    viewBox="0 0 16 16"
+                >
+                    <path
+                        fill-rule="evenodd"
+                        d="M1 8a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13A.5.5 0 0 1 1 8zM7.646.146a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1-.708.708L8.5 1.707V5.5a.5.5 0 0 1-1 0V1.707L6.354 2.854a.5.5 0 1 1-.708-.708l2-2zM8 10a.5.5 0 0 1 .5.5v3.793l1.146-1.147a.5.5 0 0 1 .708.708l-2 2a.5.5 0 0 1-.708 0l-2-2a.5.5 0 0 1 .708-.708L7.5 14.293V10.5A.5.5 0 0 1 8 10z"
+                    />
+                </svg>
             </button>
-            <button class="btn btn-secondary mb-1" style="width: 100px">
-                Save
-            </button>
-            <button class="btn btn-secondary mb-1" style="width: 100px">
-                Delete
-            </button>
-            <br />
-            <slot name="c-fname" id="mycontact">NAME MISSING</slot>
-            <slot name="c-lname" id="mycontact">NAME MISSING</slot>
-            <ul>
-                <li><slot name="c-phone">PHONE MISSING</slot></li>
-                <li><slot name="c-email"></slot>EMAIL MISSING</li>
-            </ul>
         </div>
     </template>
 </html>

@@ -13,6 +13,8 @@
     $lastName = $inData["lastName"];
     $email = $inData["email"];
     $phone = $inData["phone"];
+	$address = $inData["address"];
+	$notes = $inData["notes"];
 	$isFavorite = $inData["isFavorite"];
 
 	$conn = new mysqli($_ENV["DB_LOCATION"], $_ENV["DB_USER"], $_ENV["DB_PWD"], $_ENV["DB_NAME"]);
@@ -25,8 +27,8 @@
 	else
 	{
         // Create SQL statement to add contact
-		$stmt = $conn->prepare("INSERT into Contacts (UserID,FirstName,LastName,Email,Phone,IsFavorite) VALUES (?,?,?,?,?,?)");
-		$stmt->bind_param("isssii", $userId, $firstName, $lastName, $email, $phone, $isFavorite);
+		$stmt = $conn->prepare("INSERT into Contacts (UserID,FirstName,LastName,Email,Phone, Address, Notes,IsFavorite) VALUES (?,?,?,?,?,?,?,?)");
+		$stmt->bind_param("isssissi", $userId, $firstName, $lastName, $email, $phone, $address, $notes, $isFavorite);
 		$stmt->execute();
 
 		// Get id of insert

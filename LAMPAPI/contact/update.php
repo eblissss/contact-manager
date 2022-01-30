@@ -11,6 +11,8 @@
     $lastName = $inData["lastName"];
     $email = $inData["email"];
     $phone = $inData["phone"];
+	$address = $inData["address"];
+	$notes = $inData["notes"];
 	$isFavorite = $inData["isFavorite"];
 
 	$conn = new mysqli($_ENV["DB_LOCATION"], $_ENV["DB_USER"], $_ENV["DB_PWD"], $_ENV["DB_NAME"]);
@@ -23,9 +25,9 @@
 	else
 	{
         // Create SQL statement to update contact
-		$sql = "UPDATE Contacts SET FirstName=?, LastName=?, Email=?, Phone=?, IsFavorite=? WHERE ID=? and UserID=?";
+		$sql = "UPDATE Contacts SET FirstName=?, LastName=?, Email=?, Phone=?, Address=?, Notes=?, IsFavorite=? WHERE ID=? and UserID=?";
 		$stmt = $conn->prepare($sql);
-		$stmt->bind_param("sssiiii", $firstName, $lastName, $email, $phone, $isFavorite, $id, $userId);
+		$stmt->bind_param("sssissiii", $firstName, $lastName, $email, $phone, $address, $notes, $isFavorite, $id, $userId);
 		$stmt->execute();
 		$stmt->close();
 		$conn->close();
