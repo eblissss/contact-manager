@@ -194,8 +194,6 @@ function save(contac) {
 
     editing = false;
 
-    extend(contac.parentNode)
-
     document.getElementById("dropdownMenu").style.visibility = "visible";
     infoSection.children[6].remove();
 }
