@@ -1,46 +1,81 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8"> <!--specifies the character encoding for the HTML document-->
-		<title>Login</title>
-		<script type="text/javascript" src="js/md5.js"></script>
-		<script language = "JavaScript" type="text/javascript" src="js/login.js"></script>
-		<script type="module" src="js/wave.js"></script>
-		<link href="css/index.css" rel="stylesheet">
-		<link rel="preconnect" href="https://fonts.googleapis.com">
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-		<link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet">
-	</head>
-	<body>
-	<div id="waveContainer">
-		<div id="formBackground"></div>
-		<form action="#" class="form">
-			<h1> Login to access your contacts </h1>
+    <head>
+        <meta charset="UTF-8" />
+        <!--specifies the character encoding for the HTML document-->
+        <title>Contact Ninja Login</title>
+        <script type="text/javascript" src="js/md5.js"></script>
+        <script
+            language="JavaScript"
+            type="text/javascript"
+            src="js/login.js"
+        ></script>
+        <script type="module" src="js/wave.js"></script>
+        <link href="css/index.css" rel="stylesheet" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap"
+            rel="stylesheet"
+        />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Zen+Kurenaido&display=swap"
+            rel="stylesheet"
+        />
+    </head>
+    <body>
+        <div id="waveContainer">
+            <div id="formBackground"></div>
+            <form action="#" class="form">
+                <h1 class="name-header">Contact Ninja</h1>
+                <h1 class="login-h">Login to access your contacts</h1>
 
-			<div class="inputs">
-				<label for="loginName">username</label>
-				<input id="username" type="username" placeholder="username" />
-			</div>
+                <div class="inputs">
+                    <label for="loginName">username</label>
+                    <input
+                        id="username"
+                        type="username"
+                        placeholder="username"
+                    />
+                </div>
 
-			<div class="inputs">
-				<label for="loginPassword">password</label>
-				<input id="password" type="password" placeholder="password"/>
-			</div>
+                <div class="inputs">
+                    <label for="loginPassword">password</label>
+                    <input
+                        id="password"
+                        type="password"
+                        placeholder="password"
+                    />
+                </div>
 
-			<div class="checkbox mb-3">
-				<label id = "remember">
-					<input type="checkbox" value="remember-me" /> Remember Me
-				</label>
-			</div>
+                <div class="checkbox mb-3">
+                    <label id="remember">
+                        <input type="checkbox" value="remember-me" /> Remember
+                        Me
+                    </label>
+                </div>
 
-			<button type="button" id="loginButton" class="buttons" type="reset" accesskey="enter" onclick="doLogin();"> Login </button> <!--should type be sumbit since users are submitting data?-->
+                <button
+                    type="button"
+                    id="loginButton"
+                    class="buttons"
+                    type="reset"
+                    accesskey="enter"
+                    onclick="doLogin();"
+                >
+                    Login
+                </button>
 
-			<p> Don't have an account? </p>
-			<button type="button" id="signupButton" class="signupbuttons" onclick="window.location.href='create-account.html'"> Sign Up </button> <!--write javascript code for this-->
-		</form>
-	</div>
-
-	</body>
+                <p>Don't have an account?</p>
+                <button
+                    type="button"
+                    id="signupButton"
+                    class="signupbuttons"
+                    onclick="window.location.href='create-account.html'"
+                >
+                    Sign Up
+                </button>
+            </form>
+        </div>
+    </body>
 </html>
-
-<!--- this is how you comment>

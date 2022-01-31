@@ -25,11 +25,20 @@ body {
     outline: #1a5f7a;
 }
 
-.form h1 {
+.name-header {
+    font-family: "Zen Kurenaido", sans-serif;
     color: white;
-    font-size: 1.5rem;
+    font-size: 2.8rem;
     text-align: center;
-    margin-bottom: 3rem;
+    margin-top: -4.5rem;
+}
+
+.login-h {
+    color: white;
+    font-size: 1.25rem;
+    text-align: center;
+    margin-top: 3rem;
+    margin-bottom: 1.5rem;
 }
 
 #formBackground {
@@ -45,26 +54,17 @@ body {
     color: white;
     margin-bottom: 1.5rem;
     font-size: 0.9rem;
-    border-bottom: 1px solid rgba(231, 231, 231, 0.8);
+    /* border-bottom: 1px solid rgba(231, 231, 231, 0.8); */
+    border-bottom: 2px solid #ffffff66;
 }
 
 .inputs:hover {
-    border-bottom: 3px solid #ffffff;
+    border-bottom: 2px solid #ffffff;
     transition: 0.2s ease-in-out;
 }
 
 #username,
-#username::placeholder {
-    width: 100%;
-    border: none;
-    background: none;
-    outline: none;
-    color: white;
-    margin-top: 0.5rem;
-    font-size: 0.9rem;
-    padding-bottom: 0.5rem;
-}
-
+#username::placeholder,
 #password,
 #password::placeholder {
     width: 100%;
@@ -80,12 +80,12 @@ body {
 .form button {
     width: 100%;
     background: white;
-    border: none;
+    border: 2px solid #ffffff;
     border-radius: 30px;
     padding: 14px 14px;
     font-size: 0.9rem;
-    margin-bottom: 1rem;
-    margin-top: 1.5rem;
+    margin-bottom: 2rem;
+    margin-top: 1rem;
     font-weight: 500;
     text-transform: uppercase; /*change?*/
     color: #7900ff;
@@ -95,18 +95,8 @@ body {
 }
 
 .form button:hover {
-    width: 100%;
     background: transparent;
-    border: 2px solid #ffffff;
-    border-radius: 30px;
-    padding: 14px 14px;
-    font-size: 0.9rem;
-    margin-bottom: 1.5rem;
-    font-weight: 500;
-    text-transform: uppercase; /*change?*/
     color: #ffffff;
-    outline: none;
-    cursor: pointer;
     transition: 0.3s ease-in-out;
 }
 
@@ -114,5 +104,4 @@ p,
 #remember {
     color: #ffffff;
     font-size: 0.9rem;
-    margin-bottom: 10;
 }

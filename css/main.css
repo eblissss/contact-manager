@@ -16,14 +16,8 @@ a:hover {
 html,
 body {
     font-family: "Varela Round", sans-serif;
-    height: 100%;
-    /* background-color: #24272b; */
-    background-image: linear-gradient(#24272b, #000000d7);
+    height: 100vh;
     transition: ease all 0.5s;
-}
-
-#bigdiv {
-    box-shadow: inset 10px 10px 20px black;
 }
 
 body {
@@ -34,13 +28,45 @@ body {
     -webkit-box-pack: center;
     justify-content: center;
     text-align: center;
+    background-color: #001030;
     color: #fff;
-    transition: ease all 0.5s;
     text-shadow: 0 0.05rem 0.1rem rgba(0, 0, 0, 0.5);
+    margin: 0;
+    padding: 0;
+}
+
+canvas {
+    width: 100% !important;
+    height: 100% !important;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: -1;
+}
+
+#backDiv {
+    width: 100%;
+    height: 100%;
+}
+
+#bigDiv {
+    position: relative;
+    width: 100%;
+    height: 100%;
 }
 
 #siteName {
     color: #fff;
+}
+
+#headerName {
+    font-size: 1.5rem;
+    margin-top: 0.5rem;
+    margin-right: 2rem;
+}
+
+#logoutButton {
+    margin-left: 0px;
 }
 
 .cover {
@@ -52,17 +78,15 @@ body {
 }
 
 /* Bottom page div */
-.mastFoot {
-    position: fixed;
-    bottom: 0;
-}
-
-/* Shadowing for container */
-.inner {
-    padding-top: 50px;
+.bottom-barrel {
+    position: absolute;
+    padding-top: 15px;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 #searchForm {
+    overflow: hidden;
     width: 60%;
     display: inline-block;
 }
@@ -72,36 +96,48 @@ body {
 }
 
 #contactPane {
-    background-image: linear-gradient(#24272be3, #00000026);
-    /* background-color: #24272b; */
     min-height: 50%;
-    margin: 0 50px;
+    margin: 10px auto;
     border-radius: 15px;
     justify-content: center;
 }
 
 .contactPaneParent {
-    width: 80%;
+    /* background-color: #24272be3; */
+    background: #001030bf;
+    border-radius: 15px;
     display: inline-flex;
     flex: 2;
+    justify-content: center;
+    margin: 0px;
+}
+
+.flex-container {
+    display: flex;
+    box-shadow: 0 10px 15px -20px black;
+    padding-bottom: 50px;
 }
 
 #edit-container {
     display: none;
     flex: 1;
-    height: 500px;
-    transition: display 2s ease;
+    height: 600px;
+}
+
+.creating {
+    font-size: 1.8rem;
+    padding-bottom: 1rem;
 }
 
 .edit-form {
-    padding: 60px 50px;
+    padding: 30px 40px;
     margin: 0 auto;
     display: block;
     background-image: linear-gradient(#548cff, #24272b);
     border-radius: 16px;
     text-align: center;
     box-shadow: 2px 2px 8px #000;
-    opacity: 0.8;
+    opacity: 0.9;
     height: 100%;
 }
 
@@ -116,21 +152,26 @@ body {
     border-bottom: 1px solid rgba(231, 231, 231, 0.8);
 }
 
-.addContactButtons {
-    width: 100%;
+.editButton,
+.editButtonSave {
+    width: 40%;
     background: white;
     border: none;
     border-radius: 30px;
-    padding: 14px 14px;
+    padding: 10px 10px;
     font-size: 0.9rem;
-    /* margin-bottom: 1rem; */
-    /* margin-top: 1.5rem; */
+    margin: 1.2rem 0.4rem;
     font-weight: 500;
-    text-transform: uppercase; /*change?*/
-    color: #7900ff;
+    text-transform: uppercase;
+    color: #548cff;
     outline: none;
     cursor: pointer;
     font-family: "Varela Round", sans-serif;
+}
+
+.editButtonSave {
+    background: #548cff;
+    color: white;
 }
 
 .edits,
@@ -139,13 +180,10 @@ body {
     border: none;
     background: none;
     outline: none;
-    color: white;
-    margin-top: 0.5rem;
-    font-size: 0.9rem;
-    padding-bottom: 0.5rem;
+    border-bottom: 2px solid black;
 }
 
-.flex-container {
-    display: flex;
-    box-shadow: 0 10px 15px -15px black;
+.noteInput {
+    overflow: hidden;
+    resize: none;
 }

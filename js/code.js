@@ -41,54 +41,66 @@ function doLogout() {
 
 // Create Contact - API request
 function addContact() {
+    // Get HTML stuff
     const editPane = document.getElementById("edit-container");
-    const saveButton = document.getElementById("save-button");
-    const cancelButton = document.getElementById("cancel-button");
     const editForm = document.getElementById("edit-form");
+    const cancelButton = document.getElementById("cancel-button");
+    const saveButton = document.getElementById("save-button");
 
-    console.log(editPane.style);
-    if (editPane.style.display == "none") {
+    // Set pane
+    if (editPane.style.display == "none" || editPane.style.display == "") {
         editPane.style.display = "inline-flex";
-    } else {
-        editPane.style.display = "none";
     }
-    console.log(editPane.style.display);
-    document.getElementById("addButton").style.display = "none";
+    msnry.reloadItems();
+    msnry.layout();
 
-    cancelButton.addEventListener(
-        "click",
-        (cancel = () => {
-            for (let i = 1; i <= 5; i++) editForm.children[i].value = "";
+    // Remove add button
+    const addButton = document.getElementById("addButton");
+    addButton.style.display = "none";
+
+    // Ensure only one listener
+    if (!cancelButton.classList.contains("listening")) {
+        cancelButton.classList.add("listening");
+
+        // Cancel button
+        cancelButton.addEventListener("click", () => {
+            for (let i = 1; i <= 6; i++)
+                editForm.children[i].children[1].value = "";
             editPane.style.display = "none";
+            addButton.style.display = "inline-block";
+            msnry.layout();
             return;
-        })
-    );
+        });
 
-    saveButton.addEventListener(
-        "click",
-        (save = () => {
+        // Save button
+        saveButton.addEventListener("click", () => {
             createContact();
-        })
-    );
+            editPane.style.display = "none";
+            addButton.style.display = "inline-block";
+        });
+    }
 }
 
 function createContact() {
-    // const data = {
-    //     name: getstuff
-    //     lastnmae: getstuff
-    // }
+    console.log("create");
+    const editForm = document.getElementById("edit-form");
 
-    const contact = spawnContact(
-        (id = largeNum), // will be saved as proper ID by DB (also used to tell save() it is new)
-        (firstname = ""),
-        (lastname = ""),
-        (phone = ""),
-        (email = ""),
-        (notes = ""),
-        (first = true) // put at top
+    spawnContact(
+        (id = largeNum), // will be saved as proper ID by DB
+        editForm.children[1].children[1].value,
+        editForm.children[2].children[1].value,
+        editForm.children[3].children[1].value,
+        editForm.children[4].children[1].value,
+        editForm.children[5].children[1].value,
+        editForm.children[6].children[1].value,
+        (isFavorite = 0),
+        (added = true) // put at top
     );
 
+    for (let i = 1; i <= 6; i++) editForm.children[i].children[1].value = "";
+
     msnry.reloadItems();
+    msnry.layout();
 }
 
 // Search Contacts - API request
@@ -98,8 +110,10 @@ function searchContacts() {
 
     if (srch === "") return;
 
+    document.getElementById("numResults").innerHTML = "Loading....";
+
     const pane = document.getElementById("contactPane");
-    while (pane.childNodes.length > 2) {
+    while (pane.hasChildNodes()) {
         console.log(pane.lastChild);
         pane.removeChild(pane.lastChild);
     }
@@ -120,8 +134,11 @@ function searchContacts() {
                     curContact.ID,
                     curContact.FirstName,
                     curContact.LastName,
+                    curContact.Notes,
                     curContact.Phone,
-                    curContact.Email
+                    curContact.Email,
+                    curContact.Address,
+                    curContact.IsFavorite
                 );
             }
             msnry.reloadItems();
@@ -133,17 +150,4 @@ function searchContacts() {
             pane.appendChild(message);
         }
     });
-}
-
-function addTest() {
-    const editPane = document.getElementById("edit-container");
-    console.log(editPane.style);
-    if (editPane.style.display == "none" || editPane.style.display == "") {
-        editPane.style.display = "inline-flex";
-    } else {
-        editPane.style.display = "none";
-    }
-    console.log(editPane.style.display);
-    msnry.reloadItems();
-    msnry.layout();
 }
