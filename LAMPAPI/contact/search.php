@@ -19,20 +19,33 @@
 	{
 		// Create Search
 		$search = trim($inData["search"]);
-		$split = explode(' ', $search, 2);
-
 		$searchA = "%" . $search . "%";
-		$searchB = "%" . $split[0] . "%";
-		$searchC = "%" . $split[1] . "%";
 
-		// Create SQL statement to search contacts
-		$sqlsearch = "select * from Contacts where 
-						(FirstName like ? or FirstName like ? or 
-					 	LastName like ? or LastName like ?) 
-						and UserID=?";
-		$stmt = $conn->prepare($sqlsearch);
+		$split = explode(' ', $search, 2);
+		if (sizeof($split) > 1)
+		{
+			$searchB = "%" . $split[0] . "%";
+			$searchC = "%" . $split[1] . "%";
+
+			// Create SQL statement to search contacts
+			$sqlsearch = "select * from Contacts where 
+			(FirstName like ? or FirstName like ? or 
+			LastName like ? or LastName like ?) 
+			and UserID=?";
+			$stmt = $conn->prepare($sqlsearch);
+			$stmt->bind_param("ssssi", $searchA, $searchB, $searchA, $searchC, $inData["userId"]);
+		}
+		else
+		{
+			// Create SQL statement to search contacts
+			$sqlsearch = "select * from Contacts where 
+			(FirstName like ? or LastName like ?) 
+			and UserID=?";
+			$stmt = $conn->prepare($sqlsearch);
+
+			$stmt->bind_param("ssi", $searchA, $searchA, $inData["userId"]);
+		}
 		
-		$stmt->bind_param("ssssi", $searchA, $searchB, $searchA, $searchC, $inData["userId"]);
 		$stmt->execute();
 		
 		$result = $stmt->get_result();
