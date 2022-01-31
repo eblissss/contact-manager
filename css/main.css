@@ -16,7 +16,7 @@ a:hover {
 html,
 body {
     font-family: "Varela Round", sans-serif;
-    height: 100%;
+    height: 100vh;
     transition: ease all 0.5s;
 }
 
@@ -28,8 +28,8 @@ body {
     -webkit-box-pack: center;
     justify-content: center;
     text-align: center;
+    background-color: #001030;
     color: #fff;
-    transition: ease all 0.5s;
     text-shadow: 0 0.05rem 0.1rem rgba(0, 0, 0, 0.5);
     margin: 0;
     padding: 0;
@@ -38,8 +38,8 @@ body {
 canvas {
     width: 100% !important;
     height: 100% !important;
-    position: absolute;
-    top: 0;
+    position: fixed;
+    bottom: 0;
     left: 0;
     z-index: -1;
 }
@@ -50,6 +50,7 @@ canvas {
 }
 
 #bigDiv {
+    position: relative;
     width: 100%;
     height: 100%;
 }
@@ -79,9 +80,9 @@ canvas {
 /* Bottom page div */
 .bottom-barrel {
     position: absolute;
+    padding-top: 15px;
     left: 50%;
     transform: translateX(-50%);
-    bottom: 0px;
 }
 
 #searchForm {
@@ -95,19 +96,26 @@ canvas {
 }
 
 #contactPane {
-    background-image: linear-gradient(#24272be3, #00000026);
-    /* background-color: #24272b; */
     min-height: 50%;
-    margin: 0 auto;
+    margin: 10px auto;
     border-radius: 15px;
     justify-content: center;
 }
 
 .contactPaneParent {
-    width: 80%;
+    /* background-color: #24272be3; */
+    background: #001030bf;
+    border-radius: 15px;
     display: inline-flex;
     flex: 2;
     justify-content: center;
+    margin: 0px;
+}
+
+.flex-container {
+    display: flex;
+    box-shadow: 0 10px 15px -20px black;
+    padding-bottom: 50px;
 }
 
 #edit-container {
@@ -181,10 +189,4 @@ canvas {
 .noteInput {
     overflow: hidden;
     resize: none;
-}
-
-.flex-container {
-    display: flex;
-    box-shadow: 0 10px 15px -15px black;
-    padding-bottom: 50px;
 }
