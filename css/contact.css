@@ -12,7 +12,6 @@
     display: none;
     grid-template-columns: 1fr 2fr;
     gap: 10px;
-    grid-auto-rows: minimax(100px, auto);
 }
 
 .g {
@@ -33,25 +32,42 @@
 }
 
 .contactDiv {
-    background: linear-gradient(#548cff, #24272b);
+    /* background: linear-gradient(#548cff, #24272b); */
+    background: #2c4a86bb;
     border-radius: 15px;
     border: 4px solid #24272b;
     padding: 10px 20px;
-    -webkit-transition: 0.4s;
-    transition: 0.4s;
+    -webkit-transition: all 400ms ease;
+    transition: all 400ms ease;
 }
 
 .grid-item.extended,
 .grid-item.extended .contactDiv {
-    height: 300px;
+    height: 320px;
 }
 
-/* Form inputs */
+.grid-item.extended .contactDiv .dropButton {
+    bottom: -278px;
+}
+
 .fname,
 .lname {
     font-size: 1.8rem;
     text-align: left;
     margin-left: 70px;
+}
+
+.fname {
+    position: absolute;
+    top: 15px;
+    left: 20px;
+}
+
+.lname {
+    position: absolute;
+    margin-top: 3px;
+    top: 50px;
+    left: 30px;
 }
 
 .contact-image {
@@ -76,30 +92,10 @@
     background-color: red;
 }
 
-.chooseColorButton{
-    height: 50px;
-    width: 50px;
-    border-radius: 2px;
-    border: 2px solid white;
-    border-radius: 20%;
-    margin-right: 150px;
-    background-color: Blue;
-}
-
-.chooseColorOption{
-    height: 50px;
-    width: 50px;
-    border-radius: 2px;
-    border: 2px solid white;
-    border-radius: 20%;
-    background-color: Blue;
-}
-
 .dropmenu {
     position: absolute;
     right: 10px;
     top: 10px;
-    background-color: none;
 }
 
 .dropdownMenu {
@@ -108,7 +104,6 @@
 }
 
 .triple-dots {
-    background-color: none;
     color: white;
     height: 22px;
     width: 22px;
@@ -131,16 +126,17 @@
 }
 
 .dropButton {
-    position: absolute;
-    bottom: 0px;
-    left: 3px;
+    position: relative;
+    bottom: -158px;
+    left: -20px;
     color: #eeeeee;
     background-color: #24272b;
-    width: calc(100% - 6px);
+    width: calc(100% + 40px);
     height: 28px;
     border-width: 0;
     border-radius: 15px;
     box-shadow: inset 0px 20px 10px -10px #24272b;
+    transition: all 400ms ease;
 }
 
 .notes {
@@ -148,4 +144,8 @@
     position: absolute;
     left: 90px;
     top: 120px;
+}
+
+input {
+    color: #eee;
 }

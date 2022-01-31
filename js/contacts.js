@@ -247,8 +247,7 @@ function edit(contacOuter) {
     addrSlot.innerHTML = `<input class="edits" type="text" />`;
     addrSlot.children[0].value = address;
 
-    contacOuter.children[0].children[8].style.bottom = "-10px";
-    contacOuter.children[0].style.height = "310px";
+    contacOuter.children[0].style.height = "320px";
 
     //console.log(document.getElementById("address"));
 
@@ -342,7 +341,6 @@ function extend(contacOuter, stay = false) {
         infoSection.style.display = "none";
         contacOuter.classList.remove("extended");
         contacOuter.children[0].style.height = "200px";
-        contacOuter.children[0].children[8].style.bottom = "0px";
     } else {
         contacOuter.children[0].children[8].children[0].src =
             "./images/arrows-collapse.svg";
@@ -351,8 +349,7 @@ function extend(contacOuter, stay = false) {
             contacOuter.classList.add("extended");
         }
         
-        contacOuter.children[0].style.height = (editing) ? "310px" : "300px";
-        contacOuter.children[0].children[8].style.bottom = (editing) ? "-10px" : "0px";
+        contacOuter.children[0].style.height = "320px";
     }
     msnry.layout();
 }
