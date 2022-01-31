@@ -2,8 +2,14 @@ let editing = false;
 let sav, msnry;
 const largeNum = 1000000000;
 
-const buttonColors = ["red", "green", "orange", "blue"];
+const buttonColors = ["blue", "red", "green", "orange"];
+const gradients = ["linear-gradient(#548cff, #24272b)", "linear-gradient(#ea4c46, #24272b)",
+                    "linear-gradient(#57c84d, #24272b)", "linear-gradient(#ffad60, #24272b)"];
+let contacList = [];
 let colorIndex = 0;
+
+initializeColorMenu();
+
 
 // Spawn a new contact on the div
 function spawnContact(
@@ -71,6 +77,8 @@ function spawnContact(
         document.getElementById("contactPane").prepend(contacOuter);
         add(contac);
     } else document.getElementById("contactPane").appendChild(contacOuter);
+
+    contacList.push(contac);
 
     return contac;
 }
@@ -180,6 +188,7 @@ function save(contac) {
     editing = false;
 
     document.getElementById("dropdownMenu").style.visibility = "visible";
+    contac.children[8].style.bottom = "0px";
     infoSection.children[6].remove();
 }
 
@@ -192,6 +201,9 @@ function edit(contacOuter) {
 
     editing = true;
     document.getElementById("dropdownMenu").style.visibility = "hidden";
+
+    //Give space to address slot
+    contacOuter.children[0].children[8].style.bottom = "-10px";
 
     // Get slots
     const fnameSlot = contac.children[2];
@@ -213,21 +225,21 @@ function edit(contacOuter) {
     const address = addrSlot.innerText;
 
     // Replace text with inputs
-    fnameSlot.innerHTML = `<input style="width:285px" type="text" />`;
+    fnameSlot.innerHTML = `<input class="edits" type="text" />`;
     fnameSlot.children[0].value = firstname;
-    lnameSlot.innerHTML = `<input style="width:285px" type="text" />`;
+    lnameSlot.innerHTML = `<input class="edits" type="text" />`;
     lnameSlot.children[0].value = lastname;
 
-    notesSlot.innerHTML = `<input "type="text"/>`;
+    notesSlot.innerHTML = `<input class="edits" "type="text"/>`;
     notesSlot.children[0].value = notes;
 
-    emailSlot.innerHTML = `<input type="text" />`;
+    emailSlot.innerHTML = `<input class="edits" type="text" />`;
     emailSlot.children[0].value = emailAddr;
 
-    phoneSlot.innerHTML = `<input "type="text" />`;
+    phoneSlot.innerHTML = `<input class="edits" "type="text" />`;
     phoneSlot.children[0].value = phoneNum;
 
-    addrSlot.innerHTML = `<input type="text" />`;
+    addrSlot.innerHTML = `<input class="edits" type="text" />`;
     addrSlot.children[0].value = address;
 
     //console.log(document.getElementById("address"));
@@ -382,21 +394,21 @@ window.onload = function () {
 function setColors(contac) {
     colorIndex = (colorIndex + 1) % 4;
 
-    switch (colorIndex) {
-        case 0:
-            contac.style.background = "linear-gradient(#548cff, #24272b)";
-            break;
-        case 1:
-            contac.style.background = "linear-gradient(#ea4c46, #24272b)";
-            break;
-        case 2:
-            contac.style.background = "linear-gradient(#57c84d, #24272b)";
-            break;
-        case 3:
-            contac.style.background = "linear-gradient(#ffad60, #24272b)";
-            break;
-        default:
-            console.log("color error");
-    }
+    contac.style.background = gradients[colorIndex];
     contac.children[1].style.backgroundColor = buttonColors[colorIndex];
+}
+
+function initializeColorMenu(){
+    const colorMenu = document.getElementById('colorMenu');
+
+    for(let i = 0; i < 4; i++){
+        colorMenu.children[i].style.backgroundColor = buttonColors[i];
+        colorMenu.children[i].addEventListener("click", () =>{
+            document.getElementById('chosenColor').style.backgroundColor = buttonColors[i];
+            for(let contac of contacList){
+                contac.style.background = gradients[i];
+            }
+        })
+    }    
+    
 }
