@@ -9,8 +9,10 @@ const gradients = [
     "linear-gradient(#57c84d, #24272b)",
     "linear-gradient(#ffad60, #24272b)",
 ];
+
 let contacList = [];
 let colorIndex = 0;
+let mainColorIndex = 0;
 
 initializeColorMenu();
 
@@ -46,6 +48,8 @@ function spawnContact(
     infoSection.children[1].innerHTML = `${phone}`;
     infoSection.children[3].innerHTML = `${email}`;
     infoSection.children[5].innerHTML = `${address}`;
+
+    contac.style.background = gradients[mainColorIndex];
 
     const favImg = contac.children[7].children[0];
     if (contac.isFavorite === 0) {
@@ -190,6 +194,9 @@ function save(contac) {
 
     editing = false;
 
+    contac.style.height = "300px";
+    contac.children[8].style.bottom = "0px";
+
     document.getElementById("dropdownMenu").style.visibility = "visible";
     infoSection.children[6].remove();
 }
@@ -203,6 +210,8 @@ function edit(contacOuter) {
 
     editing = true;
     document.getElementById("dropdownMenu").style.visibility = "hidden";
+    contac.style.height = "310px";
+    contac.children[8].style.bottom = "-10px"; // Gives space to address spot
 
     // Get slots
     const fnameSlot = contac.children[2];
@@ -230,6 +239,7 @@ function edit(contacOuter) {
     lnameSlot.children[0].value = lastname;
 
     notesSlot.innerHTML = `<input class="edits" "type="text"/>`;
+    notesSlot.style.width = "250px";// Gives more space to notes
     notesSlot.children[0].value = notes;
 
     emailSlot.innerHTML = `<input class="edits" type="text" />`;
@@ -407,6 +417,7 @@ function initializeColorMenu() {
         colorMenu.children[i].addEventListener("click", () => {
             document.getElementById("chosenColor").style.backgroundColor =
                 buttonColors[i];
+            mainColorIndex = i;
             for (let contac of contacList) {
                 contac.style.background = gradients[i];
             }
