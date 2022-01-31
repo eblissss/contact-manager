@@ -249,6 +249,9 @@ function edit(contacOuter) {
     addrSlot.innerHTML = `<input class="edits" type="text" />`;
     addrSlot.children[0].value = address;
 
+    contacOuter.children[0].children[8].style.bottom = "-10px";
+    contacOuter.children[0].style.height = "310px";
+
     //console.log(document.getElementById("address"));
 
     // const saveButton = document.createButton('button');
