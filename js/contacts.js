@@ -288,6 +288,8 @@ function deleteContact(contac) {
         }
     });
 
+    contacList.splice(contacList.indexOf(contac), 1);
+
     // We should have animations too
     contac.remove();
 }
