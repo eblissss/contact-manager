@@ -79,6 +79,25 @@
     background-color: red;
 }
 
+.chooseColorButton{
+    height: 50px;
+    width: 50px;
+    border-radius: 2px;
+    border: 2px solid white;
+    border-radius: 20%;
+    margin-right: 150px;
+    background-color: Blue;
+}
+
+.chooseColorOption{
+    height: 50px;
+    width: 50px;
+    border-radius: 2px;
+    border: 2px solid white;
+    border-radius: 20%;
+    background-color: Blue;
+}
+
 .dropmenu {
     position: absolute;
     right: 10px;
