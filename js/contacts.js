@@ -3,13 +3,16 @@ let sav, msnry;
 const largeNum = 1000000000;
 
 const buttonColors = ["blue", "red", "green", "orange"];
-const gradients = ["linear-gradient(#548cff, #24272b)", "linear-gradient(#ea4c46, #24272b)",
-                    "linear-gradient(#57c84d, #24272b)", "linear-gradient(#ffad60, #24272b)"];
+const gradients = [
+    "linear-gradient(#548cff, #24272b)",
+    "linear-gradient(#ea4c46, #24272b)",
+    "linear-gradient(#57c84d, #24272b)",
+    "linear-gradient(#ffad60, #24272b)",
+];
 let contacList = [];
 let colorIndex = 0;
 
 initializeColorMenu();
-
 
 // Spawn a new contact on the div
 function spawnContact(
@@ -188,7 +191,6 @@ function save(contac) {
     editing = false;
 
     document.getElementById("dropdownMenu").style.visibility = "visible";
-    contac.children[8].style.bottom = "0px";
     infoSection.children[6].remove();
 }
 
@@ -201,9 +203,6 @@ function edit(contacOuter) {
 
     editing = true;
     document.getElementById("dropdownMenu").style.visibility = "hidden";
-
-    //Give space to address slot
-    contacOuter.children[0].children[8].style.bottom = "-10px";
 
     // Get slots
     const fnameSlot = contac.children[2];
@@ -400,17 +399,17 @@ function setColors(contac) {
     contac.children[1].style.backgroundColor = buttonColors[colorIndex];
 }
 
-function initializeColorMenu(){
-    const colorMenu = document.getElementById('colorMenu');
+function initializeColorMenu() {
+    const colorMenu = document.getElementById("colorMenu");
 
-    for(let i = 0; i < 4; i++){
+    for (let i = 0; i < 4; i++) {
         colorMenu.children[i].style.backgroundColor = buttonColors[i];
-        colorMenu.children[i].addEventListener("click", () =>{
-            document.getElementById('chosenColor').style.backgroundColor = buttonColors[i];
-            for(let contac of contacList){
+        colorMenu.children[i].addEventListener("click", () => {
+            document.getElementById("chosenColor").style.backgroundColor =
+                buttonColors[i];
+            for (let contac of contacList) {
                 contac.style.background = gradients[i];
             }
-        })
-    }    
-    
+        });
+    }
 }

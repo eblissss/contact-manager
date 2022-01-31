@@ -41,6 +41,7 @@
                             >Contact Ninja</span
                         >
                     </a>
+                    <h3 id="headerName">Welcome, PLACEHOLDER</h3>
                     <div>
                         <input
                             class="chooseColorButton"
@@ -73,7 +74,6 @@
                             ></button>
                         </div>
                     </div>
-                    <h3 id="headerName">Welcome, PLACEHOLDER</h3>
                     <div class="col-md-1 text-end">
                         <button
                             type="button"
@@ -95,6 +95,14 @@
                         onsubmit="searchContacts(); return false;"
                     >
                         <div class="form-group mx-sm-3 mb-2 formButton">
+                            <button
+                                id="addButton"
+                                type="button"
+                                class="btn btn-primary mb-1"
+                                onclick="addContact();"
+                            >
+                                Add New Contact
+                            </button>
                             <input
                                 class="form-control"
                                 id="searchForm"
@@ -103,7 +111,9 @@
                             />
                             <button
                                 type="button"
-                                class="btn btn-secondary mb-1"
+                                id="searchButton"
+                                class="btn btn-secondary"
+                                ="btn btn-secondary mb-1"
                                 onclick="searchContacts();"
                             >
                                 Search
@@ -113,15 +123,6 @@
 
                     <p id="numResults"></p>
                 </main>
-
-                <button
-                    id="addButton"
-                    type="button"
-                    class="btn btn-primary mb-1"
-                    onclick="addContact();"
-                >
-                    Add New Contact
-                </button>
 
                 <div class="flex-container">
                     <div id="edit-container">
