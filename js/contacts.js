@@ -3,13 +3,18 @@ let sav, msnry;
 const largeNum = 1000000000;
 
 const buttonColors = ["blue", "red", "green", "orange"];
-const gradients = ["linear-gradient(#548cff, #24272b)", "linear-gradient(#ea4c46, #24272b)",
-                    "linear-gradient(#57c84d, #24272b)", "linear-gradient(#ffad60, #24272b)"];
+const gradients = [
+    "linear-gradient(#548cff, #24272b)",
+    "linear-gradient(#ea4c46, #24272b)",
+    "linear-gradient(#57c84d, #24272b)",
+    "linear-gradient(#ffad60, #24272b)",
+];
+
 let contacList = [];
 let colorIndex = 0;
+let mainColorIndex = 0;
 
 initializeColorMenu();
-
 
 // Spawn a new contact on the div
 function spawnContact(
@@ -43,6 +48,8 @@ function spawnContact(
     infoSection.children[1].innerHTML = `${phone}`;
     infoSection.children[3].innerHTML = `${email}`;
     infoSection.children[5].innerHTML = `${address}`;
+
+    contac.style.background = gradients[mainColorIndex];
 
     const favImg = contac.children[7].children[0];
     if (contac.isFavorite === 0) {
@@ -188,7 +195,6 @@ function save(contac) {
     editing = false;
 
     document.getElementById("dropdownMenu").style.visibility = "visible";
-    contac.children[8].style.bottom = "0px";
     infoSection.children[6].remove();
 }
 
@@ -202,8 +208,6 @@ function edit(contacOuter) {
     editing = true;
     document.getElementById("dropdownMenu").style.visibility = "hidden";
 
-    //Give space to address slot
-    contacOuter.children[0].children[8].style.bottom = "-10px";
 
     // Get slots
     const fnameSlot = contac.children[2];
@@ -231,6 +235,7 @@ function edit(contacOuter) {
     lnameSlot.children[0].value = lastname;
 
     notesSlot.innerHTML = `<input class="edits" "type="text"/>`;
+    notesSlot.style.width = "250px";// Gives more space to notes
     notesSlot.children[0].value = notes;
 
     emailSlot.innerHTML = `<input class="edits" type="text" />`;
@@ -241,6 +246,8 @@ function edit(contacOuter) {
 
     addrSlot.innerHTML = `<input class="edits" type="text" />`;
     addrSlot.children[0].value = address;
+
+    contacOuter.children[0].style.height = "320px";
 
     //console.log(document.getElementById("address"));
 
@@ -325,6 +332,7 @@ function setFavorite(contac) {
 }
 
 function extend(contacOuter, stay = false) {
+
     // Extend div
     const infoSection = contacOuter.children[0].children[5];
     if (contacOuter.classList.contains("extended") && !stay) {
@@ -332,6 +340,7 @@ function extend(contacOuter, stay = false) {
             "./images/arrows-expand.svg";
         infoSection.style.display = "none";
         contacOuter.classList.remove("extended");
+        contacOuter.children[0].style.height = "200px";
     } else {
         contacOuter.children[0].children[8].children[0].src =
             "./images/arrows-collapse.svg";
@@ -339,6 +348,8 @@ function extend(contacOuter, stay = false) {
         if (!contacOuter.classList.contains("extended")) {
             contacOuter.classList.add("extended");
         }
+        
+        contacOuter.children[0].style.height = "320px";
     }
     msnry.layout();
 }
@@ -400,17 +411,18 @@ function setColors(contac) {
     contac.children[1].style.backgroundColor = buttonColors[colorIndex];
 }
 
-function initializeColorMenu(){
-    const colorMenu = document.getElementById('colorMenu');
+function initializeColorMenu() {
+    const colorMenu = document.getElementById("colorMenu");
 
-    for(let i = 0; i < 4; i++){
+    for (let i = 0; i < 4; i++) {
         colorMenu.children[i].style.backgroundColor = buttonColors[i];
-        colorMenu.children[i].addEventListener("click", () =>{
-            document.getElementById('chosenColor').style.backgroundColor = buttonColors[i];
-            for(let contac of contacList){
+        colorMenu.children[i].addEventListener("click", () => {
+            document.getElementById("chosenColor").style.backgroundColor =
+                buttonColors[i];
+            mainColorIndex = i;
+            for (let contac of contacList) {
                 contac.style.background = gradients[i];
             }
-        })
-    }    
-    
+        });
+    }
 }

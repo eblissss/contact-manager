@@ -43,7 +43,7 @@ function init() {
 
     // Mouse movement
     (mx = 0), (my = 0);
-    document.body.addEventListener("pointermove", onPointerMove);
+    //document.body.addEventListener("pointermove", onPointerMove);
 
     // Renderer settings
     renderer = new THREE.WebGLRenderer({

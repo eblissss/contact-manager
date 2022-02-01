@@ -41,6 +41,7 @@
                             >Contact Ninja</span
                         >
                     </a>
+                    <h3 id="headerName">Welcome, PLACEHOLDER</h3>
                     <div>
                         <input
                             class="chooseColorButton"
@@ -73,7 +74,6 @@
                             ></button>
                         </div>
                     </div>
-                    <h3 id="headerName">Welcome, PLACEHOLDER</h3>
                     <div class="col-md-1 text-end">
                         <button
                             type="button"
@@ -95,6 +95,14 @@
                         onsubmit="searchContacts(); return false;"
                     >
                         <div class="form-group mx-sm-3 mb-2 formButton">
+                            <button
+                                id="addButton"
+                                type="button"
+                                class="btn btn-primary mb-1"
+                                onclick="addContact();"
+                            >
+                                Add New Contact
+                            </button>
                             <input
                                 class="form-control"
                                 id="searchForm"
@@ -103,7 +111,9 @@
                             />
                             <button
                                 type="button"
-                                class="btn btn-secondary mb-1"
+                                id="searchButton"
+                                class="btn btn-secondary"
+                                ="btn btn-secondary mb-1"
                                 onclick="searchContacts();"
                             >
                                 Search
@@ -114,15 +124,6 @@
                     <p id="numResults"></p>
                 </main>
 
-                <button
-                    id="addButton"
-                    type="button"
-                    class="btn btn-primary mb-1"
-                    onclick="addContact();"
-                >
-                    Add New Contact
-                </button>
-
                 <div class="flex-container">
                     <div id="edit-container">
                         <form action="#" class="edit-form" id="edit-form">
@@ -130,7 +131,7 @@
                             <div class="editinputs">
                                 <label for="firstName">first name</label>
                                 <input
-                                    class="edits"
+                                    class="edits" style="border-bottom: none;"
                                     id="firstName"
                                     placeholder="first name"
                                 />
@@ -139,7 +140,7 @@
                             <div class="editinputs">
                                 <label for="lastName">last name</label>
                                 <input
-                                    class="edits"
+                                    class="edits" style="border-bottom: none"
                                     id="lastName"
                                     placeholder="last name"
                                 />
@@ -148,7 +149,7 @@
                             <div class="editinputs">
                                 <label for="email">📧 email</label>
                                 <input
-                                    class="edits"
+                                    class="edits" style="border-bottom: none"
                                     id="email"
                                     placeholder="email"
                                 />
@@ -157,7 +158,7 @@
                             <div class="editinputs">
                                 <label for="phone">📞 phone</label>
                                 <input
-                                    class="edits"
+                                    class="edits" style="border-bottom: none"
                                     id="phone"
                                     placeholder="phone"
                                 />
@@ -166,7 +167,7 @@
                             <div class="editinputs">
                                 <label for="address">📍 address</label>
                                 <input
-                                    class="edits"
+                                    class="edits" style="border-bottom: none"
                                     id="address"
                                     placeholder="address"
                                 />
@@ -175,7 +176,7 @@
                             <div class="editinputs">
                                 <label for="address">📒 notes</label>
                                 <textarea
-                                    class="edits noteInput"
+                                    class="edits noteInput" style="border-bottom: none"
                                     id="notes"
                                     placeholder="notes..."
                                     maxlength="50"
