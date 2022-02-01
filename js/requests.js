@@ -15,3 +15,23 @@ async function makeRequest(endpoint, data = {}) {
     }
     return res.json();
 }
+
+// Check the database to see if the user already exists
+// Unsure what the if condition should be here, need to figure that out later.
+
+// async function checkForUser(endpoint, data={}) {
+//     const res = await $.ajax({
+//         url: ("https://contacts.ninja/LAMPAPI/" + "users/" + endpoint + extension),
+//         type: 'GET',
+//         datatype: 'json',
+//         sucess: () => {
+//             if (res.data) return true;
+//             else return false;
+//         }
+//     });
+
+//     if (!res.ok) {
+//         return { error: "Server Error" };
+//     }
+//     return false;
+// }

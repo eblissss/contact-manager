@@ -17,6 +17,12 @@ function doLogin() {
     let password = document.getElementById("password").value;
     let hash = md5(password);
 
+    // if (checkForUser(login, login)) return;  // If user exits, invalid login,
+
+    /*
+        Inser 
+    */
+
     //document.getElementById("loginResult").innerHTML = "";
 
     // Create payload
