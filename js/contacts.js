@@ -38,8 +38,8 @@ function spawnContact(
 
     const infoSection = contac.children[5];
 
-    infoSection.children[1].innerHTML = `${phone}`;
-    infoSection.children[3].innerHTML = `${email}`;
+    infoSection.children[3].innerHTML = `${phone}`;  // was 1
+    infoSection.children[1].innerHTML = `${email}`;  // was 3
     infoSection.children[5].innerHTML = `${address}`;
 
     // Set image
@@ -96,8 +96,8 @@ function add(contac) {
 
     const infoSection = contac.children[5];
 
-    const phoneSlot = infoSection.children[1];
-    const emailSlot = infoSection.children[3];
+    const phoneSlot = infoSection.children[3];  // was 1
+    const emailSlot = infoSection.children[1];  // was 3
     const addrSlot = infoSection.children[5];
 
     // Get slot info
@@ -144,8 +144,8 @@ function save(contac) {
 
     const infoSection = contac.children[5];
 
-    const phoneSlot = infoSection.children[1];
-    const emailSlot = infoSection.children[3];
+    const phoneSlot = infoSection.children[3];  // was 1
+    const emailSlot = infoSection.children[1];  // was 3
     const addrSlot = infoSection.children[5];
 
     // Grab info
@@ -165,8 +165,8 @@ function save(contac) {
     contac.children[3].innerHTML = lastname;
     contac.children[4].innerHTML = notes;
 
-    infoSection.children[1].innerHTML = `${phoneNum}`;
-    infoSection.children[3].innerHTML = `${emailAddr}`;
+    infoSection.children[3].innerHTML = `${phoneNum}`;  // was 1
+    infoSection.children[1].innerHTML = `${emailAddr}`;  // was 3
     infoSection.children[5].innerHTML = `${address}`;
 
     // Save data
@@ -204,8 +204,8 @@ function cancel(contac, info) {
     contac.children[3].innerHTML = info[1];
     contac.children[4].innerHTML = info[2];
 
-    infoSection.children[1].innerHTML = `${info[3]}`;
-    infoSection.children[3].innerHTML = `${info[4]}`;
+    infoSection.children[3].innerHTML = `${info[3]}`; // was 3
+    infoSection.children[1].innerHTML = `${info[4]}`; // was 1
     infoSection.children[5].innerHTML = `${info[5]}`;
 
     editing = false;
@@ -232,8 +232,8 @@ function edit(contacOuter) {
 
     const infoSection = contac.children[5];
 
-    const phoneSlot = infoSection.children[1];
-    const emailSlot = infoSection.children[3];
+    const phoneSlot = infoSection.children[3];  // was 1
+    const emailSlot = infoSection.children[1];  // was 3
     const addrSlot = infoSection.children[5];
 
     // Get slot info
