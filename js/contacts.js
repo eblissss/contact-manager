@@ -203,7 +203,6 @@ function cancel(contac, info){
 
     const infoSection = contac.children[5];
 
-    console.log(info[0]);
     contac.children[2].innerHTML = info[0];
     contac.children[3].innerHTML = info[1];
     contac.children[4].innerHTML = info[2];
