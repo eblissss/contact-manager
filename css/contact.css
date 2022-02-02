@@ -1,4 +1,3 @@
-
 /* Contact Spread */
 .grid-item {
     width: 400px;
@@ -71,24 +70,21 @@
     left: 30px;
 }
 
-.contact-image {
+.contact-image,
+.colorButton {
     height: 50px;
     width: 50px;
     border-radius: 5px;
-    border: 4px solid;
+    border: 4px solid white;
     position: absolute;
-    left: 15px;
+    left: 12px;
+}
+
+.contact-image {
     top: 10px;
 }
 
 .colorButton {
-    height: 50px;
-    width: 50px;
-    border-radius: 2px;
-    border: 2px solid white;
-    border-radius: 20%;
-    position: absolute;
-    left: 15px;
     top: 65px;
     background-color: red;
 }
@@ -106,8 +102,8 @@
 
 .triple-dots {
     color: white;
-    height: 22px;
-    width: 22px;
+    height: 25px;
+    width: 25px;
 }
 
 .textBar {
@@ -116,14 +112,14 @@
 
 .favButton {
     position: absolute;
-    top: 124px;
-    left: 13px;
+    top: 118px;
+    left: 5px;
 }
 
 .fav {
     color: white;
-    width: 30px;
-    height: 30px;
+    width: 39px;
+    height: 39px;
 }
 
 .dropButton {
@@ -151,25 +147,17 @@ input {
     color: #eee;
 }
 
-/*Added changes for buttons*/
-.logoutBut {
-  background: white;
-  border: 2px solid #ffffff;
-  border-radius: 40px;
-  margin: 0 auto;
-  font-weight: 500;
-  color: #142850;
-  outline: none;
-  cursor: pointer;
-  box-sizing: border-box;
-  display: block;
-	height: 40px;
-  width: 100px;
+.cancelButton,
+.saveButton {
+    position: absolute;
+    left: -40px;
+    width: 80px;
 }
 
-.logoutBut:hover {
-  background: transparent;
-  border: 2px solid #ffffff;
-  color: #ffffff;
-  transition: 0.3s ease-in-out;
+.cancelButton {
+    top: 0px;
+}
+
+.saveButton {
+    top: 50px;
 }

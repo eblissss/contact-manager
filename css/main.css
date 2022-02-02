@@ -81,29 +81,12 @@ canvas {
     background-color: #102040bf;
     border: 3px solid white;
     margin-right: 2rem;
+    border-radius: 20px;
 }
 
 #searchButton {
     border: 3px solid #24272b;
     width: 80px;
-}
-
-.cancelButton{
-    width: 84px;
-    height: 40px;
-    font-size: 15px;
-    margin-left: -25px;
-    margin-top: -100px;
-    margin-bottom: 80px;
-}
-
-.saveButton{
-    width: 84px;
-    height: 40px;
-    font-size: 15px;
-    margin-left: -135px;
-    margin-top: -50px;
-    margin-bottom: 40px;
 }
 
 #searchForm {
@@ -113,25 +96,20 @@ canvas {
     border: 3px solid #24272b;
 }
 
-.grid {
-    place-self: center;
-}
-
 #contactPane {
+    width: 100%;
     min-height: 50%;
     margin: 10px auto;
     border-radius: 15px;
-    justify-content: center;
 }
 
 .contactPaneParent {
-    /* background-color: #24272be3; */
     background: #001030bf;
     border-radius: 15px;
     display: inline-flex;
     flex: 2;
     justify-content: center;
-    margin: 0px;
+    margin-left: 1rem;
 }
 
 .flex-container {
@@ -171,7 +149,6 @@ canvas {
     color: white;
     margin-bottom: 0.5rem;
     font-size: 0.9rem;
-    border-bottom: 1px solid rgba(231, 231, 231, 0.8);
 }
 
 .editButton,
@@ -196,18 +173,16 @@ canvas {
     color: white;
 }
 
-.edits{
+.edits {
     width: 90%;
     border: none;
+    border-bottom: 1px solid #fff;
     background: none;
     outline: none;
-    border-bottom: 2px solid black;
-    text-shadow: 0 0.05rem 0.1rem rgba(0, 0, 0, 0.5);
 }
 
-
-
 .noteInput {
+    color: white;
     overflow: hidden;
     resize: none;
 }
@@ -216,17 +191,46 @@ canvas {
     height: 40px;
     width: 40px;
     border-radius: 4px;
-    border: 2px solid white;
+    border: 3px solid white;
     border-radius: 20%;
     margin-right: 2rem;
     background-color: Blue;
 }
 
 .chooseColorOption {
-    height: 50px;
-    width: 50px;
-    border-radius: 2px;
-    border: 2px solid white;
+    height: 40px;
+    width: 40px;
+    border-radius: 4px;
+    border: 3px solid white;
     border-radius: 20%;
     background-color: Blue;
+}
+
+#colorMenu {
+    background: #2c4a8677;
+    padding: 5px 5px;
+    border-radius: 10px;
+}
+
+/*Added changes for buttons*/
+.logoutBut {
+    background: white;
+    border: 2px solid #ffffff;
+    border-radius: 40px;
+    margin: 0 auto;
+    font-weight: 500;
+    color: #142850;
+    outline: none;
+    cursor: pointer;
+    box-sizing: border-box;
+    display: block;
+    height: 40px;
+    width: 100px;
+}
+
+.logoutBut:hover {
+    background: transparent;
+    border: 2px solid #ffffff;
+    color: #ffffff;
+    transition: 0.3s ease-in-out;
 }

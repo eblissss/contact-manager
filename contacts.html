@@ -52,7 +52,7 @@
                             aria-expanded="false"
                         />
                         <div
-                            class="dropdown-menu dropdown-menu-dark"
+                            class="dropdown-menu"
                             aria-labelledby="dropdownMenu"
                             id="colorMenu"
                         >
@@ -75,14 +75,14 @@
                         </div>
                     </div>
                     <div class="col-md-1 text-end">
-                      <button
-                          type="button"
-                          id="logoutButton"
-                          class="logoutBut"
-                          onclick="doLogout();"
-                      >
-                          Logout
-                      </button>
+                        <button
+                            type="button"
+                            id="logoutButton"
+                            class="logoutBut"
+                            onclick="doLogout();"
+                        >
+                            Logout
+                        </button>
                     </div>
                 </header>
 
@@ -94,14 +94,14 @@
                         onsubmit="searchContacts(); return false;"
                     >
                         <div class="form-group mx-sm-3 mb-2 formButton">
-                          <button
-                              id="addButton"
-                              type="button"
-                              class="btn btn-primary mb-1" style="border-radius: 40px;"
-                              onclick="addContact();"
-                          >
-                              Add New Contact
-                          </button>
+                            <button
+                                id="addButton"
+                                type="button"
+                                class="btn btn-primary mb-1"
+                                onclick="addContact();"
+                            >
+                                Add New Contact
+                            </button>
                             <input
                                 class="form-control"
                                 id="searchForm"
@@ -130,52 +130,57 @@
                             <div class="editinputs">
                                 <label for="firstName">first name</label>
                                 <input
-                                    class="edits" style="border-bottom: none;"
+                                    class="edits"
                                     id="firstName"
                                     placeholder="first name"
+                                    maxlength="50"
                                 />
                             </div>
 
                             <div class="editinputs">
                                 <label for="lastName">last name</label>
                                 <input
-                                    class="edits" style="border-bottom: none"
+                                    class="edits"
                                     id="lastName"
                                     placeholder="last name"
+                                    maxlength="50"
                                 />
                             </div>
 
                             <div class="editinputs">
                                 <label for="email">📧 email</label>
                                 <input
-                                    class="edits" style="border-bottom: none"
+                                    class="edits"
                                     id="email"
                                     placeholder="email"
+                                    maxlength="50"
                                 />
                             </div>
 
                             <div class="editinputs">
                                 <label for="phone">📞 phone</label>
                                 <input
-                                    class="edits" style="border-bottom: none"
+                                    class="edits"
                                     id="phone"
                                     placeholder="phone"
+                                    maxlength="50"
                                 />
                             </div>
 
                             <div class="editinputs">
                                 <label for="address">📍 address</label>
                                 <input
-                                    class="edits" style="border-bottom: none"
+                                    class="edits"
                                     id="address"
                                     placeholder="address"
+                                    maxlength="50"
                                 />
                             </div>
 
                             <div class="editinputs">
                                 <label for="address">📒 notes</label>
                                 <textarea
-                                    class="edits noteInput" style="border-bottom: none"
+                                    class="edits noteInput"
                                     id="notes"
                                     placeholder="notes..."
                                     maxlength="50"
@@ -252,13 +257,6 @@
                 <h2 class="lname">NAME MISSING</h2>
 
                 <h4 class="notes">Information Notes Information Notes</h4>
-                <!--<button
-                    id="saveButton"
-
-                    class="btn btn-secondary"
-                >
-                    Save
-                </button>-->
                 <div class="info-grid" class="drop-info">
                     <h4 class="g">📧:</h4>
                     <h4 class="g-i email">joe@gmail.com</h4>

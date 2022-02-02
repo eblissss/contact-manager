@@ -2,13 +2,8 @@ let editing = false;
 let sav, msnry;
 const largeNum = 1000000000;
 
-const buttonColors = ["blue", "red", "green", "orange"];
-const gradients = [
-    "linear-gradient(#548cff, #24272b)",
-    "linear-gradient(#ea4c46, #24272b)",
-    "linear-gradient(#57c84d, #24272b)",
-    "linear-gradient(#ffad60, #24272b)",
-];
+const buttonColors = ["blue", "purple", "green", "red"];
+const gradients = ["#2c4a86bb", "#862c77bb", "#2c863bbb", "#872d2dbb"];
 
 let contacList = [];
 let colorIndex = 0;
@@ -36,7 +31,7 @@ function spawnContact(
     const contac = contacOuter.children[0];
     contac.id = "contact-" + id;
     contac.isFavorite = isFavorite;
-    console.log(contac.id);
+    //console.log(contac.id);
 
     // Add info
     contac.children[2].innerHTML = firstname;
@@ -199,8 +194,7 @@ function save(contac) {
     infoSection.children[6].remove();
 }
 
-function cancel(contac, info){
-
+function cancel(contac, info) {
     const infoSection = contac.children[5];
 
     contac.children[2].innerHTML = info[0];
@@ -223,11 +217,10 @@ function edit(contacOuter) {
     console.log("editing");
     extend(contacOuter, (stay = true));
     const contac = contacOuter.children[0];
-    // HIDE EDITING OPTION
 
     editing = true;
-    document.getElementById("dropdownMenu").style.visibility = "hidden";
-
+    // HIDE EDITING OPTION
+    contac.children[6].style.display = "none";
 
     // Get slots
     const fnameSlot = contac.children[2];
@@ -255,7 +248,7 @@ function edit(contacOuter) {
     lnameSlot.children[0].value = lastname;
 
     notesSlot.innerHTML = `<input class="edits" "type="text"/>`;
-    notesSlot.style.width = "250px";// Gives more space to notes
+    notesSlot.style.width = "250px"; // Gives more space to notes
     notesSlot.children[0].value = notes;
 
     emailSlot.innerHTML = `<input class="edits" type="text" />`;
@@ -267,43 +260,50 @@ function edit(contacOuter) {
     addrSlot.innerHTML = `<input class="edits" type="text" />`;
     addrSlot.children[0].value = address;
 
-    contacOuter.children[0].style.height = "320px";
-
     const cancelButton = document.createElement("button");
-    cancelButton.classList.add("btn");
+    cancelButton.classList.add("editButton");
     cancelButton.classList.add("cancelButton");
-    cancelButton.style.backgroundColor = "white";
     cancelButton.innerHTML = "CANCEL";
 
     const saveButton = document.createElement("button");
-    saveButton.classList.add("btn");
+    saveButton.classList.add("editButtonSave");
     saveButton.classList.add("saveButton");
-    saveButton.style.backgroundColor = "white";
     saveButton.innerHTML = "SAVE";
 
     infoSection.appendChild(cancelButton);
     infoSection.appendChild(saveButton);
 
-    cancelButton.addEventListener(
-        "click",
-        (sav = () => {
-            cancel(contac, new Array(firstname, lastname, notes, phoneNum, emailAddr, address));
+    // Ensure only one listener
+    if (!cancelButton.classList.contains("listening")) {
+        cancelButton.classList.add("listening");
+
+        cancelButton.addEventListener("click", () => {
+            cancel(
+                contac,
+                new Array(
+                    firstname,
+                    lastname,
+                    notes,
+                    phoneNum,
+                    emailAddr,
+                    address
+                )
+            );
             saveButton.style.visibility = "hidden";
             cancelButton.style.visibility = "hidden";
-        })
-    );
-    saveButton.addEventListener(
-        "click",
-        (sav = () => {
+            contac.children[6].style.display = "inline";
+        });
+        saveButton.addEventListener("click", () => {
             if (fnameSlot.children[0].value && lnameSlot.children[0].value) {
                 save(contac);
                 saveButton.style.visibility = "hidden";
                 cancelButton.style.visibility = "hidden";
+                contac.children[6].style.display = "inline";
             } else {
                 console.log("Err: Must have a first and last name");
             }
-        })
-    );
+        });
+    }
 }
 
 // Delete contact
@@ -327,6 +327,16 @@ function deleteContact(contac) {
 
     // We should have animations too
     contac.remove();
+    msnry.reloadItems();
+    msnry.layout();
+
+    // Update num
+    const numResults = document.getElementById("numResults");
+    const numRes = numResults.innerHTML.slice(
+        0,
+        numResults.innerHTML.indexOf(" ")
+    );
+    numResults.innerHTML = numRes + " contacts found.";
 }
 
 // Set a contact as favorite
@@ -360,7 +370,6 @@ function setFavorite(contac) {
 }
 
 function extend(contacOuter, stay = false) {
-
     // Extend div
     const infoSection = contacOuter.children[0].children[5];
     if (contacOuter.classList.contains("extended") && !stay) {
@@ -376,7 +385,7 @@ function extend(contacOuter, stay = false) {
         if (!contacOuter.classList.contains("extended")) {
             contacOuter.classList.add("extended");
         }
-        
+
         contacOuter.children[0].style.height = "320px";
     }
     msnry.layout();
@@ -384,8 +393,6 @@ function extend(contacOuter, stay = false) {
 
 window.onload = function () {
     makeRequest("getFavorites", { userId: userId }).then((res) => {
-        //console.log(res);
-
         if (res.error === "" && res.results.length > 0) {
             console.log("found favorite contacts");
 
@@ -427,9 +434,7 @@ window.onload = function () {
         columnWidth: 400,
         gutter: 10,
         stagger: 25,
-        fitWidth: true,
     });
-    console.log(msnry.getItemElements());
 };
 
 function setColors(contac) {

@@ -51,8 +51,6 @@ function addContact() {
     if (editPane.style.display == "none" || editPane.style.display == "") {
         editPane.style.display = "inline-flex";
     }
-    msnry.reloadItems();
-    msnry.layout();
 
     // Remove add button
     const addButton = document.getElementById("addButton");
@@ -79,6 +77,8 @@ function addContact() {
             addButton.style.display = "inline-block";
         });
     }
+
+    msnry.layout();
 }
 
 function createContact() {
