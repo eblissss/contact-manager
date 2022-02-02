@@ -97,7 +97,7 @@
                             <button
                                 id="addButton"
                                 type="button"
-                                class="btn btn-primary mb-1"
+                                class="stn-btn btn btn-primary"
                                 onclick="addContact();"
                             >
                                 Add New Contact
@@ -130,7 +130,7 @@
                             <div class="editinputs">
                                 <label for="firstName">first name</label>
                                 <input
-                                    class="edits"
+                                    class="addEdits"
                                     id="firstName"
                                     placeholder="first name"
                                     maxlength="50"
@@ -140,7 +140,7 @@
                             <div class="editinputs">
                                 <label for="lastName">last name</label>
                                 <input
-                                    class="edits"
+                                    class="addEdits"
                                     id="lastName"
                                     placeholder="last name"
                                     maxlength="50"
@@ -150,7 +150,7 @@
                             <div class="editinputs">
                                 <label for="email">📧 email</label>
                                 <input
-                                    class="edits"
+                                    class="addEdits"
                                     id="email"
                                     placeholder="email"
                                     maxlength="50"
@@ -160,7 +160,7 @@
                             <div class="editinputs">
                                 <label for="phone">📞 phone</label>
                                 <input
-                                    class="edits"
+                                    class="addEdits"
                                     id="phone"
                                     placeholder="phone"
                                     maxlength="50"
@@ -170,7 +170,7 @@
                             <div class="editinputs">
                                 <label for="address">📍 address</label>
                                 <input
-                                    class="edits"
+                                    class="addEdits"
                                     id="address"
                                     placeholder="address"
                                     maxlength="50"
@@ -180,7 +180,7 @@
                             <div class="editinputs">
                                 <label for="address">📒 notes</label>
                                 <textarea
-                                    class="edits noteInput"
+                                    class="addEdits noteInput"
                                     id="notes"
                                     placeholder="notes..."
                                     maxlength="50"
@@ -189,14 +189,14 @@
 
                             <div id="editButtonDiv">
                                 <button
-                                    class="btn editButton"
+                                    class="stn-btn editButton"
                                     id="cancel-button"
                                     type="button"
                                 >
                                     Cancel
                                 </button>
                                 <button
-                                    class="btn editButtonSave"
+                                    class="stn-btn editButtonSave"
                                     id="save-button"
                                     type="button"
                                 >
@@ -206,7 +206,7 @@
                         </form>
                     </div>
 
-                    <div class="contactPaneParent">
+                    <div id="contactPaneParent">
                         <div id="contactPane" class="grid"></div>
                     </div>
                 </div>

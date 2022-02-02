@@ -78,10 +78,14 @@ canvas {
 }
 
 #addButton {
-    background-color: #102040bf;
+    background-color: white;
     border: 3px solid white;
     margin-right: 2rem;
     border-radius: 20px;
+}
+
+#addButton:hover {
+    background-color: transparent;
 }
 
 #searchButton {
@@ -99,11 +103,11 @@ canvas {
 #contactPane {
     width: 100%;
     min-height: 50%;
-    margin: 10px auto;
+    margin: 0 auto;
     border-radius: 15px;
 }
 
-.contactPaneParent {
+#contactPaneParent {
     background: #001030bf;
     border-radius: 15px;
     display: inline-flex;
@@ -133,7 +137,7 @@ canvas {
     padding: 30px 40px;
     margin: 0 auto;
     display: block;
-    background-image: linear-gradient(#548cff, #24272b);
+    background: #2c4a86ee;
     border-radius: 16px;
     text-align: center;
     box-shadow: 2px 2px 8px #000;
@@ -154,26 +158,14 @@ canvas {
 .editButton,
 .editButtonSave {
     width: 40%;
-    background: white;
-    border: none;
-    border-radius: 30px;
     padding: 10px 10px;
-    font-size: 0.9rem;
     margin: 1.2rem 0.4rem;
-    font-weight: 500;
     text-transform: uppercase;
-    color: #548cff;
-    outline: none;
     cursor: pointer;
-    font-family: "Varela Round", sans-serif;
 }
 
-.editButtonSave {
-    background: #548cff;
-    color: white;
-}
-
-.edits {
+.edits,
+.addEdits {
     width: 90%;
     border: none;
     border-bottom: 1px solid #fff;
@@ -181,7 +173,12 @@ canvas {
     outline: none;
 }
 
-.noteInput {
+.addEdits {
+    margin-bottom: 0.5rem;
+}
+
+.noteInput,
+.noteInputEdit {
     color: white;
     overflow: hidden;
     resize: none;
@@ -213,24 +210,35 @@ canvas {
 }
 
 /*Added changes for buttons*/
-.logoutBut {
+.logoutBut,
+.stn-btn {
     background: white;
     border: 2px solid #ffffff;
     border-radius: 40px;
-    margin: 0 auto;
     font-weight: 500;
-    color: #142850;
+    color: #001030;
     outline: none;
     cursor: pointer;
+}
+
+.logoutBut {
     box-sizing: border-box;
     display: block;
     height: 40px;
     width: 100px;
+    margin: 0 auto;
 }
 
-.logoutBut:hover {
+.logoutBut:hover,
+.stn-btn:hover {
     background: transparent;
     border: 2px solid #ffffff;
     color: #ffffff;
     transition: 0.3s ease-in-out;
+}
+
+.editButtonSave {
+    background: #001030;
+    border: 2px solid #001030;
+    color: white;
 }

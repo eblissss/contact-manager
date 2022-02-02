@@ -78,6 +78,11 @@ function addContact() {
         });
     }
 
+    // Force pane to resize (will not automatically :{ )
+    const panepane = document.getElementById("contactPaneParent");
+    panepane.style.width = "70%";
+
+    msnry.reloadItems();
     msnry.layout();
 }
 
@@ -89,10 +94,10 @@ function createContact() {
         (id = largeNum), // will be saved as proper ID by DB
         editForm.children[1].children[1].value,
         editForm.children[2].children[1].value,
+        editForm.children[6].children[1].value,
         editForm.children[3].children[1].value,
         editForm.children[4].children[1].value,
         editForm.children[5].children[1].value,
-        editForm.children[6].children[1].value,
         (isFavorite = 0),
         (added = true) // put at top
     );

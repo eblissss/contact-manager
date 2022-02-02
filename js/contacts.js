@@ -242,32 +242,32 @@ function edit(contacOuter) {
     const address = addrSlot.innerText;
 
     // Replace text with inputs
-    fnameSlot.innerHTML = `<input class="edits" type="text" />`;
+    const editInput = `<input class="edits" type="text" maxlength="50"/>`;
+
+    fnameSlot.innerHTML = editInput;
     fnameSlot.children[0].value = firstname;
-    lnameSlot.innerHTML = `<input class="edits" type="text" />`;
+    lnameSlot.innerHTML = editInput;
     lnameSlot.children[0].value = lastname;
 
-    notesSlot.innerHTML = `<input class="edits" "type="text"/>`;
+    notesSlot.innerHTML = `<textarea class="edits noteInputEdit" maxlength="50"/>`;
     notesSlot.style.width = "250px"; // Gives more space to notes
     notesSlot.children[0].value = notes;
 
-    emailSlot.innerHTML = `<input class="edits" type="text" />`;
+    emailSlot.innerHTML = editInput;
     emailSlot.children[0].value = emailAddr;
 
-    phoneSlot.innerHTML = `<input class="edits" "type="text" />`;
+    phoneSlot.innerHTML = editInput;
     phoneSlot.children[0].value = phoneNum;
 
-    addrSlot.innerHTML = `<input class="edits" type="text" />`;
+    addrSlot.innerHTML = editInput;
     addrSlot.children[0].value = address;
 
     const cancelButton = document.createElement("button");
-    cancelButton.classList.add("editButton");
-    cancelButton.classList.add("cancelButton");
+    cancelButton.classList.add("stn-btn", "editButton", "cancelButton");
     cancelButton.innerHTML = "CANCEL";
 
     const saveButton = document.createElement("button");
-    saveButton.classList.add("editButtonSave");
-    saveButton.classList.add("saveButton");
+    saveButton.classList.add("stn-btn", "editButtonSave", "saveButton");
     saveButton.innerHTML = "SAVE";
 
     infoSection.appendChild(cancelButton);
@@ -434,6 +434,7 @@ window.onload = function () {
         columnWidth: 400,
         gutter: 10,
         stagger: 25,
+        fitWidth: true,
     });
 };
 

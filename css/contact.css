@@ -7,10 +7,10 @@
 .info-grid {
     position: absolute;
     top: 170px;
-    left: 50px;
+    left: 90px;
     color: #eee;
     display: none;
-    grid-template-columns: 1fr 2fr;
+    grid-template-columns: 1fr 10fr;
     gap: 10px;
 }
 
@@ -32,7 +32,6 @@
 }
 
 .contactDiv {
-    /* background: linear-gradient(#548cff, #24272b); */
     background: #2c4a86bb;
     border-radius: 15px;
     border: 4px solid #24272b;
@@ -137,10 +136,13 @@
 }
 
 .notes {
+    text-align: left;
     font-size: medium;
     position: absolute;
     left: 90px;
-    top: 120px;
+    top: 115px;
+    text-overflow: ellipsis;
+    overflow: hidden;
 }
 
 input {
@@ -149,9 +151,11 @@ input {
 
 .cancelButton,
 .saveButton {
+    padding: 8px 5px;
+    font-size: 0.8rem;
     position: absolute;
-    left: -40px;
-    width: 80px;
+    left: -84px;
+    width: 70px;
 }
 
 .cancelButton {
