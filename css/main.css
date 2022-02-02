@@ -120,12 +120,20 @@ canvas {
     display: flex;
     box-shadow: 0 10px 15px -20px black;
     padding-bottom: 50px;
+    flex-flow: row wrap;
 }
 
 #edit-container {
     display: none;
     flex: 1;
     height: 600px;
+}
+
+@media (max-width: 990px) {
+    #edit-container {
+        flex: 1 1 auto;
+        margin-bottom: 2rem;
+    }
 }
 
 .creating {
