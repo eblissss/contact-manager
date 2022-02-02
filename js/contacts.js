@@ -196,6 +196,27 @@ function save(contac) {
 
     document.getElementById("dropdownMenu").style.visibility = "visible";
     infoSection.children[6].remove();
+    infoSection.children[6].remove();
+}
+
+function cancel(contac, info){
+
+    const infoSection = contac.children[5];
+
+    console.log(info[0]);
+    contac.children[2].innerHTML = info[0];
+    contac.children[3].innerHTML = info[1];
+    contac.children[4].innerHTML = info[2];
+
+    infoSection.children[1].innerHTML = `${info[3]}`;
+    infoSection.children[3].innerHTML = `${info[4]}`;
+    infoSection.children[5].innerHTML = `${info[5]}`;
+
+    editing = false;
+
+    document.getElementById("dropdownMenu").style.visibility = "visible";
+    infoSection.children[6].remove();
+    infoSection.children[6].remove();
 }
 
 // Put contact in edit mode
@@ -249,33 +270,45 @@ function edit(contacOuter) {
 
     contacOuter.children[0].style.height = "320px";
 
-    //console.log(document.getElementById("address"));
+    const cancelButton = document.createElement("button");
+    cancelButton.classList.add("btn");
+    cancelButton.classList.add("cancelButton");
+    cancelButton.style.backgroundColor = "white";
+    cancelButton.innerHTML = "CANCEL";
 
-    // const saveButton = document.createButton('button');
-    //saveButton.display = "block";
+    const saveButton = document.createElement("button");
+    saveButton.classList.add("btn");
+    saveButton.classList.add("saveButton");
+    saveButton.style.backgroundColor = "white";
+    saveButton.innerHTML = "SAVE";
 
-    //  Add save button (should probably just show/hide instead of creating each time)
-    const sabeButton = document.createElement("button");
-    sabeButton.classList.add("btn");
-    sabeButton.style.backgroundColor = "white";
-    sabeButton.innerHTML = "SAVE";
-    sabeButton.style.width = "75px";
-    sabeButton.style.marginLeft = "-10px";
-    sabeButton.style.marginTop = "-65px";
-    sabeButton.style.marginBottom = "50px";
+    infoSection.appendChild(cancelButton);
+    infoSection.appendChild(saveButton);
 
-    sabeButton.addEventListener(
+    cancelButton.addEventListener(
+        "click",
+        (sav = () => {
+            if (fnameSlot.children[0].value && lnameSlot.children[0].value) {
+                cancel(contac, new Array(firstname, lastname, notes, phoneNum, emailAddr, address));
+                saveButton.style.visibility = "hidden";
+                cancelButton.style.visibility = "hidden";
+            } else {
+                console.log("Error");
+            }
+        })
+    );
+    saveButton.addEventListener(
         "click",
         (sav = () => {
             if (fnameSlot.children[0].value && lnameSlot.children[0].value) {
                 save(contac);
-                sabeButton.style.visibility = "hidden";
+                saveButton.style.visibility = "hidden";
+                cancelButton.style.visibility = "hidden";
             } else {
                 console.log("Err: Must have a first and last name");
             }
         })
     );
-    infoSection.appendChild(sabeButton);
 }
 
 // Delete contact
