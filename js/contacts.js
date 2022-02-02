@@ -287,13 +287,9 @@ function edit(contacOuter) {
     cancelButton.addEventListener(
         "click",
         (sav = () => {
-            if (fnameSlot.children[0].value && lnameSlot.children[0].value) {
-                cancel(contac, new Array(firstname, lastname, notes, phoneNum, emailAddr, address));
-                saveButton.style.visibility = "hidden";
-                cancelButton.style.visibility = "hidden";
-            } else {
-                console.log("Error");
-            }
+            cancel(contac, new Array(firstname, lastname, notes, phoneNum, emailAddr, address));
+            saveButton.style.visibility = "hidden";
+            cancelButton.style.visibility = "hidden";
         })
     );
     saveButton.addEventListener(
