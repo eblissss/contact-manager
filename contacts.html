@@ -75,15 +75,14 @@
                         </div>
                     </div>
                     <div class="col-md-1 text-end">
-                        <button
-                            type="button"
-                            id="logoutButton"
-                            class="btn btn-outline-primary me-2"
-                            style="width: 100px"
-                            onclick="doLogout();"
-                        >
-                            Logout
-                        </button>
+                      <button
+                          type="button"
+                          id="logoutButton"
+                          class="logoutBut"
+                          onclick="doLogout();"
+                      >
+                          Logout
+                      </button>
                     </div>
                 </header>
 
@@ -95,14 +94,14 @@
                         onsubmit="searchContacts(); return false;"
                     >
                         <div class="form-group mx-sm-3 mb-2 formButton">
-                            <button
-                                id="addButton"
-                                type="button"
-                                class="btn btn-primary mb-1"
-                                onclick="addContact();"
-                            >
-                                Add New Contact
-                            </button>
+                          <button
+                              id="addButton"
+                              type="button"
+                              class="btn btn-primary mb-1" style="border-radius: 40px;"
+                              onclick="addContact();"
+                          >
+                              Add New Contact
+                          </button>
                             <input
                                 class="form-control"
                                 id="searchForm"
@@ -253,10 +252,10 @@
                 <h2 class="lname">NAME MISSING</h2>
 
                 <h4 class="notes">Information Notes Information Notes</h4>
-                <!--<button 
-                    id="saveButton" 
+                <!--<button
+                    id="saveButton"
 
-                    class="btn btn-secondary"    
+                    class="btn btn-secondary"
                 >
                     Save
                 </button>-->
