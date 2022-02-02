@@ -34,7 +34,7 @@
 .contactDiv {
     background: #2c4a86bb;
     border-radius: 15px;
-    border: 4px solid #24272b;
+    border: 4px solid #ffffff;
     padding: 10px 20px;
     -webkit-transition: all 400ms ease;
     transition: all 400ms ease;
@@ -123,15 +123,14 @@
 
 .dropButton {
     position: relative;
-    bottom: -158px;
+    bottom: -155px;
     left: -20px;
     color: #eeeeee;
-    background-color: #24272b;
+    background: none;
     width: calc(100% + 40px);
     height: 28px;
     border-width: 0;
     border-radius: 15px;
-    box-shadow: inset 0px 20px 10px -10px #24272b;
     transition: all 400ms ease;
 }
 

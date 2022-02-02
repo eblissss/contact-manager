@@ -104,6 +104,7 @@ function createContact() {
 
     for (let i = 1; i <= 6; i++) editForm.children[i].children[1].value = "";
 
+    jdenticon.update(".contact-image");
     msnry.reloadItems();
     msnry.layout();
 }
@@ -146,6 +147,8 @@ function searchContacts() {
                     curContact.IsFavorite
                 );
             }
+
+            jdenticon.update(".contact-image");
             msnry.reloadItems();
             msnry.layout();
         } else {

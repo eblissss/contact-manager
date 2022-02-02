@@ -30,8 +30,6 @@ function spawnContact(
     const contacOuter = template.content.cloneNode(true).children[0];
     const contac = contacOuter.children[0];
     contac.id = "contact-" + id;
-    contac.isFavorite = isFavorite;
-    //console.log(contac.id);
 
     // Add info
     contac.children[2].innerHTML = firstname;
@@ -44,8 +42,13 @@ function spawnContact(
     infoSection.children[3].innerHTML = `${email}`;
     infoSection.children[5].innerHTML = `${address}`;
 
+    // Set image
+    contac.children[0].setAttribute("data-jdenticon-value", id);
+
     contac.style.background = gradients[mainColorIndex];
 
+    // Set favorite
+    contac.isFavorite = isFavorite;
     const favImg = contac.children[7].children[0];
     if (contac.isFavorite === 0) {
         favImg.src = "./images/bookmark-star.svg";
@@ -53,8 +56,8 @@ function spawnContact(
         favImg.src = "./images/bookmark-star-fill.svg";
     }
 
-    const dotMenu = contac.children[6].children[1];
     // Add listeners
+    const dotMenu = contac.children[6].children[1];
     dotMenu.children[0].addEventListener("click", () => {
         if (!editing) {
             edit(contacOuter);
@@ -250,7 +253,7 @@ function edit(contacOuter) {
     lnameSlot.children[0].value = lastname;
 
     notesSlot.innerHTML = `<textarea class="edits noteInputEdit" maxlength="50"/>`;
-    notesSlot.style.width = "250px"; // Gives more space to notes
+    notesSlot.style.width = "300px"; // Gives more space to notes
     notesSlot.children[0].value = notes;
 
     emailSlot.innerHTML = editInput;
