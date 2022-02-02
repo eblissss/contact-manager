@@ -150,3 +150,26 @@
 input {
     color: #eee;
 }
+
+/*Added changes for buttons*/
+.logoutBut {
+  background: white;
+  border: 2px solid #ffffff;
+  border-radius: 40px;
+  margin: 0 auto;
+  font-weight: 500;
+  color: #142850;
+  outline: none;
+  cursor: pointer;
+  box-sizing: border-box;
+  display: block;
+	height: 40px;
+  width: 100px;
+}
+
+.logoutBut:hover {
+  background: transparent;
+  border: 2px solid #ffffff;
+  color: #ffffff;
+  transition: 0.3s ease-in-out;
+}
