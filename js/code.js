@@ -51,8 +51,6 @@ function addContact() {
     if (editPane.style.display == "none" || editPane.style.display == "") {
         editPane.style.display = "inline-flex";
     }
-    msnry.reloadItems();
-    msnry.layout();
 
     // Remove add button
     const addButton = document.getElementById("addButton");
@@ -67,6 +65,7 @@ function addContact() {
             for (let i = 1; i <= 6; i++)
                 editForm.children[i].children[1].value = "";
             editPane.style.display = "none";
+            editPane.classList.add("translated");
             addButton.style.display = "inline-block";
             msnry.layout();
             return;
@@ -76,9 +75,22 @@ function addContact() {
         saveButton.addEventListener("click", () => {
             createContact();
             editPane.style.display = "none";
+            editPane.classList.add("translated");
             addButton.style.display = "inline-block";
         });
     }
+
+    // Force pane to resize (will not automatically :{ )
+    const panepane = document.getElementById("contactPaneParent");
+    panepane.style.width = "70%";
+
+    // Animate in
+    setTimeout(() => {
+        editPane.classList.remove("translated");
+    }, 100);
+
+    msnry.reloadItems();
+    msnry.layout();
 }
 
 function createContact() {
@@ -89,16 +101,23 @@ function createContact() {
         (id = largeNum), // will be saved as proper ID by DB
         editForm.children[1].children[1].value,
         editForm.children[2].children[1].value,
+        editForm.children[6].children[1].value,
         editForm.children[3].children[1].value,
         editForm.children[4].children[1].value,
         editForm.children[5].children[1].value,
-        editForm.children[6].children[1].value,
         (isFavorite = 0),
         (added = true) // put at top
     );
 
     for (let i = 1; i <= 6; i++) editForm.children[i].children[1].value = "";
 
+    // Remove none found message
+    const message = document.getElementById("noneFound");
+    if (message !== null) {
+        message.remove();
+    }
+
+    jdenticon.update(".contact-image");
     msnry.reloadItems();
     msnry.layout();
 }
@@ -106,7 +125,7 @@ function createContact() {
 // Search Contacts - API request
 function searchContacts() {
     const srch = document.getElementById("searchForm").value;
-    userId = -1; // REMOVE THIS (testing only)
+    //userId = -1; // TODO: REMOVE THIS (testing only)
 
     if (srch === "") return;
 
@@ -135,17 +154,20 @@ function searchContacts() {
                     curContact.FirstName,
                     curContact.LastName,
                     curContact.Notes,
-                    curContact.Phone,
                     curContact.Email,
+                    curContact.Phone,
                     curContact.Address,
                     curContact.IsFavorite
                 );
             }
+
+            jdenticon.update(".contact-image");
             msnry.reloadItems();
             msnry.layout();
         } else {
             console.log(res.error);
             const message = document.createElement("h3");
+            message.id = "noneFound";
             message.innerHTML = "No Records Found";
             pane.appendChild(message);
         }

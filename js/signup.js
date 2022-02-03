@@ -9,12 +9,31 @@ let username = "";
 let password = "";
 let hash = "";
 
+setTimeout(function(){
+    document.getElementById('passwordSpot').addEventListener('mouseover', () => {
+        if(document.getElementById('password').value.length >= 5){
+            document.getElementById('passwordSpot').removeAttribute('data-tip');
+            document.getElementById('pass').style.borderBottom = "2px solid #ffffff66";
+        }else{
+            document.getElementById('passwordSpot').setAttribute('data-tip', 'Must be at least 5 characters');
+        }
+    })
+}, 1000);//Timeout so the script reads everything before creating the event listener
+
+
+
 function doSignUp() {
     firstName = document.getElementById("firstName").value;
     lastName = document.getElementById("lastName").value;
     username = document.getElementById("username").value;
     password = document.getElementById("password").value;
     hash = md5(password);
+
+    let ret = false;
+
+    if(password.length < 5)
+        ret = true;
+    
 
     // // To ensure no fields can be empty
     // const formErrors = ["fnError", "lnError", "userError", "passError"];
@@ -41,30 +60,15 @@ function doSignUp() {
         password: hash,
     };
 
-    // let xhr = new XMLHttpRequest();
-    // xhr.open("POST", url, true);
-    // xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-    // try {
-    //     xhr.onreadystatechange = function () {
-    //         if (this.readyState == 4 && this.status == 200) {
-    //             console.log(xhr.responseText);
-    //             let err = xhr.responseText;
-    //             if (err.length > 15) console.log("Duplicate Username Found");
-    //             else window.location.href = "index.html";
-    //         }
-    //     };
-    //     xhr.send(jsonPayload);
-    // } catch (err) {
-    //     document.getElementById("loginResult").innerHTML = err.message;
-    // }
-
     console.log(payload);
 
     // Make request
     makeLoginRequest(payload).then((res) => {
+        if(ret) document.getElementById('pass').style.borderBottom = "2px solid red"; //Do it here to prevent delay between setting fields to red
         const err = res.error;
-        if (err.length > 15) console.log("Duplicate Username Found");
+        if (err.length > 15) addUsernameWarning();
         else if (err.length > 0) console.log("Server Error");
+        else if (ret) return;
         else window.location.href = "index.html";
     });
 
@@ -83,4 +87,9 @@ function doSignUp() {
         }
         return res.json();
     }
+}
+
+function addUsernameWarning(){
+    document.getElementById('usernameSpot').setAttribute('data-tip', 'Duplicate Username');
+    document.getElementById('user').style.borderBottom = "2px solid red";
 }

@@ -2,13 +2,8 @@ let editing = false;
 let sav, msnry;
 const largeNum = 1000000000;
 
-const buttonColors = ["blue", "red", "green", "orange"];
-const gradients = [
-    "linear-gradient(#548cff, #24272b)",
-    "linear-gradient(#ea4c46, #24272b)",
-    "linear-gradient(#57c84d, #24272b)",
-    "linear-gradient(#ffad60, #24272b)",
-];
+const buttonColors = ["blue", "purple", "green", "red"];
+const gradients = ["#2c4a86bb", "#862c77bb", "#2c863bbb", "#872d2dbb"];
 
 let contacList = [];
 let colorIndex = 0;
@@ -22,8 +17,8 @@ function spawnContact(
     firstname,
     lastname,
     notes,
-    phone,
     email,
+    phone,
     address,
     isFavorite,
     added = false
@@ -35,8 +30,6 @@ function spawnContact(
     const contacOuter = template.content.cloneNode(true).children[0];
     const contac = contacOuter.children[0];
     contac.id = "contact-" + id;
-    contac.isFavorite = isFavorite;
-    console.log(contac.id);
 
     // Add info
     contac.children[2].innerHTML = firstname;
@@ -45,12 +38,17 @@ function spawnContact(
 
     const infoSection = contac.children[5];
 
-    infoSection.children[1].innerHTML = `${phone}`;
-    infoSection.children[3].innerHTML = `${email}`;
+    infoSection.children[3].innerHTML = `${phone}`; // was 1
+    infoSection.children[1].innerHTML = `${email}`; // was 3
     infoSection.children[5].innerHTML = `${address}`;
+
+    // Set image
+    contac.children[0].setAttribute("data-jdenticon-value", id);
 
     contac.style.background = gradients[mainColorIndex];
 
+    // Set favorite
+    contac.isFavorite = isFavorite;
     const favImg = contac.children[7].children[0];
     if (contac.isFavorite === 0) {
         favImg.src = "./images/bookmark-star.svg";
@@ -58,8 +56,8 @@ function spawnContact(
         favImg.src = "./images/bookmark-star-fill.svg";
     }
 
-    const dotMenu = contac.children[6].children[1];
     // Add listeners
+    const dotMenu = contac.children[6].children[1];
     dotMenu.children[0].addEventListener("click", () => {
         if (!editing) {
             edit(contacOuter);
@@ -98,8 +96,8 @@ function add(contac) {
 
     const infoSection = contac.children[5];
 
-    const phoneSlot = infoSection.children[1];
-    const emailSlot = infoSection.children[3];
+    const phoneSlot = infoSection.children[3]; // was 1
+    const emailSlot = infoSection.children[1]; // was 3
     const addrSlot = infoSection.children[5];
 
     // Get slot info
@@ -146,8 +144,8 @@ function save(contac) {
 
     const infoSection = contac.children[5];
 
-    const phoneSlot = infoSection.children[1];
-    const emailSlot = infoSection.children[3];
+    const phoneSlot = infoSection.children[3]; // was 1
+    const emailSlot = infoSection.children[1]; // was 3
     const addrSlot = infoSection.children[5];
 
     // Grab info
@@ -167,8 +165,8 @@ function save(contac) {
     contac.children[3].innerHTML = lastname;
     contac.children[4].innerHTML = notes;
 
-    infoSection.children[1].innerHTML = `${phoneNum}`;
-    infoSection.children[3].innerHTML = `${emailAddr}`;
+    infoSection.children[3].innerHTML = `${phoneNum}`; // was 1
+    infoSection.children[1].innerHTML = `${emailAddr}`; // was 3
     infoSection.children[5].innerHTML = `${address}`;
 
     // Save data
@@ -196,6 +194,25 @@ function save(contac) {
 
     document.getElementById("dropdownMenu").style.visibility = "visible";
     infoSection.children[6].remove();
+    infoSection.children[6].remove();
+}
+
+function cancel(contac, info) {
+    const infoSection = contac.children[5];
+
+    contac.children[2].innerHTML = info[0];
+    contac.children[3].innerHTML = info[1];
+    contac.children[4].innerHTML = info[2];
+
+    infoSection.children[3].innerHTML = `${info[3]}`; // was 3
+    infoSection.children[1].innerHTML = `${info[4]}`; // was 1
+    infoSection.children[5].innerHTML = `${info[5]}`;
+
+    editing = false;
+
+    document.getElementById("dropdownMenu").style.visibility = "visible";
+    infoSection.children[6].remove();
+    infoSection.children[6].remove();
 }
 
 // Put contact in edit mode
@@ -203,11 +220,10 @@ function edit(contacOuter) {
     console.log("editing");
     extend(contacOuter, (stay = true));
     const contac = contacOuter.children[0];
-    // HIDE EDITING OPTION
 
     editing = true;
-    document.getElementById("dropdownMenu").style.visibility = "hidden";
-
+    // HIDE EDITING OPTION
+    contac.children[6].style.display = "none";
 
     // Get slots
     const fnameSlot = contac.children[2];
@@ -216,8 +232,8 @@ function edit(contacOuter) {
 
     const infoSection = contac.children[5];
 
-    const phoneSlot = infoSection.children[1];
-    const emailSlot = infoSection.children[3];
+    const phoneSlot = infoSection.children[3]; // was 1
+    const emailSlot = infoSection.children[1]; // was 3
     const addrSlot = infoSection.children[5];
 
     // Get slot info
@@ -229,53 +245,68 @@ function edit(contacOuter) {
     const address = addrSlot.innerText;
 
     // Replace text with inputs
-    fnameSlot.innerHTML = `<input class="edits" type="text" />`;
+    const editInput = `<input class="edits" type="text" maxlength="50"/>`;
+
+    fnameSlot.innerHTML = editInput;
     fnameSlot.children[0].value = firstname;
-    lnameSlot.innerHTML = `<input class="edits" type="text" />`;
+    lnameSlot.innerHTML = editInput;
     lnameSlot.children[0].value = lastname;
 
-    notesSlot.innerHTML = `<input class="edits" "type="text"/>`;
-    notesSlot.style.width = "250px";// Gives more space to notes
+    notesSlot.innerHTML = `<textarea class="edits noteInputEdit" maxlength="50"/>`;
+    notesSlot.style.width = "300px"; // Gives more space to notes
     notesSlot.children[0].value = notes;
 
-    emailSlot.innerHTML = `<input class="edits" type="text" />`;
+    emailSlot.innerHTML = editInput;
     emailSlot.children[0].value = emailAddr;
 
-    phoneSlot.innerHTML = `<input class="edits" "type="text" />`;
+    phoneSlot.innerHTML = editInput;
     phoneSlot.children[0].value = phoneNum;
 
-    addrSlot.innerHTML = `<input class="edits" type="text" />`;
+    addrSlot.innerHTML = editInput;
     addrSlot.children[0].value = address;
 
-    contacOuter.children[0].style.height = "320px";
+    const cancelButton = document.createElement("button");
+    cancelButton.classList.add("stn-btn", "editButton", "cancelButton");
+    cancelButton.innerHTML = "CANCEL";
 
-    //console.log(document.getElementById("address"));
+    const saveButton = document.createElement("button");
+    saveButton.classList.add("stn-btn", "editButtonSave", "saveButton");
+    saveButton.innerHTML = "SAVE";
 
-    // const saveButton = document.createButton('button');
-    //saveButton.display = "block";
+    infoSection.appendChild(cancelButton);
+    infoSection.appendChild(saveButton);
 
-    //  Add save button (should probably just show/hide instead of creating each time)
-    const sabeButton = document.createElement("button");
-    sabeButton.classList.add("btn");
-    sabeButton.style.backgroundColor = "white";
-    sabeButton.innerHTML = "SAVE";
-    sabeButton.style.width = "75px";
-    sabeButton.style.marginLeft = "-10px";
-    sabeButton.style.marginTop = "-65px";
-    sabeButton.style.marginBottom = "50px";
+    // Ensure only one listener
+    if (!cancelButton.classList.contains("listening")) {
+        cancelButton.classList.add("listening");
 
-    sabeButton.addEventListener(
-        "click",
-        (sav = () => {
+        cancelButton.addEventListener("click", () => {
+            cancel(
+                contac,
+                new Array(
+                    firstname,
+                    lastname,
+                    notes,
+                    phoneNum,
+                    emailAddr,
+                    address
+                )
+            );
+            saveButton.style.visibility = "hidden";
+            cancelButton.style.visibility = "hidden";
+            contac.children[6].style.display = "inline";
+        });
+        saveButton.addEventListener("click", () => {
             if (fnameSlot.children[0].value && lnameSlot.children[0].value) {
                 save(contac);
-                sabeButton.style.visibility = "hidden";
+                saveButton.style.visibility = "hidden";
+                cancelButton.style.visibility = "hidden";
+                contac.children[6].style.display = "inline";
             } else {
                 console.log("Err: Must have a first and last name");
             }
-        })
-    );
-    infoSection.appendChild(sabeButton);
+        });
+    }
 }
 
 // Delete contact
@@ -298,7 +329,19 @@ function deleteContact(contac) {
     contacList.splice(contacList.indexOf(contac), 1);
 
     // We should have animations too
-    contac.remove();
+    contac.parentNode.remove();
+    msnry.reloadItems();
+    msnry.layout();
+
+    // Update num
+    const numResults = document.getElementById("numResults");
+    if (numResults.innerHTML != "") {
+        const numRes = numResults.innerHTML.slice(
+            0,
+            numResults.innerHTML.indexOf(" ")
+        );
+        numResults.innerHTML = numRes + " contacts found.";
+    }
 }
 
 // Set a contact as favorite
@@ -332,7 +375,6 @@ function setFavorite(contac) {
 }
 
 function extend(contacOuter, stay = false) {
-
     // Extend div
     const infoSection = contacOuter.children[0].children[5];
     if (contacOuter.classList.contains("extended") && !stay) {
@@ -348,7 +390,7 @@ function extend(contacOuter, stay = false) {
         if (!contacOuter.classList.contains("extended")) {
             contacOuter.classList.add("extended");
         }
-        
+
         contacOuter.children[0].style.height = "320px";
     }
     msnry.layout();
@@ -356,8 +398,6 @@ function extend(contacOuter, stay = false) {
 
 window.onload = function () {
     makeRequest("getFavorites", { userId: userId }).then((res) => {
-        //console.log(res);
-
         if (res.error === "" && res.results.length > 0) {
             console.log("found favorite contacts");
 
@@ -368,26 +408,30 @@ window.onload = function () {
                     curContact.ID,
                     curContact.FirstName,
                     curContact.LastName,
-                    curContact.Phone,
-                    curContact.Email,
                     curContact.Notes,
+                    curContact.Email,
+                    curContact.Phone,
                     curContact.Address,
                     curContact.IsFavorite
                 );
             }
+
+            msnry.reloadItems();
+            msnry.layout();
         } else {
             console.log(res.error);
         }
     });
 
+    // TODO: Remove after testing
     for (let i = 0; i < 5; i++) {
         spawnContact(
             1000 + i,
             "Benedict",
             "Cucumberpatch",
             "not much bruv not much bruv",
-            "808080808" + i,
             "jojo@gmail.com",
+            "808080808" + i,
             "1000 Ionic Drive",
             0
         );
@@ -401,7 +445,7 @@ window.onload = function () {
         stagger: 25,
         fitWidth: true,
     });
-    console.log(msnry.getItemElements());
+    jdenticon.update(".contact-image");
 };
 
 function setColors(contac) {

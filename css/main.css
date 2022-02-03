@@ -78,22 +78,19 @@ canvas {
 }
 
 #addButton {
-    background-color: #102040bf;
+    background-color: white;
     border: 3px solid white;
     margin-right: 2rem;
+    border-radius: 20px;
+}
+
+#addButton:hover {
+    background-color: transparent;
 }
 
 #searchButton {
     border: 3px solid #24272b;
     width: 80px;
-}
-
-/* Bottom page div */
-.bottom-barrel {
-    position: absolute;
-    padding-top: 15px;
-    left: 50%;
-    transform: translateX(-50%);
 }
 
 #searchForm {
@@ -103,37 +100,49 @@ canvas {
     border: 3px solid #24272b;
 }
 
-.grid {
-    place-self: center;
-}
-
 #contactPane {
+    width: 100%;
     min-height: 50%;
-    margin: 10px auto;
+    margin: 0 auto;
     border-radius: 15px;
-    justify-content: center;
 }
 
-.contactPaneParent {
-    /* background-color: #24272be3; */
+#contactPaneParent {
     background: #001030bf;
     border-radius: 15px;
     display: inline-flex;
     flex: 2;
     justify-content: center;
-    margin: 0px;
+    margin-left: 1rem;
 }
 
 .flex-container {
     display: flex;
     box-shadow: 0 10px 15px -20px black;
     padding-bottom: 50px;
+    flex-flow: row wrap;
 }
 
 #edit-container {
     display: none;
     flex: 1;
     height: 600px;
+    transform: translateX(0px);
+    -webkit-transition: -webkit-transform 400ms ease;
+    -moz-transition: -moz-transform 400ms ease;
+    -o-transition: -o-transform 400ms ease;
+    transition: transform 400ms ease;
+}
+
+#edit-container.translated {
+    transform: translateX(-800px);
+}
+
+@media (max-width: 990px) {
+    #edit-container {
+        flex: 1 1 auto;
+        margin-bottom: 2rem;
+    }
 }
 
 .creating {
@@ -145,7 +154,7 @@ canvas {
     padding: 30px 40px;
     margin: 0 auto;
     display: block;
-    background-image: linear-gradient(#548cff, #24272b);
+    background: #2c4a86ee;
     border-radius: 16px;
     text-align: center;
     box-shadow: 2px 2px 8px #000;
@@ -161,43 +170,34 @@ canvas {
     color: white;
     margin-bottom: 0.5rem;
     font-size: 0.9rem;
-    border-bottom: 1px solid rgba(231, 231, 231, 0.8);
 }
 
 .editButton,
 .editButtonSave {
     width: 40%;
-    background: white;
-    border: none;
-    border-radius: 30px;
     padding: 10px 10px;
-    font-size: 0.9rem;
     margin: 1.2rem 0.4rem;
-    font-weight: 500;
     text-transform: uppercase;
-    color: #548cff;
-    outline: none;
     cursor: pointer;
-    font-family: "Varela Round", sans-serif;
 }
 
-.editButtonSave {
-    background: #548cff;
-    color: white;
-}
-
-.edits{
+.edits,
+.addEdits {
     width: 90%;
     border: none;
+    border-bottom: 1px solid #fff;
     background: none;
     outline: none;
-    border-bottom: 2px solid black;
-    text-shadow: 0 0.05rem 0.1rem rgba(0, 0, 0, 0.5);
 }
 
+.addEdits {
+    margin-bottom: 0.5rem;
+    width: 100%;
+}
 
-
-.noteInput {
+.noteInput,
+.noteInputEdit {
+    color: white;
     overflow: hidden;
     resize: none;
 }
@@ -206,17 +206,57 @@ canvas {
     height: 40px;
     width: 40px;
     border-radius: 4px;
-    border: 2px solid white;
+    border: 3px solid white;
     border-radius: 20%;
     margin-right: 2rem;
     background-color: Blue;
 }
 
 .chooseColorOption {
-    height: 50px;
-    width: 50px;
-    border-radius: 2px;
-    border: 2px solid white;
+    height: 40px;
+    width: 40px;
+    border-radius: 4px;
+    border: 3px solid white;
     border-radius: 20%;
     background-color: Blue;
+}
+
+#colorMenu {
+    background: #2c4a8677;
+    padding: 5px 5px;
+    border-radius: 10px;
+}
+
+/*Added changes for buttons*/
+.logoutBut,
+.stn-btn {
+    background: white;
+    border: 2px solid #ffffff;
+    border-radius: 40px;
+    font-weight: 500;
+    color: #001030;
+    outline: none;
+    cursor: pointer;
+}
+
+.logoutBut {
+    box-sizing: border-box;
+    display: block;
+    height: 40px;
+    width: 100px;
+    margin: 0 auto;
+}
+
+.logoutBut:hover,
+.stn-btn:hover {
+    background: transparent;
+    border: 2px solid #ffffff;
+    color: #ffffff;
+    transition: 0.3s ease-in-out;
+}
+
+.editButtonSave {
+    background: #001030;
+    border: 2px solid #001030;
+    color: white;
 }
