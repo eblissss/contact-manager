@@ -31,6 +31,7 @@ function spawnContact(
     contac.id = "contact-" + id;
 
     contac.colorIndex = mainColorIndex;
+    contac.children[1].style.backgroundColor = buttonColors[contac.colorIndex];
 
     // Add info
     contac.children[2].innerHTML = firstname;
