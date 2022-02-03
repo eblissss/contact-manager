@@ -31,16 +31,22 @@
 
     <body>
         <div id="waveContainer">
-            <form action="#" class="signup">
+            <form action="#" class="signup needs-validation">
                 <h1>Sign up below</h1>
                 <div class="signupinputs">
                     <label for="firstName">first name</label>
-                    <input id="firstName" placeholder="first name" />
+                    <input id="firstName" placeholder="first name" required/>
+                    <div class = "invalid-feedback">
+                        Please enter a first name
+                    </div>
                 </div>
 
                 <div class="signupinputs">
                     <label for="lastName">last name</label>
-                    <input id="lastName" placeholder="last name" />
+                    <input id="lastName" placeholder="last name" required/>
+                    <div class = "invalid-feedback">
+                        Please enter a last name
+                    </div>
                 </div>
 
                 <div id="user" class="signupinputs">
