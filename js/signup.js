@@ -33,7 +33,7 @@ function doSignUp() {
 
     if(password.length < 5)
         ret = true;
-    
+
 
     // // To ensure no fields can be empty
     // const formErrors = ["fnError", "lnError", "userError", "passError"];
@@ -66,10 +66,14 @@ function doSignUp() {
     makeLoginRequest(payload).then((res) => {
         if(ret) document.getElementById('pass').style.borderBottom = "2px solid red"; //Do it here to prevent delay between setting fields to red
         const err = res.error;
-        if (err.length > 15) addUsernameWarning();
+        if (err.length > 15 && document.getElementById('username').value.length > 0) fieldWarning(1);
+        else if (document.getElementById('username').value.length == 0) fieldWarning(2);
         else if (err.length > 0) console.log("Server Error");
         else if (ret) return;
         else window.location.href = "index.html";
+        // make sure name and last name are not empty
+        if (document.getElementById('firstName').value.length == 0) fieldWarning(3);
+        if (document.getElementById('lastName').value.length == 0) fieldWarning(4);
     });
 
     // Create connection functino
@@ -89,7 +93,21 @@ function doSignUp() {
     }
 }
 
-function addUsernameWarning(){
-    document.getElementById('usernameSpot').setAttribute('data-tip', 'Duplicate Username');
-    document.getElementById('user').style.borderBottom = "2px solid red";
+function fieldWarning(flag){
+    if (flag == 1){
+        document.getElementById('usernameSpot').setAttribute('data-tip', 'Duplicate Username');
+        document.getElementById('user').style.borderBottom = "2px solid red";
+    }
+    if (flag == 2){
+        document.getElementById('usernameSpot').setAttribute('data-tip', 'Please Enter a Username');
+        document.getElementById('user').style.borderBottom = "2px solid red";
+    }
+    if (flag == 3){
+        document.getElementById('firstNameSpot').setAttribute('data-tip', 'Please Enter a First Name');
+        document.getElementById('FN').style.borderBottom = "2px solid red";
+    }
+    if (flag == 4){
+        document.getElementById('lastNameSpot').setAttribute('data-tip', 'Please Enter a Last Name');
+        document.getElementById('LN').style.borderBottom = "2px solid red";
+    }
 }
