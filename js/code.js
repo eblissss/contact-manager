@@ -3,6 +3,8 @@ let userId = 0;
 let firstName = "";
 let lastName = "";
 
+let contactToDelete = null;
+
 // Check login from cookie
 function readCookie() {
     userId = -1;

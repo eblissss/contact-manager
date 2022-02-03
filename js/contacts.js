@@ -68,7 +68,7 @@ function spawnContact(
         }
     });
     dotMenu.children[1].addEventListener("click", () => {
-        deleteContact(contac);
+        deleteDialogue(contac);
     });
 
     contac.children[1].addEventListener("click", () => {
@@ -314,10 +314,13 @@ function edit(contacOuter) {
 }
 
 // Delete contact
-function deleteContact(contac) {
+function deleteDialogue(contac) {
     // Confirmation
-    if (confirm("Are you sure you want to delete this contact?") == false)
-        return;
+    contactToDelete = contac;
+}
+
+function deleteContact() {
+    contac = contactToDelete;
 
     const id = contac.id.substring(8);
 
@@ -346,6 +349,9 @@ function deleteContact(contac) {
         );
         numResults.innerHTML = numRes + " contacts found.";
     }
+
+    // Just to be sure
+    contacToDelete = null;
 }
 
 // Set a contact as favorite
@@ -423,6 +429,7 @@ window.onload = function () {
 
             msnry.reloadItems();
             msnry.layout();
+            jdenticon.update(".contact-image");
         } else {
             console.log(res.error);
         }
