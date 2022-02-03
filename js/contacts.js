@@ -6,7 +6,6 @@ const buttonColors = ["blue", "purple", "green", "red"];
 const gradients = ["#2c4a86bb", "#862c77bb", "#2c863bbb", "#872d2dbb"];
 
 let contacList = [];
-let colorIndex = 0;
 let mainColorIndex = 0;
 
 initializeColorMenu();
@@ -30,6 +29,8 @@ function spawnContact(
     const contacOuter = template.content.cloneNode(true).children[0];
     const contac = contacOuter.children[0];
     contac.id = "contact-" + id;
+
+    contac.colorIndex = mainColorIndex;
 
     // Add info
     contac.children[2].innerHTML = firstname;
@@ -449,10 +450,10 @@ window.onload = function () {
 };
 
 function setColors(contac) {
-    colorIndex = (colorIndex + 1) % 4;
+    contac.colorIndex = (contac.colorIndex + 1) % 4;
 
-    contac.style.background = gradients[colorIndex];
-    contac.children[1].style.backgroundColor = buttonColors[colorIndex];
+    contac.style.background = gradients[contac.colorIndex];
+    contac.children[1].style.backgroundColor = buttonColors[contac.colorIndex];
 }
 
 function initializeColorMenu() {
@@ -467,7 +468,7 @@ function initializeColorMenu() {
             for (let contac of contacList) {
                 contac.style.background = gradients[i];
                 contac.children[1].style.backgroundColor = buttonColors[i];
-                colorIndex = i;
+                contac.colorIndex = i;
             }
         });
     }
