@@ -466,6 +466,8 @@ function initializeColorMenu() {
             mainColorIndex = i;
             for (let contac of contacList) {
                 contac.style.background = gradients[i];
+                contac.children[1].style.backgroundColor = buttonColors[i];
+                colorIndex = i;
             }
         });
     }
