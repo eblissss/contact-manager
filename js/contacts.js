@@ -463,3 +463,13 @@ function initializeColorMenu() {
         });
     }
 }
+
+//Added changes to format phone numbers
+let itemInput=document.querySelector('input[type=tel]') ;
+
+    itemInput.addEventListener('keypress',phone);
+    function phone()
+      {
+          let p=this.value;
+          if((p.length+1)%4==0 && p.length<9)  this.value=p+"-";
+      }
