@@ -106,6 +106,7 @@ function createContact() {
         editForm.children[4].children[1].value,
         editForm.children[5].children[1].value,
         (isFavorite = 0),
+        "just now",
         (added = true) // put at top
     );
 
@@ -157,7 +158,8 @@ function searchContacts() {
                     curContact.Email,
                     curContact.Phone,
                     curContact.Address,
-                    curContact.IsFavorite
+                    curContact.IsFavorite,
+                    curContact.DateCreated
                 );
             }
 

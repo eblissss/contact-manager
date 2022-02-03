@@ -28,7 +28,8 @@
 			$searchC = "%" . $split[1] . "%";
 
 			// Create SQL statement to search contacts
-			$sqlsearch = "select * from Contacts where 
+			$sqlsearch = "select *, DATE_FORMAT(DateCreated, '%b %D %Y, %r') as DateCreated 
+			from Contacts where 
 			(FirstName like ? or FirstName like ? or 
 			LastName like ? or LastName like ?) 
 			and UserID=?";
@@ -38,7 +39,8 @@
 		else
 		{
 			// Create SQL statement to search contacts
-			$sqlsearch = "select * from Contacts where 
+			$sqlsearch = "select *, DATE_FORMAT(DateCreated, '%b %D %Y, %r') as DateCreated 
+			from Contacts where 
 			(FirstName like ? or LastName like ?) 
 			and UserID=?";
 			$stmt = $conn->prepare($sqlsearch);

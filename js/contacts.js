@@ -21,6 +21,7 @@ function spawnContact(
     phone,
     address,
     isFavorite,
+    dateCreated,
     added = false
 ) {
     notes = notes ? notes : "some notes about ...";
@@ -42,8 +43,9 @@ function spawnContact(
     infoSection.children[1].innerHTML = `${email}`; // was 3
     infoSection.children[5].innerHTML = `${address}`;
 
-    // Set image
-    contac.children[0].setAttribute("data-jdenticon-value", id);
+    // Set image and time
+    contac.children[0].children[0].setAttribute("data-jdenticon-value", id);
+    contac.children[0].children[1].innerHTML = dateCreated;
 
     contac.style.background = gradients[mainColorIndex];
 
@@ -412,7 +414,8 @@ window.onload = function () {
                     curContact.Email,
                     curContact.Phone,
                     curContact.Address,
-                    curContact.IsFavorite
+                    curContact.IsFavorite,
+                    curContact.DateCreated
                 );
             }
 
@@ -433,6 +436,7 @@ window.onload = function () {
             "jojo@gmail.com",
             "808080808" + i,
             "1000 Ionic Drive",
+            "Never.",
             0
         );
     }
