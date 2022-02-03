@@ -20,7 +20,9 @@
 	else
 	{
 		// Create SQL statement to search contacts
-		$sqlsearch = "select * from Contacts where IsFavorite=1 and UserID=?";
+		$sqlsearch = "select *, DATE_FORMAT(DateCreated, '%b %D %Y, %r') as DateCreated
+					  from Contacts where 
+					  IsFavorite=1 and UserID=?";
 		$stmt = $conn->prepare($sqlsearch);
 		$stmt->bind_param("i", $userId);
 		$stmt->execute();

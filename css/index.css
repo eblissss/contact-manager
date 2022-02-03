@@ -71,10 +71,11 @@ body {
     border: none;
     background: none;
     outline: none;
-    color: white;
+    color: rgba(255, 255, 255, 0.5);
     margin-top: 0.5rem;
     font-size: 0.9rem;
     padding-bottom: 0.5rem;
+    background: none;
 }
 
 .form button {

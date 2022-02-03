@@ -124,7 +124,7 @@
                 </main>
 
                 <div class="flex-container">
-                    <div id="edit-container">
+                    <div id="edit-container" class="translated">
                         <form action="#" class="edit-form" id="edit-form">
                             <h1 class="creating">Creating New Contact</h1>
                             <div class="editinputs">
@@ -221,6 +221,47 @@
                         >.
                     </p>
                 </footer>
+
+                <!-- Delete Confirmation -->
+                <div
+                    class="modal fade"
+                    id="staticBackdrop"
+                    data-bs-backdrop="static"
+                    data-bs-keyboard="false"
+                    tabindex="-1"
+                    aria-labelledby="staticBackdropLabel"
+                    aria-hidden="true"
+                >
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5
+                                    class="modal-title"
+                                    id="staticBackdropLabel"
+                                >
+                                    Delete Contact?
+                                </h5>
+                            </div>
+                            <div class="modal-footer">
+                                <button
+                                    type="button"
+                                    class="btn btn-secondary stn-btn"
+                                    data-bs-dismiss="modal"
+                                >
+                                    Cancel
+                                </button>
+                                <button
+                                    type="button"
+                                    class="btn btn-primary stn-btn"
+                                    data-bs-dismiss="modal"
+                                    onclick="deleteContact();"
+                                >
+                                    Proceed
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
             <script
                 src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
@@ -254,12 +295,12 @@
     <template id="contact-template">
         <div class="contactDivDiv grid-item">
             <div class="contactDiv">
-                <!-- <img
-                    class="contact-image"
-                    src="https://www.publicdomainpictures.net/pictures/120000/nahled/abstract-composition-14287573024pP.jpg"
-                    alt=""
-                /> -->
-                <svg class="contact-image">Icon</svg>
+                <div class="imageDiv">
+                    <svg class="contact-image">Icon</svg>
+                    <!-- dateTime hover -->
+                    <div class="dateTime">Created: March 4th</div>
+                </div>
+
                 <input type="button" class="colorButton" />
                 <h2 class="fname">NAME MISSING</h2>
                 <h2 class="lname">NAME MISSING</h2>
@@ -297,7 +338,12 @@
                         <button class="dropdown-item" type="button">
                             Edit
                         </button>
-                        <button class="dropdown-item" type="button">
+                        <button
+                            class="dropdown-item"
+                            type="button"
+                            data-bs-toggle="modal"
+                            data-bs-target="#staticBackdrop"
+                        >
                             Delete
                         </button>
                     </div>

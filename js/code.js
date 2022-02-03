@@ -3,6 +3,8 @@ let userId = 0;
 let firstName = "";
 let lastName = "";
 
+let contactToDelete = null;
+
 // Check login from cookie
 function readCookie() {
     userId = -1;
@@ -65,6 +67,7 @@ function addContact() {
             for (let i = 1; i <= 6; i++)
                 editForm.children[i].children[1].value = "";
             editPane.style.display = "none";
+            editPane.classList.add("translated");
             addButton.style.display = "inline-block";
             msnry.layout();
             return;
@@ -74,6 +77,7 @@ function addContact() {
         saveButton.addEventListener("click", () => {
             createContact();
             editPane.style.display = "none";
+            editPane.classList.add("translated");
             addButton.style.display = "inline-block";
         });
     }
@@ -81,6 +85,11 @@ function addContact() {
     // Force pane to resize (will not automatically :{ )
     const panepane = document.getElementById("contactPaneParent");
     panepane.style.width = "70%";
+
+    // Animate in
+    setTimeout(() => {
+        editPane.classList.remove("translated");
+    }, 100);
 
     msnry.reloadItems();
     msnry.layout();
@@ -99,10 +108,17 @@ function createContact() {
         editForm.children[4].children[1].value,
         editForm.children[5].children[1].value,
         (isFavorite = 0),
+        "just now",
         (added = true) // put at top
     );
 
     for (let i = 1; i <= 6; i++) editForm.children[i].children[1].value = "";
+
+    // Remove none found message
+    const message = document.getElementById("noneFound");
+    if (message !== null) {
+        message.remove();
+    }
 
     jdenticon.update(".contact-image");
     msnry.reloadItems();
@@ -112,7 +128,7 @@ function createContact() {
 // Search Contacts - API request
 function searchContacts() {
     const srch = document.getElementById("searchForm").value;
-    userId = -1; // REMOVE THIS (testing only)
+    //userId = -1; // TODO: REMOVE THIS (testing only)
 
     if (srch === "") return;
 
@@ -141,10 +157,11 @@ function searchContacts() {
                     curContact.FirstName,
                     curContact.LastName,
                     curContact.Notes,
-                    curContact.Phone,
                     curContact.Email,
+                    curContact.Phone,
                     curContact.Address,
-                    curContact.IsFavorite
+                    curContact.IsFavorite,
+                    curContact.DateCreated
                 );
             }
 
@@ -154,6 +171,7 @@ function searchContacts() {
         } else {
             console.log(res.error);
             const message = document.createElement("h3");
+            message.id = "noneFound";
             message.innerHTML = "No Records Found";
             pane.appendChild(message);
         }

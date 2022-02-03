@@ -6,7 +6,6 @@ const buttonColors = ["blue", "purple", "green", "red"];
 const gradients = ["#2c4a86bb", "#862c77bb", "#2c863bbb", "#872d2dbb"];
 
 let contacList = [];
-let colorIndex = 0;
 let mainColorIndex = 0;
 
 initializeColorMenu();
@@ -17,10 +16,11 @@ function spawnContact(
     firstname,
     lastname,
     notes,
-    phone,
     email,
+    phone,
     address,
     isFavorite,
+    dateCreated,
     added = false
 ) {
     notes = notes ? notes : "some notes about ...";
@@ -31,6 +31,9 @@ function spawnContact(
     const contac = contacOuter.children[0];
     contac.id = "contact-" + id;
 
+    contac.colorIndex = mainColorIndex;
+    contac.children[1].style.backgroundColor = buttonColors[contac.colorIndex];
+
     // Add info
     contac.children[2].innerHTML = firstname;
     contac.children[3].innerHTML = lastname;
@@ -38,12 +41,13 @@ function spawnContact(
 
     const infoSection = contac.children[5];
 
-    infoSection.children[3].innerHTML = `${phone}`;  // was 1
-    infoSection.children[1].innerHTML = `${email}`;  // was 3
+    infoSection.children[3].innerHTML = `${phone}`; // was 1
+    infoSection.children[1].innerHTML = `${email}`; // was 3
     infoSection.children[5].innerHTML = `${address}`;
 
-    // Set image
-    contac.children[0].setAttribute("data-jdenticon-value", id);
+    // Set image and time
+    contac.children[0].children[0].setAttribute("data-jdenticon-value", id);
+    contac.children[0].children[1].innerHTML = dateCreated;
 
     contac.style.background = gradients[mainColorIndex];
 
@@ -64,7 +68,7 @@ function spawnContact(
         }
     });
     dotMenu.children[1].addEventListener("click", () => {
-        deleteContact(contac);
+        deleteDialogue(contac);
     });
 
     contac.children[1].addEventListener("click", () => {
@@ -96,8 +100,8 @@ function add(contac) {
 
     const infoSection = contac.children[5];
 
-    const phoneSlot = infoSection.children[3];  // was 1
-    const emailSlot = infoSection.children[1];  // was 3
+    const phoneSlot = infoSection.children[3]; // was 1
+    const emailSlot = infoSection.children[1]; // was 3
     const addrSlot = infoSection.children[5];
 
     // Get slot info
@@ -144,8 +148,8 @@ function save(contac) {
 
     const infoSection = contac.children[5];
 
-    const phoneSlot = infoSection.children[3];  // was 1
-    const emailSlot = infoSection.children[1];  // was 3
+    const phoneSlot = infoSection.children[3]; // was 1
+    const emailSlot = infoSection.children[1]; // was 3
     const addrSlot = infoSection.children[5];
 
     // Grab info
@@ -165,8 +169,8 @@ function save(contac) {
     contac.children[3].innerHTML = lastname;
     contac.children[4].innerHTML = notes;
 
-    infoSection.children[3].innerHTML = `${phoneNum}`;  // was 1
-    infoSection.children[1].innerHTML = `${emailAddr}`;  // was 3
+    infoSection.children[3].innerHTML = `${phoneNum}`; // was 1
+    infoSection.children[1].innerHTML = `${emailAddr}`; // was 3
     infoSection.children[5].innerHTML = `${address}`;
 
     // Save data
@@ -232,8 +236,8 @@ function edit(contacOuter) {
 
     const infoSection = contac.children[5];
 
-    const phoneSlot = infoSection.children[3];  // was 1
-    const emailSlot = infoSection.children[1];  // was 3
+    const phoneSlot = infoSection.children[3]; // was 1
+    const emailSlot = infoSection.children[1]; // was 3
     const addrSlot = infoSection.children[5];
 
     // Get slot info
@@ -310,10 +314,13 @@ function edit(contacOuter) {
 }
 
 // Delete contact
-function deleteContact(contac) {
+function deleteDialogue(contac) {
     // Confirmation
-    if (confirm("Are you sure you want to delete this contact?") == false)
-        return;
+    contactToDelete = contac;
+}
+
+function deleteContact() {
+    contac = contactToDelete;
 
     const id = contac.id.substring(8);
 
@@ -335,11 +342,16 @@ function deleteContact(contac) {
 
     // Update num
     const numResults = document.getElementById("numResults");
-    const numRes = numResults.innerHTML.slice(
-        0,
-        numResults.innerHTML.indexOf(" ")
-    );
-    numResults.innerHTML = numRes + " contacts found.";
+    if (numResults.innerHTML != "") {
+        const numRes = numResults.innerHTML.slice(
+            0,
+            numResults.innerHTML.indexOf(" ")
+        );
+        numResults.innerHTML = numRes + " contacts found.";
+    }
+
+    // Just to be sure
+    contacToDelete = null;
 }
 
 // Set a contact as favorite
@@ -406,27 +418,34 @@ window.onload = function () {
                     curContact.ID,
                     curContact.FirstName,
                     curContact.LastName,
-                    curContact.Phone,
-                    curContact.Email,
                     curContact.Notes,
+                    curContact.Email,
+                    curContact.Phone,
                     curContact.Address,
-                    curContact.IsFavorite
+                    curContact.IsFavorite,
+                    curContact.DateCreated
                 );
             }
+
+            msnry.reloadItems();
+            msnry.layout();
+            jdenticon.update(".contact-image");
         } else {
             console.log(res.error);
         }
     });
 
+    // TODO: Remove after testing
     for (let i = 0; i < 5; i++) {
         spawnContact(
             1000 + i,
             "Benedict",
             "Cucumberpatch",
             "not much bruv not much bruv",
-            "808080808" + i,
             "jojo@gmail.com",
+            "808080808" + i,
             "1000 Ionic Drive",
+            "Never.",
             0
         );
     }
@@ -439,13 +458,14 @@ window.onload = function () {
         stagger: 25,
         fitWidth: true,
     });
+    jdenticon.update(".contact-image");
 };
 
 function setColors(contac) {
-    colorIndex = (colorIndex + 1) % 4;
+    contac.colorIndex = (contac.colorIndex + 1) % 4;
 
-    contac.style.background = gradients[colorIndex];
-    contac.children[1].style.backgroundColor = buttonColors[colorIndex];
+    contac.style.background = gradients[contac.colorIndex];
+    contac.children[1].style.backgroundColor = buttonColors[contac.colorIndex];
 }
 
 function initializeColorMenu() {
@@ -459,6 +479,8 @@ function initializeColorMenu() {
             mainColorIndex = i;
             for (let contac of contacList) {
                 contac.style.background = gradients[i];
+                contac.children[1].style.backgroundColor = buttonColors[i];
+                contac.colorIndex = i;
             }
         });
     }
