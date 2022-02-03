@@ -111,6 +111,12 @@ function createContact() {
 
     for (let i = 1; i <= 6; i++) editForm.children[i].children[1].value = "";
 
+    // Remove none found message
+    const message = document.getElementById("noneFound");
+    if (message !== null) {
+        message.remove();
+    }
+
     jdenticon.update(".contact-image");
     msnry.reloadItems();
     msnry.layout();
@@ -161,6 +167,7 @@ function searchContacts() {
         } else {
             console.log(res.error);
             const message = document.createElement("h3");
+            message.id = "noneFound";
             message.innerHTML = "No Records Found";
             pane.appendChild(message);
         }

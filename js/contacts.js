@@ -415,6 +415,9 @@ window.onload = function () {
                     curContact.IsFavorite
                 );
             }
+
+            msnry.reloadItems();
+            msnry.layout();
         } else {
             console.log(res.error);
         }
