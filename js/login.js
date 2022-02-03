@@ -17,14 +17,6 @@ function doLogin() {
     let password = document.getElementById("password").value;
     let hash = md5(password);
 
-    // if (checkForUser(login, login)) return;  // If user exits, invalid login,
-
-    /*
-        Inser 
-    */
-
-    //document.getElementById("loginResult").innerHTML = "";
-
     // Create payload
     let payload = { login: login, password: hash };
     console.log(payload);
@@ -34,8 +26,6 @@ function doLogin() {
         userId = res.id;
         // Check if login failed
         if (userId < 1) {
-            //document.getElementById("loginResult").innerHTML =
-            //  "User/Password combination incorrect";
             console.log("User/Password combination incorrect");
             return;
         }
