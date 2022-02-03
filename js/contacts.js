@@ -17,8 +17,8 @@ function spawnContact(
     firstname,
     lastname,
     notes,
-    phone,
     email,
+    phone,
     address,
     isFavorite,
     added = false
@@ -38,8 +38,8 @@ function spawnContact(
 
     const infoSection = contac.children[5];
 
-    infoSection.children[3].innerHTML = `${phone}`;  // was 1
-    infoSection.children[1].innerHTML = `${email}`;  // was 3
+    infoSection.children[3].innerHTML = `${phone}`; // was 1
+    infoSection.children[1].innerHTML = `${email}`; // was 3
     infoSection.children[5].innerHTML = `${address}`;
 
     // Set image
@@ -96,8 +96,8 @@ function add(contac) {
 
     const infoSection = contac.children[5];
 
-    const phoneSlot = infoSection.children[3];  // was 1
-    const emailSlot = infoSection.children[1];  // was 3
+    const phoneSlot = infoSection.children[3]; // was 1
+    const emailSlot = infoSection.children[1]; // was 3
     const addrSlot = infoSection.children[5];
 
     // Get slot info
@@ -144,8 +144,8 @@ function save(contac) {
 
     const infoSection = contac.children[5];
 
-    const phoneSlot = infoSection.children[3];  // was 1
-    const emailSlot = infoSection.children[1];  // was 3
+    const phoneSlot = infoSection.children[3]; // was 1
+    const emailSlot = infoSection.children[1]; // was 3
     const addrSlot = infoSection.children[5];
 
     // Grab info
@@ -165,8 +165,8 @@ function save(contac) {
     contac.children[3].innerHTML = lastname;
     contac.children[4].innerHTML = notes;
 
-    infoSection.children[3].innerHTML = `${phoneNum}`;  // was 1
-    infoSection.children[1].innerHTML = `${emailAddr}`;  // was 3
+    infoSection.children[3].innerHTML = `${phoneNum}`; // was 1
+    infoSection.children[1].innerHTML = `${emailAddr}`; // was 3
     infoSection.children[5].innerHTML = `${address}`;
 
     // Save data
@@ -232,8 +232,8 @@ function edit(contacOuter) {
 
     const infoSection = contac.children[5];
 
-    const phoneSlot = infoSection.children[3];  // was 1
-    const emailSlot = infoSection.children[1];  // was 3
+    const phoneSlot = infoSection.children[3]; // was 1
+    const emailSlot = infoSection.children[1]; // was 3
     const addrSlot = infoSection.children[5];
 
     // Get slot info
@@ -335,11 +335,13 @@ function deleteContact(contac) {
 
     // Update num
     const numResults = document.getElementById("numResults");
-    const numRes = numResults.innerHTML.slice(
-        0,
-        numResults.innerHTML.indexOf(" ")
-    );
-    numResults.innerHTML = numRes + " contacts found.";
+    if (numResults.innerHTML != "") {
+        const numRes = numResults.innerHTML.slice(
+            0,
+            numResults.innerHTML.indexOf(" ")
+        );
+        numResults.innerHTML = numRes + " contacts found.";
+    }
 }
 
 // Set a contact as favorite
@@ -406,9 +408,9 @@ window.onload = function () {
                     curContact.ID,
                     curContact.FirstName,
                     curContact.LastName,
-                    curContact.Phone,
-                    curContact.Email,
                     curContact.Notes,
+                    curContact.Email,
+                    curContact.Phone,
                     curContact.Address,
                     curContact.IsFavorite
                 );
@@ -418,14 +420,15 @@ window.onload = function () {
         }
     });
 
+    // TODO: Remove after testing
     for (let i = 0; i < 5; i++) {
         spawnContact(
             1000 + i,
             "Benedict",
             "Cucumberpatch",
             "not much bruv not much bruv",
-            "808080808" + i,
             "jojo@gmail.com",
+            "808080808" + i,
             "1000 Ionic Drive",
             0
         );
@@ -439,6 +442,7 @@ window.onload = function () {
         stagger: 25,
         fitWidth: true,
     });
+    jdenticon.update(".contact-image");
 };
 
 function setColors(contac) {

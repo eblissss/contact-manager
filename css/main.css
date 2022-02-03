@@ -127,6 +127,15 @@ canvas {
     display: none;
     flex: 1;
     height: 600px;
+    transform: translateX(0px);
+    -webkit-transition: -webkit-transform 400ms ease;
+    -moz-transition: -moz-transform 400ms ease;
+    -o-transition: -o-transform 400ms ease;
+    transition: transform 400ms ease;
+}
+
+#edit-container.translated {
+    transform: translateX(-800px);
 }
 
 @media (max-width: 990px) {
