@@ -41,13 +41,14 @@ function spawnContact(
 
     const infoSection = contac.children[5];
 
-    infoSection.children[3].innerHTML = `${phone}`; // was 1
+    contac.phoneNum = phone;
+    infoSection.children[3].innerHTML = `${fmtPhone(phone)}`; // was 1
     infoSection.children[1].innerHTML = `${email}`; // was 3
     infoSection.children[5].innerHTML = `${address}`;
 
     // Set image and time
     contac.children[0].children[0].setAttribute("data-jdenticon-value", id);
-    contac.children[0].children[1].innerHTML = dateCreated;
+    contac.children[0].children[1].innerHTML = "Created: " + dateCreated;
 
     contac.style.background = gradients[mainColorIndex];
 
@@ -100,7 +101,7 @@ function add(contac) {
 
     const infoSection = contac.children[5];
 
-    const phoneSlot = infoSection.children[3]; // was 1
+    // const phoneSlot = infoSection.children[3]; // was 1
     const emailSlot = infoSection.children[1]; // was 3
     const addrSlot = infoSection.children[5];
 
@@ -108,7 +109,7 @@ function add(contac) {
     const firstname = fnameSlot.innerText;
     const lastname = lnameSlot.innerText;
     const notes = notesSlot.innerText;
-    const phoneNum = phoneSlot.innerText;
+    const phoneNum = contac.phoneNum;
     const emailAddr = emailSlot.innerText;
     const address = addrSlot.innerText;
 
@@ -169,7 +170,8 @@ function save(contac) {
     contac.children[3].innerHTML = lastname;
     contac.children[4].innerHTML = notes;
 
-    infoSection.children[3].innerHTML = `${phoneNum}`; // was 1
+    contac.phoneNum = phoneNum;
+    infoSection.children[3].innerHTML = `${fmtPhone(phoneNum)}`; // was 1
     infoSection.children[1].innerHTML = `${emailAddr}`; // was 3
     infoSection.children[5].innerHTML = `${address}`;
 
@@ -202,6 +204,8 @@ function save(contac) {
 }
 
 function cancel(contac, info) {
+    // 3 = phone
+    // 1 = email
     const infoSection = contac.children[5];
 
     contac.children[2].innerHTML = info[0];
@@ -264,7 +268,10 @@ function edit(contacOuter) {
     emailSlot.children[0].value = emailAddr;
 
     phoneSlot.innerHTML = editInput;
-    phoneSlot.children[0].value = phoneNum;
+    
+    console.log(contac.phoneNum);
+    
+    phoneSlot.children[0].value = contac.phoneNum;
 
     addrSlot.innerHTML = editInput;
     addrSlot.children[0].value = address;
@@ -486,12 +493,21 @@ function initializeColorMenu() {
     }
 }
 
-//Added changes to format phone numbers
-let itemInput=document.querySelector('input[type=tel]') ;
+function fmtPhone(phone)
+{
+    let phoneStr = phone.toString();
+    if (phoneStr.length !== 10) return phoneStr;
 
-    itemInput.addEventListener('keypress',phone);
-    function phone()
-      {
-          let p=this.value;
-          if((p.length+1)%4==0 && p.length<9)  this.value=p+"-";
-      }
+    return "(" + phoneStr.substring(0, 3) + 
+           ") " + phoneStr.substring(3, 6) + 
+           "-" + phoneStr.substring(6,10);
+}
+//Added changes to format phone numbers
+// let itemInput=document.querySelector('input[type=tel]') ;
+
+//     itemInput.addEventListener('keypress',phone);
+//     function phone()
+//       {
+//           let p=this.value;
+//           if((p.length+1)%4==0 && p.length<9)  this.value=p+"-";
+//       }

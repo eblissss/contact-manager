@@ -163,9 +163,8 @@
                                     class="addEdits"
                                     id="phone"
                                     placeholder="phone"
-                                    type="tel"
-                                    pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
-                                    maxlength="12"
+                                    maxlength="10"
+                                    onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57));"
                                 />
                             </div>
 
@@ -252,7 +251,7 @@
                                 </button>
                                 <button
                                     type="button"
-                                    class="btn btn-primary stn-btn"
+                                    class="btn btn-primary stn-btn deleteButtonSave"
                                     data-bs-dismiss="modal"
                                     onclick="deleteContact();"
                                 >

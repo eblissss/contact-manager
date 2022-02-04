@@ -9,12 +9,14 @@ let username = "";
 let password = "";
 let hash = "";
 
+let dup = "";
+
 let uFlag = false;
+let uFlag2 = false;
 let fnFlag = false;
 let lnFlag = false;
 
 setTimeout(function(){
-
     document.getElementById('firstNameSpot').addEventListener('mouseover', () => {
         if(fnFlag){
             if(document.getElementById('firstName').value.length > 0){
@@ -36,12 +38,20 @@ setTimeout(function(){
         }
     })
     document.getElementById('usernameSpot').addEventListener('mouseover', () => {
-        if(lnFlag){
+        if(uFlag){
             if(document.getElementById('username').value.length > 0){
                 document.getElementById('usernameSpot').removeAttribute('data-tip');
                 document.getElementById('user').style.borderBottom = "2px solid #ffffff66";
             }else{
                 document.getElementById('usernameSpot').setAttribute('data-tip', 'Please Enter a Username');
+            }
+        }
+        if(uFlag2){
+            if(document.getElementById('username').value != dup){
+                document.getElementById('usernameSpot').removeAttribute('data-tip');
+                document.getElementById('user').style.borderBottom = "2px solid #ffffff66";
+            }else{
+                document.getElementById('usernameSpot').setAttribute('data-tip', 'Duplicate Username');
             }
         }
     })
@@ -80,8 +90,10 @@ function doSignUp() {
     if(lastName.length == 0)
         errors.push(2);
 
-    if(username.length == 0)
+    if(username.length == 0){
+        dup = "";
         errors.push(3);
+    }
 
     if(password.length < 5)
         errors.push(4);
@@ -96,7 +108,12 @@ function doSignUp() {
     // Make request
     makeLoginRequest(payload).then((res) => {
         const err = res.error;
-        if (err.length > 15) usernameWarning(errors);
+        if (err.length > 15){
+            uFlag2 = true;
+            uFlag = false;
+            dup = username;
+            usernameWarning(errors);
+        }
         else window.location.href = "index.html";
     });
 
@@ -131,6 +148,7 @@ function fieldWarning(errors){
     if (errors.includes(3)){
         document.getElementById('usernameSpot').setAttribute('data-tip', 'Please Enter a Username');
         document.getElementById('user').style.borderBottom = "2px solid red";
+        uFlag = true;
     }
     if (errors.includes(4)){
         document.getElementById('passwordSpot').setAttribute('data-tip', 'Must be at least 5 characters');

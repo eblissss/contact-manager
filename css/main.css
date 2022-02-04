@@ -264,3 +264,9 @@ canvas {
 .modal-content {
     background-color: #001030;
 }
+
+.deleteButtonSave {
+    background: #2c4a86ee;
+    border: 2px solid #2c4a86ee;
+    color: white;
+}
