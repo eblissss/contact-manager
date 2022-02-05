@@ -26,7 +26,7 @@ function doLogin() {
         userId = res.id;
         // Check if login failed
         if (userId < 1) {
-            console.log("User/Password combination incorrect");
+            addWarnings();
             return;
         }
 
@@ -70,4 +70,12 @@ function saveCookie() {
         userId +
         ";expires=" +
         date.toGMTString();
+}
+
+function addWarnings(){
+    document.getElementById('lgnUN').setAttribute('data-tip', 'Incorrect Username/Password');
+    document.getElementById('un').style.borderBottom = "2px solid red";
+
+    document.getElementById('lgnPWD').setAttribute('data-tip', 'Incorrect Username/Password');
+    document.getElementById('pwd').style.borderBottom = "2px solid red";
 }
