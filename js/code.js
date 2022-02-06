@@ -128,7 +128,6 @@ function createContact() {
 // Search Contacts - API request
 function searchContacts() {
     const srch = document.getElementById("searchForm").value;
-    //userId = -1; // TODO: REMOVE THIS (testing only)
 
     if (srch === "") return;
 

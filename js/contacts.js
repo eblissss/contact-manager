@@ -268,9 +268,9 @@ function edit(contacOuter) {
     emailSlot.children[0].value = emailAddr;
 
     phoneSlot.innerHTML = editInput;
-    
+
     console.log(contac.phoneNum);
-    
+
     phoneSlot.children[0].value = contac.phoneNum;
 
     addrSlot.innerHTML = editInput;
@@ -437,25 +437,33 @@ window.onload = function () {
             msnry.reloadItems();
             msnry.layout();
             jdenticon.update(".contact-image");
+        } else if (res.error === "No Records Found") {
+            const message = document.createElement("h3");
+            message.id = "noneFound";
+            message.innerHTML = "Add a New Contact!";
+            message.style.marginTop = "50px";
+
+            const pane = document.getElementById("contactPane");
+            pane.appendChild(message);
         } else {
             console.log(res.error);
         }
     });
 
     // TODO: Remove after testing
-    for (let i = 0; i < 5; i++) {
-        spawnContact(
-            1000 + i,
-            "Benedict",
-            "Cucumberpatch",
-            "not much bruv not much bruv",
-            "jojo@gmail.com",
-            "808080808" + i,
-            "1000 Ionic Drive",
-            "Never.",
-            0
-        );
-    }
+    // for (let i = 0; i < 5; i++) {
+    //     spawnContact(
+    //         1000 + i,
+    //         "Benedict",
+    //         "Cucumberpatch",
+    //         "not much bruv not much bruv",
+    //         "jojo@gmail.com",
+    //         "808080808" + i,
+    //         "1000 Ionic Drive",
+    //         "Never.",
+    //         0
+    //     );
+    // }
 
     const grid = document.getElementById("contactPane");
     msnry = new Masonry(grid, {
@@ -465,7 +473,7 @@ window.onload = function () {
         stagger: 25,
         fitWidth: true,
     });
-    jdenticon.update(".contact-image");
+    //jdenticon.update(".contact-image");
 };
 
 function setColors(contac) {
@@ -493,21 +501,16 @@ function initializeColorMenu() {
     }
 }
 
-function fmtPhone(phone)
-{
+function fmtPhone(phone) {
     let phoneStr = phone.toString();
     if (phoneStr.length !== 10) return phoneStr;
 
-    return "(" + phoneStr.substring(0, 3) + 
-           ") " + phoneStr.substring(3, 6) + 
-           "-" + phoneStr.substring(6,10);
+    return (
+        "(" +
+        phoneStr.substring(0, 3) +
+        ") " +
+        phoneStr.substring(3, 6) +
+        "-" +
+        phoneStr.substring(6, 10)
+    );
 }
-//Added changes to format phone numbers
-// let itemInput=document.querySelector('input[type=tel]') ;
-
-//     itemInput.addEventListener('keypress',phone);
-//     function phone()
-//       {
-//           let p=this.value;
-//           if((p.length+1)%4==0 && p.length<9)  this.value=p+"-";
-//       }

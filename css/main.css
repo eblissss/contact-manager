@@ -121,6 +121,7 @@ canvas {
     box-shadow: 0 10px 15px -20px black;
     padding-bottom: 50px;
     flex-flow: row wrap;
+    min-height: 65%;
 }
 
 #edit-container {

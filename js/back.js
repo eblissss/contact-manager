@@ -16,10 +16,11 @@ const config = {
     cCol: 0x548cff,
     dCol: 0x7900ff,
     wireframe: false,
-    numParticles: 600,
+    numParticles: 500,
     starCol: 0xffffff,
-    starSize: 8,
+    starSize: 9,
     mouseSens: 0.00004,
+    meshVertRatio: 3,
 };
 
 let camera, scene, simplex, renderer;
@@ -79,7 +80,12 @@ function makeScene() {
     });
 
     // Plane
-    const planeGeo = new THREE.PlaneBufferGeometry(w, h, w / 2, h / 2);
+    const planeGeo = new THREE.PlaneBufferGeometry(
+        w,
+        h,
+        Math.floor(w / config.meshVertRatio),
+        Math.floor(h / config.meshVertRatio)
+    );
 
     plane = new THREE.Mesh(planeGeo, meshMat);
     scene.add(plane);
