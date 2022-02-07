@@ -16,9 +16,9 @@ const config = {
     cCol: 0x548cff,
     dCol: 0x7900ff,
     wireframe: false,
-    numParticles: 500,
+    numParticles: 300,
     starCol: 0xffffff,
-    starSize: 9,
+    starSize: 18,
     mouseSens: 0.00004,
     meshVertRatio: 3,
 };
@@ -111,7 +111,7 @@ function makeScene() {
     );
 
     // Material
-    const sprite = new THREE.TextureLoader().load("./images/white-dot.png");
+    const sprite = new THREE.TextureLoader().load("./images/shuriken.png");
     const particleMat = new THREE.PointsMaterial({
         color: config.starCol,
         size: config.starSize,

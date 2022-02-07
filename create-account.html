@@ -33,16 +33,16 @@
         <div id="waveContainer">
             <form action="#" class="signup">
                 <h1>Sign up below</h1>
-                <div id = "FN" class="signupinputs">
+                <div id="FN" class="signupinputs">
                     <label for="firstName">first name</label>
                     <div id="firstNameSpot">
                         <input id="firstName" placeholder="first name" />
                     </div>
                 </div>
 
-                <div id = "LN" class="signupinputs">
+                <div id="LN" class="signupinputs">
                     <label for="lastName">last name</label>
-                    <div id = 'lastNameSpot'>
+                    <div id="lastNameSpot">
                         <input id="lastName" placeholder="last name" />
                     </div>
                 </div>
@@ -56,15 +56,22 @@
 
                 <div id="pass" class="signupinputs">
                     <label for="password">password</label>
-                    <div id="passwordSpot" data-tip="Must be at least 5 characters">
-                        <input type="password" id="password" placeholder="password" />
+                    <div
+                        id="passwordSpot"
+                        data-tip="Must be at least 5 characters"
+                    >
+                        <input
+                            type="password"
+                            id="password"
+                            placeholder="password"
+                        />
                     </div>
                 </div>
 
                 <button
                     class="signupbuttons"
                     id="signupButton"
-                    type="submit"
+                    type="button"
                     onclick="doSignUp();"
                 >
                     Sign Up
